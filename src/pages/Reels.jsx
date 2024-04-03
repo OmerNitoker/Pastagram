@@ -1,6 +1,12 @@
 import { useRef, useEffect } from 'react';
 
 export function Reels() {
+    return (
+        <div>Reels</div>
+    )
+
+
+    //BUG
     const videoRefs = useRef([]);
     const videoUrls = [
         "src/assets/videos/1.mp4",
@@ -39,7 +45,7 @@ export function Reels() {
         "src/assets/videos/2.mp4",
         "src/assets/videos/3.mp4",
         "src/assets/videos/4.mp4",
-       
+
     ];
 
     useEffect(() => {
@@ -76,19 +82,21 @@ export function Reels() {
         const video = videoRefs.current[index];
         if (video) {
             video.pause();
-            video.currentTime = 0; // Remettre la vidéo au début
+            video.currentTime = 0;
         }
     };
 
     return (
         <div className="video-container" ref={videoRefs}>
             {videoUrls.map((url, index) => (
-                <div 
-                    key={index} 
-                    className="video-item" 
+
+                <div
+                    key={index}
+                    className="video-item"
                     onMouseEnter={() => handleVideoMouseEnter(index)}
                     onMouseLeave={() => handleVideoMouseLeave(index)}
                 >
+
                     <video controls ref={(el) => {
                         videoRefs.current[index] = el;
                     }}>
