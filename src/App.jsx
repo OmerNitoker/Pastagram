@@ -8,6 +8,9 @@ import { Chat } from './pages/Chat'
 import { Reels } from './pages/Reels'
 import { Explore } from './pages/Explore'
 import './assets/styles/main.scss'
+import { Search } from './cmps/Search'
+import { Notifications } from './cmps/Notifications'
+import { Creat } from './cmps/Creat'
 
 
 export function App() {
@@ -24,6 +27,9 @@ export function App() {
                             <Route element={<Reels />} path="/reels" />
                             <Route element={<Chat />} path="/chat" />
                             <Route element={<UserDetails />} path="/user" />
+                            <Route element={<Search />} path="/search" />
+                            <Route element={<Notifications />} path="/notifications" />
+                            <Route element={<Creat />} path="/creat" />
                         </Routes>
                     </main>
                 </section>
