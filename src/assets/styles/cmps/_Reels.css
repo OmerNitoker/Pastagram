@@ -1,0 +1,26 @@
+
+.video-container {
+    overflow: auto;
+    height: 100vh; 
+    width: 100vw;  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-item {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.video-item video {
+    width: 35vw;
+    height: 100vh;
+    object-fit: cover;
+}
+
+
+
+
