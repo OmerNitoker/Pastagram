@@ -7,6 +7,7 @@ import { UserDetails } from './pages/UserDetails'
 import { Chat } from './pages/Chat'
 import { Reels } from './pages/Reels'
 import { Explore } from './pages/Explore'
+import './assets/styles/main.scss'
 
 
 export function App() {
