@@ -1,0 +1,12 @@
+.modal-header {
+    align-items: center;
+    height: 42px;
+    padding: 0 5px;
+    border-bottom: 1px solid #c2c2c2;
+}
+
+.post-user-info {
+    & img {
+        height: 28px;
+    }
+}
