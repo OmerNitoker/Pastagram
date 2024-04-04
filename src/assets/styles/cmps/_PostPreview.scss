@@ -1,0 +1,24 @@
+
+.user-avatar {
+    border-radius: 50%;
+    height: 42px;
+    width: 42px;
+}
+
+.post-time {
+    color: gray;
+}
+
+.post-header {
+    gap: 1em;
+}
+
+.post-preview {
+    border-bottom: .01px solid #c2c2c2;
+
+    &.btn-container {
+        position: relative;
+        gap: 13px;
+    }
+}
+

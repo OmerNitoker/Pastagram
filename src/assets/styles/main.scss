@@ -1,5 +1,11 @@
 
 // Basics
 @import "basics/layout";
+@import "basics/helpers";
 
-@import "cmps/_NavBar.css"
+//Pages
+@import "views/HomePage";
+
+//Cmps
+@import "cmps/NavBar";
+@import "cmps/PostPreview";

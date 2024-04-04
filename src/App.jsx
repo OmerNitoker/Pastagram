@@ -1,7 +1,7 @@
 import { Route, HashRouter as Router, Routes } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { HomePage } from './pages/HomePage'
-// import { store } from './store/store'
+import { store } from './store/store'
 import { NavBar } from './cmps/NavBar'
 import { UserDetails } from './pages/UserDetails'
 import { Chat } from './pages/Chat'
@@ -16,7 +16,7 @@ import { Creat } from './cmps/Creat'
 export function App() {
 
     return (
-        // <Provider store={store}>
+        <Provider store={store}>
             <Router>
                 <section className="main-layout app">
                     <NavBar />
@@ -34,6 +34,6 @@ export function App() {
                     </main>
                 </section>
             </Router>
-        // </Provider>
+        </Provider>
     )
 }
