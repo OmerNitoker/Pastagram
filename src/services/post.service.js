@@ -39,15 +39,15 @@ const gPosts = [
             //   }
             // ]
           },
-          {
-            id: "c1002",
-            by: {
-              _id: "u106",
-              fullname: "Dob",
-              imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712178840/instagram-posts/smash-or-pass-this-random-guy-i-saw-on-the-internet-v0-ta86yyu1m5lb1_rg1yfa.webp"
-            },
-            txt: "not good!",
-          }
+          // {
+          //   id: "c1002",
+          //   by: {
+          //     _id: "u106",
+          //     fullname: "Dob",
+          //     imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712178840/instagram-posts/smash-or-pass-this-random-guy-i-saw-on-the-internet-v0-ta86yyu1m5lb1_rg1yfa.webp"
+          //   },
+          //   txt: "not good!",
+          // }
         ],
         likedBy: [
           {
@@ -66,7 +66,7 @@ const gPosts = [
       {
         _id: "s102",
         txt: "went hiking",
-        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712175532/instagram-posts/1_m7hfqi.jpg", 
+        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712175596/instagram-posts/2_qytjzt.jpg", 
         by: {
           _id: "u101",
           fullname: "Jim Carrey",

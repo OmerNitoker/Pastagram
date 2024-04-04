@@ -1,3 +1,5 @@
 .main-layout {
     display: flex;
+    // grid-template-columns: 350px 1fr;
+    justify-content: space-around;
 }
