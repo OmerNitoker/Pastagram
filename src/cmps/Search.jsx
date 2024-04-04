@@ -1,5 +1,13 @@
-export function Search() {
+import { useEffect, useRef } from 'react';
+
+export function Search({ toggleSidebar }) {
+   
+
     return (
-        <h1>SEARCH</h1>
+        <div className="search-page" >
+            <h1>SEARCH</h1>
+            <input type="search" />
+           
+        </div>
     )
 }

@@ -5,6 +5,7 @@ import { loadPosts } from '../store/actions/post.actions.js'
 
 import { PostList } from '../cmps/PostList.jsx'
 import { Suggestions } from '../cmps/Suggestions.jsx'
+import { Stories } from '../cmps/Stories.jsx'
 
 export function HomePage() {
 
@@ -13,7 +14,7 @@ export function HomePage() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-            await loadPosts()
+                await loadPosts()
             } catch (err) {
                 console.log('err:', err)
             }
@@ -23,6 +24,7 @@ export function HomePage() {
 
     return (
         <section className="home-container">
+            
             <PostList posts={posts} />
             {/* <Suggestions /> */}
         </section>
