@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-export function PostPreview({ post }) {
+export function PostPreview({ post, loggedinUser }) {
     const [isLiked, setIsLiked] = useState(false);
     const [likesCount, setLikesCount] = useState(post.likedBy.length);
     const likedByIndex = post.likedBy.findIndex(user => user._id === "ID_OF_CURRENT_USER");
@@ -28,6 +28,10 @@ export function PostPreview({ post }) {
         setIsModalOpen(!isModalOpen);
     };
 
+    function onOpenPostMenu() {
+        if (loggedinUser._id !== post.by._id) return
+    }
+
     return (
         <article className="post-preview flex column fs14">
 
@@ -37,7 +41,7 @@ export function PostPreview({ post }) {
                 <img className="user-avatar" src={post.by.imgUrl} />
                 <Link className="clean-link fw600">{post.by.username}</Link>
                 <div className="post-time">• 1h</div>
-                <i className="fa-solid fa-ellipsis "></i>
+                <i onClick={onOpenPostMenu} className="fa-solid fa-ellipsis "></i>
             </section>
 
             <img className="post-img" src={post.imgUrl} alt="post-img" onClick={toggleModal} />

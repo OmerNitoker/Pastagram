@@ -1,6 +1,6 @@
 
-import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux'
 import Modal from 'react-modal';
 
 import { cloudinaryService } from '../services/cloudinary-service.js';
@@ -29,14 +29,20 @@ const customStyles = {
 };
 
 export function AddPost({ isModalOpen, onAddPost, onCloseModal }) {
+    const loggedinUser = useSelector(storeState => storeState.userModule.loggedinUser)
 
     const [newPost, setNewPost] = useState(postService.getEmptyPost())
     const [image, setImage] = useState('')
 
+    useEffect(() => {
+        const { _id, fullname, username, imgUrl } = loggedinUser
+        setNewPost(prevState => ({ ...prevState, by: {...prevState.by, _id, fullname, username, imgUrl }}))
+    }, [])
 
     function handleChange(ev) {
         const { target } = ev
-        console.log('value: ', target.type)
+        // const { _id, fullname, username, imgUrl } = loggedinUser
+        console.log('loggedinUser: ', loggedinUser)
         if (target.type === 'textarea') {
             setNewPost(prevState => ({ ...prevState, txt: target.value }))
         }
@@ -51,6 +57,7 @@ export function AddPost({ isModalOpen, onAddPost, onCloseModal }) {
     }
 
     async function handleSubmit(ev) {
+        console.log('new post: ', newPost)
         ev.preventDefault()
         if (!newPost.txt || !newPost.imgUrl) return
         await addPost(newPost)
@@ -85,8 +92,8 @@ export function AddPost({ isModalOpen, onAddPost, onCloseModal }) {
                         <section className="post-info flex column">
                             <div className="post-user-info flex column">
                                 <section className="flex">
-                                <img className='user-avatar' src={newPost.by.imgUrl} />
-                                <span className='fw600 fs14'>{newPost.by.username}</span>
+                                    <img className='user-avatar' src={loggedinUser.imgUrl} />
+                                    <span className='fw600 fs14'>{loggedinUser.username}</span>
                                 </section>
                                 <textarea onChange={handleChange} name="txt" id="txt" placeholder='Write a caption...'></textarea>
                             </div>

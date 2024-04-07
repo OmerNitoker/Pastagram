@@ -160,10 +160,10 @@ function getEmptyPost() {
     txt: '',
     imgUrl: '', 
     by: {
-      _id: "u101",
-      fullname: "Jim Carrey",
-      username: "jim123",
-      imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712175877/instagram-posts/jim_carrey_znnmxy.webp"
+      _id: '',
+      fullname: '',
+      username: '',
+      imgUrl: ''
     },
     comments: [],
     likedBy: [],
