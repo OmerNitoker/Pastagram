@@ -77,6 +77,7 @@ export function AddPost({ isModalOpen, onAddPost, onCloseModal }) {
                         <section className="img-section">
                             {image ? <img src={image} /> :
                                 <div className="upload-preview flex column">
+                                    <i className="fa-regular fa-image"></i>
                                     <label for="imgUpload">Upload Image</label>
                                     <input type="file" accept="img/*" id="imgUpload" onChange={handleChange}></input>
                                 </div>

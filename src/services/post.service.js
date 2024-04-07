@@ -134,24 +134,36 @@ async function remove(postId) {
 }
 
 async function save(post) {
-  var savedPost
+  var savedPost;
   if (post._id) {
-      savedPost = await storageService.put(STORAGE_KEY, post)
+    savedPost = await storageService.put(STORAGE_KEY, post);
   } else {
-      // post.host = userService.getLoggedinUser()
-      savedPost = await storageService.post(STORAGE_KEY, post)
+    // post.host = userService.getLoggedinUser();
+    post.comments.forEach(comment => {
+      if (!comment.timestamp) {
+        comment.timestamp = Date.now() - (24 * 60 * 60 * 1000); // 1 jour en millisecondes
+      }
+    });
+
+    savedPost = await storageService.post(STORAGE_KEY, post);
   }
-  return savedPost
+  return savedPost;
 }
 
 function _createPosts() {
-  let posts = utilService.loadFromStorage(STORAGE_KEY)
+  let posts = utilService.loadFromStorage(STORAGE_KEY);
   if (!posts || !posts.length) {
-      posts = gPosts
-      utilService.saveToStorage(STORAGE_KEY, posts)
+    posts = gPosts;
+
+    posts.forEach(post => {
+      post.comments.forEach(comment => {
+        comment.timestamp = Date.now() - (24 * 60 * 60 * 1000); 
+      });
+    });
+
+    utilService.saveToStorage(STORAGE_KEY, posts);
   }
-  console.log('posts:',posts)
-  
+  console.log('posts:', posts);
 }
 
 function getEmptyPost() {
