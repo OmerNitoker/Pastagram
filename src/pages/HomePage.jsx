@@ -6,9 +6,9 @@ import { loadPosts } from '../store/actions/post.actions.js'
 import { PostList } from '../cmps/PostList.jsx'
 import { Suggestions } from '../cmps/Suggestions.jsx'
 import { Stories } from '../cmps/Stories.jsx'
+import { loginDemo } from '../store/actions/user.actions.js'
 
 export function HomePage() {
-
     const posts = useSelector(storeState => storeState.postModule.posts)
 
     useEffect(() => {
@@ -20,6 +20,10 @@ export function HomePage() {
             }
         }
         fetchData()
+    }, [])
+
+    useEffect(() => {
+        loginDemo()
     }, [])
 
     return (
