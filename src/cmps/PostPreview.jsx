@@ -40,7 +40,7 @@ export function PostPreview({ post }) {
                 <i className="fa-solid fa-ellipsis "></i>
             </section>
 
-            <img className="post-img" src={post.imgUrl} alt="post-img" onClick={toggleModal} />
+            <img className="post-img" src={post.imgUrl} alt="post-img" />
 
             <section className="post-footer flex column">
 
@@ -49,7 +49,7 @@ export function PostPreview({ post }) {
                     <div className="Like" onClick={handleLikeClick} style={{ color: isLiked ? 'red' : 'black' }}>
                         {!isLiked ? <i className="fa-regular fa-heart"></i> : <i className="fa-solid fa-heart"></i>}
                     </div>
-                    <i className="fa-regular fa-comment"></i>
+                    <i className="fa-regular fa-comment" onClick={toggleModal} ></i>
                     <i className="fa-regular fa-paper-plane share-post-btn"></i>
                     <i className="fa-regular fa-bookmark save-btn" aria-hidden="true"></i>
                 </div>
@@ -59,34 +59,40 @@ export function PostPreview({ post }) {
                     <Link className="clean-link fw600">{post.by.username}</Link>
                     <span className="story-txt">{post.txt}</span>
                 </div>
-                {post.comments.length ? <span>{post.comments.length} {post.comments.length === 1 ? 'comment' : 'comments'}</span> : <span></span>}
+                {post.comments.length ? <span onClick={toggleModal} >{post.comments.length} {post.comments.length === 1 ? 'comment' : 'comments'}</span> : <span></span>}
                 <textarea name="add-comment" id="add-comment" placeholder="Add a comment..."></textarea>
             </section>
 
             {isModalOpen && (
+
                 <div className="modal-overlay" onClick={toggleModal}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <div className="modal-content-wrapper">
                             <img className="modal-post-img" src={post.imgUrl} alt="post-img" />
+
                             <div className="comments-section">
-                                <section className="post-header flex align-center">
-                                    <img className="user-avatar" src={post.by.imgUrl} />
+
+                                <section className="post-modal-header flex align-center">
+                                    <img className="modal-user-avatar" src={post.by.imgUrl} />
                                     <Link className="clean-link">{post.by.username}</Link>
-                                    <div className="post-time">•1h</div>
+                                    <div className="modal-post-time">•1h</div>
                                     <i className="fa-solid fa-ellipsis "></i>
                                 </section>
+
                                 <ul className="comments-list">
                                     {post.comments.map(comment => (
                                         <li key={comment.id} className="comment-item">
                                             <img src={comment.by.imgUrl} alt={comment.by.fullname} className="comment-avatar" />
                                             <span className="comment-text">{comment.txt}</span>
+                                            <i className="fa-regular fa-heart comment-like-btn"></i>
                                         </li>
                                     ))}
                                 </ul>
 
                                 <div className="comment-input-container">
+                                    <div className="emojis"><i className="fa-regular fa-face-smile "></i></div>
                                     <input type="text" placeholder="Add a comment..." className="comment-input" />
-                                    <button className="comment-btn">Post</button>
+                                    <button className="comment-btn">Publish</button>
                                 </div>
                             </div>
                         </div>
