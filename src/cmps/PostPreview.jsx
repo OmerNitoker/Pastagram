@@ -4,12 +4,8 @@ import { utilService } from "../services/util.service";
 import { postService } from "../services/post.service";
 import { useEffect } from 'react';
 
-<<<<<<< HEAD
-export function PostPreview({ post, loggedinUser }) {
-=======
 
 export function PostPreview({ post, currentUser }) {
->>>>>>> 07dedb84aa9deda236cb98680daab7d9a80ffb31
     const [isLiked, setIsLiked] = useState(false);
     const [likesCount, setLikesCount] = useState(post.likedBy.length);
     const likedByIndex = post.likedBy.findIndex(user => user._id === "u101");
@@ -214,7 +210,7 @@ export function PostPreview({ post, currentUser }) {
                                         >
                                             <img src={comment.by.imgUrl} alt={comment.by.fullname} className="comment-avatar" />
                                             <div className="comment-content">
-                                                <span className="comment-text">{comment.txt}</span>
+                                            <span className="comment-text">{comment.txt}</span>
                                                 <div className="comment-actions">
                                                    
                                                     <span className="comment-time">{getTimeAgo(comment.timestamp)}</span>

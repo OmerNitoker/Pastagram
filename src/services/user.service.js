@@ -126,11 +126,7 @@ function getDemoUser() {
         username: "johnny_johnson",
         password: "pass123",
         fullname: "John Johnson",
-<<<<<<< HEAD
         imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712492656/1517034957463_hxarzp.jpg",
-=======
-        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712178735/instagram-posts/bob_uaojqj.jpg",
->>>>>>> 07dedb84aa9deda236cb98680daab7d9a80ffb31
         following: [
             {
                 _id: "u106",
