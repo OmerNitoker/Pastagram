@@ -1,6 +1,5 @@
 import { userService } from "../../services/user.service.js";
-import { CLEAR_CART } from "../reducers/car.reducer.js";
-import { SET_USER, SET_USER_SCORE } from "../reducers/user.reducer.js";
+import { SET_USER } from "../reducers/user.reducer.js";
 import { store } from "../store.js";
 
 
@@ -42,15 +41,31 @@ export function logout() {
         })
 }
 
-
-export function checkout(diff) {
-    return userService.updateScore(diff)
-        .then(newScore => {
-            store.dispatch({ type: CLEAR_CART })
-            store.dispatch({ type: SET_USER_SCORE, score: newScore })
-        })
-        .catch(err => {
-            console.error('user actions -> Cannot checkout:', err)
-            throw err
-        })
+export async function loginDemo() {
+    try {
+        const users = await userService.getUsers()
+        if (users.length) {
+            await login(users[0])
+        } 
+        else {
+            const demoUser = userService.getDemoUser()
+            await signup(demoUser)
+        }
+    }
+    catch (err) {
+        console.log ('had an error')
+    }
 }
+    // const user = userService.getDemoUser()
+    // userService.getUsers()
+    // .then (users => {
+    //     if (users.length) {
+    //         login(users[0])
+    //         .then(() =>{return}) 
+    //     }
+    //     signup(user)
+    //     .then(() => {return})
+    // })
+
+
+

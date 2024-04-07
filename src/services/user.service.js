@@ -1,5 +1,5 @@
 import { storageService } from './async-storage.service'
-import { httpService } from './http.service'
+// import { httpService } from './http.service'
 import { utilService } from './util.service'
 
 
@@ -15,7 +15,8 @@ export const userService = {
     getById,
     remove,
     update,
-    updateLocalUserFields
+    updateLocalUserFields,
+    getDemoUser
 }
 
 window.userService = userService
@@ -37,11 +38,11 @@ const gUsers = [
     }
 ]
 
-_createUsers()
+// _createUsers()
 
 function getUsers() {
     return storageService.query('user')
-    return httpService.get(`user`)
+    // return httpService.get(`user`)
 }
 
 async function getById(userId) {
@@ -86,7 +87,16 @@ async function logout() {
 }
 
 function saveLocalUser(user) {
-    user = { _id: user._id, fullname: user.fullname, imgUrl: user.imgUrl, isHost: user.isHost }
+    user = {
+        _id: user._id,
+        username: user.username,
+        password: user.password,
+        fullname: user.fullname,
+        imgUrl: user.imgUrl,
+        following: user.following,
+        followers: user.followers,
+        savedPostsIds: user.savedPostsIds
+    }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
 }
@@ -107,6 +117,31 @@ function _createUsers() {
     if (!users || !users.length) {
         users = gUsers
         utilService.saveToStorage('user', users)
+    }
+}
+
+function getDemoUser() {
+    return {
+        _id: "u101",
+        username: "johnny_johnson",
+        password: "pass123",
+        fullname: "John Johnson",
+        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712390069/insta-project/mpsarkvahr4g7lfavahs.jpg",
+        following: [
+            {
+                _id: "u106",
+                fullname: "Xi Xiang",
+                imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712484508/aeecc22a67dac7987a80ac0724658493_csfop3.jpg"
+            }
+        ],
+        followers: [
+            {
+                _id: "u105",
+                fullname: "Peter Peterson",
+                imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712484718/handsome-man-with-glasses_144627-18665_pykck1.avif"
+            }
+        ],
+        savedPostsIds: []
     }
 }
 
