@@ -8,7 +8,8 @@ export const postService = {
   query,
   getById,
   remove,
-  save
+  save,
+  getEmptyPost
 }
 
 const gPosts = [
@@ -151,6 +152,23 @@ function _createPosts() {
   }
   console.log('posts:',posts)
   
+}
+
+function getEmptyPost() {
+  return {
+    // _id: utilService.makeId(),
+    txt: '',
+    imgUrl: '', 
+    by: {
+      _id: "u101",
+      fullname: "Jim Carrey",
+      username: "jim123",
+      imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712175877/instagram-posts/jim_carrey_znnmxy.webp"
+    },
+    comments: [],
+    likedBy: [],
+    tags: []
+  }
 }
 
 

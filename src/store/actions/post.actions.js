@@ -33,6 +33,7 @@ export async function removePost(postId) {
 export async function addPost(post) {
     try {
         const savedPost = await postService.save(post)
+        console.log('saved postt:', savedPost)
         store.dispatch({
             type: ADD_POST,
             post

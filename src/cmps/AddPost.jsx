@@ -1,7 +1,12 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
+
+import { cloudinaryService } from '../services/cloudinary-service.js';
+import { postService } from '../services/post.service.js';
+import { utilService } from '../services/util.service.js';
+import { addPost } from '../store/actions/post.actions.js';
 
 const customStyles = {
     content: {
@@ -11,63 +16,83 @@ const customStyles = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
+        borderRadius: '10px',
     },
+    overlay: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.643'
+    }
 };
 
-// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
-// Modal.setAppElement('#yourAppElement');
-
 export function AddPost({ isModalOpen, onAddPost, onCloseModal }) {
-    //   let subtitle;
 
-    function afterOpenModal() {
-        // references are now sync'd and can be accessed.
-        // subtitle.style.color = '#f00';
+    const [newPost, setNewPost] = useState(postService.getEmptyPost())
+    const [image, setImage] = useState('')
+
+
+    function handleChange(ev) {
+        const { target } = ev
+        console.log('value: ', target.type)
+        if (target.type === 'textarea') {
+            setNewPost(prevState => ({ ...prevState, txt: target.value }))
+        }
+        else if (target.type === 'file') {
+            cloudinaryService.uploadImg(ev)
+                .then(url => {
+                    setImage(url)
+                    setNewPost(prevState => ({ ...prevState, imgUrl: url }))
+                })
+                .catch(console.log('cannot upload image'))
+        }
+    }
+
+    async function handleSubmit(ev) {
+        ev.preventDefault()
+        if (!newPost.txt || !newPost.imgUrl) return
+        await addPost(newPost)
+        onCloseModal()
     }
 
 
     return (
         <div>
-            {/* <button onClick={openModal}>Open Modal</button> */}
             <Modal
                 isOpen={isModalOpen}
-                onAfterOpen={afterOpenModal}
                 onRequestClose={onCloseModal}
                 style={customStyles}
-                contentLabel="Example Modal"
             >
-                {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2> */}
-
                 <section className="add-modal">
-                    <header className="modal-header flex space-between">
-                        <i className="fa-solid fa-arrow-left" aria-hidden="true"></i>
-                        <span>Create new post</span>
-                        <a className='share-btn'>Share</a>
-                    </header>
+                    <div className="modal-header flex space-between">
+                        <a onClick={onCloseModal} className="back-btn">
+                            <i className="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                        </a>
+                        <span className='fw600'>Create new post</span>
+                        <a onClick={handleSubmit} className='share-btn'>Share</a>
+                    </div>
                     <div className="create-post-container flex space-between">
                         <section className="img-section">
-                            <div className="upload-preview flex column">
-                                <label for="imgUpload">Upload Image</label>
-                                <input type="file" accept="img/*" id="imgUpload"></input>
-                            </div>
+                            {image ? <img src={image} /> :
+                                <div className="upload-preview flex column">
+                                    <label for="imgUpload">Upload Image</label>
+                                    <input type="file" accept="img/*" id="imgUpload" onChange={handleChange}></input>
+                                </div>
+                            }
                         </section>
                         <section className="post-info flex column">
-                            <div className="post-user-info flex">
-                                <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"/>
-                                <span>Muki Goldstein</span>
+                            <div className="post-user-info flex column">
+                                <section className="flex">
+                                <img className='user-avatar' src={newPost.by.imgUrl} />
+                                <span className='fw600 fs14'>{newPost.by.username}</span>
+                                </section>
+                                <textarea onChange={handleChange} name="txt" id="txt" placeholder='Write a caption...'></textarea>
                             </div>
-                            <form>
-                                <textarea name="txt" id="txt" placeholder='Write a caption...'></textarea>
-                            </form>
+                            <div className="post-info-footer"></div>
                         </section>
                     </div>
-                    {/* <form>
-                        <input />
-                        <button>tab navigation</button>
-                        <button>stays</button>
-                        <button>inside</button>
-                        <button>the modal</button>
-                    </form> */}
                 </section>
             </Modal>
         </div>

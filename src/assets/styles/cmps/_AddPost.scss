@@ -1,12 +1,65 @@
+.add-modal {
+    width: 50vw;
+    height: 70vh;
+}
+
+.create-post-container {
+    display: grid;
+    grid-template-columns: 65% 35%;
+    width: 100%;
+    height: 100%;
+}
+
+.img-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    size: 100%;
+    font-size: rem(18px);
+
+    & img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.post-info {
+    width: 100%;
+    height: 100%;
+    border-left: 1px solid #c2c2c2;
+}
+
 .modal-header {
+    display: flex;
+    justify-content: space-between;
+    size: 100%;
     align-items: center;
     height: 42px;
     padding: 0 5px;
     border-bottom: 1px solid #c2c2c2;
+    box-sizing: border-box;
 }
 
+.share-btn {
+    flex-grow: 0;
+    color: $clr-btn1;
+}
+    
 .post-user-info {
+    gap: rem(15px);
+    padding: 1.25rem 1rem;
+
     & img {
-        height: 28px;
+        height: 40px;
+        width: 40px;
+    }
+
+    & section {
+        align-items: center;
+        gap: rem(15px);
+    }
+
+    & textarea {
+        all: unset;
     }
 }

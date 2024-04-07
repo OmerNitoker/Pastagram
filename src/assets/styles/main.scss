@@ -1,5 +1,10 @@
+//Setup
+@import "setup/functions";
+@import "setup/variables";
+@import "setup/typography";
 
 // Basics
+@import "basics/base";
 @import "basics/layout";
 @import "basics/helpers";
 
@@ -7,8 +12,10 @@
 @import "views/HomePage";
 
 //Cmps
+@import "cmps/PostList";
 @import "cmps/NavBar";
 @import "cmps/PostPreview";
 @import "cmps/Reels";
 @import "cmps/AddPost";
+
 

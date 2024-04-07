@@ -49,7 +49,7 @@ export function NavBar() {
                 <li className="nav-item chat">
                     <Link to="/chat" className="nav-link">
                         <i className="fa-brands fa-facebook-messenger"></i>
-                        Chat
+                        Messages
                     </Link>
                 </li>
                 <li className="nav-item notifications">
@@ -67,19 +67,13 @@ export function NavBar() {
                 <li className="nav-item userDetails">
                     <Link to="/user" className="nav-link">
                         <i className="fa-regular fa-circle"></i>
-                        Profil
+                        Profile
                     </Link>
                 </li>
-                <li className="nav-item threads">
-                    <Link to="/" className="nav-link">
-                        <i className="fa-brands fa-threads"></i>
-                        Threads
-                    </Link>
-                </li>
-                <li className="nav-item plus">
+                <li className="nav-item hamburger-menu">
                     <Link to="/" className="nav-link">
                         <i className="fa-solid fa-bars"></i>
-                        Plus
+                        More
                     </Link>
                 </li>
             </ul>

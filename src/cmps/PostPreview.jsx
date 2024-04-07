@@ -27,13 +27,13 @@ export function PostPreview({ post }) {
     };
 
     return (
-        <article className="post-preview flex column">
+        <article className="post-preview flex column fs14">
 
-            <section className="post-header flex align-center">
+            <section className="post-header flex align-center fs14">
 
                 <img className="user-avatar" src={post.by.imgUrl} />
-                <Link className="clean-link">{post.by.username}</Link>
-                <div className="post-time">•1h</div>
+                <Link className="clean-link fw600">{post.by.username}</Link>
+                <div className="post-time">• 1h</div>
                 <i className="fa-solid fa-ellipsis "></i>
             </section>
 
@@ -41,21 +41,22 @@ export function PostPreview({ post }) {
 
             <section className="post-footer flex column">
 
-                <div className="btn-container flex">
+                <div className="btn-container flex align-center">
                     <div className="Like" onClick={handleLikeClick} style={{ color: isLiked ? 'red' : 'black' }}>
                      { !isLiked ?  <i className="fa-regular fa-heart"></i>:<i className="fa-solid fa-heart"></i>}
                     </div>
                     <i className="fa-regular fa-comment"></i>
-                    <i className="fa-regular fa-paper-plane share-btn"></i>
+                    <i className="fa-regular fa-paper-plane share-post-btn"></i>
                     <i className="fa-regular fa-bookmark save-btn" aria-hidden="true"></i>
                 </div>
 
-                {post.likedBy.length && <span>{post.likedBy.length} {post.likedBy.length === 1 ? 'Like' : 'Likes'}</span>}
+                {post.likedBy.length ? <span>{post.likedBy.length} {post.likedBy.length === 1 ? 'Like' : 'Likes'}</span> : <span></span> }
                 <div>
-                    <Link className="clean-link">{post.by.username}</Link>
-                    <span className="story-text">{post.txt}</span>
+                    <Link className="clean-link fw600">{post.by.username}</Link>
+                    <span className="story-txt">{post.txt}</span>
                 </div>
-                {post.comments.length && <span>{post.comments.length} {post.comments.length === 1 ? 'comment' : 'comments'}</span>}
+                {post.comments.length ? <span>{post.comments.length} {post.comments.length === 1 ? 'comment' : 'comments'}</span> : <span></span>}
+                <textarea name="add-comment" id="add-comment" placeholder="Add a comment..."></textarea>
             </section>
 
         </article>
