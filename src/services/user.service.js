@@ -141,15 +141,57 @@ function getDemoUser() {
                 imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712484718/handsome-man-with-glasses_144627-18665_pykck1.avif"
             }
         ],
-        savedPostsIds: []
+        savedPostsIds: [],
+        posts: [{
+            _id: "s101",
+            txt: "Best trip ever",
+            imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712175532/instagram-posts/1_m7hfqi.jpg",
+            by: {
+                _id: "u101",
+                fullname: "Jim Carrey",
+                username: "jim123",
+                imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712175877/instagram-posts/jim_carrey_znnmxy.webp"
+            },
+            comments: [
+                {
+                    id: "c1001",
+                    by: {
+                        _id: "u105",
+                        fullname: "Bob",
+                        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712178735/instagram-posts/bob_uaojqj.jpg"
+                    },
+                    txt: "good one!",
+                    // likedBy: [ // Optional
+                    //   {
+                    //     "_id": "u105",
+                    //     "fullname": "Bob",
+                    //     "imgUrl": "http://some-img"
+                    //   }
+                    // ]
+                },
+                // {
+                //   id: "c1002",
+                //   by: {
+                //     _id: "u106",
+                //     fullname: "Dob",
+                //     imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712178840/instagram-posts/smash-or-pass-this-random-guy-i-saw-on-the-internet-v0-ta86yyu1m5lb1_rg1yfa.webp"
+                //   },
+                //   txt: "not good!",
+                // }
+            ],
+            likedBy: [
+                {
+                    _id: "u105",
+                    fullname: "Bob",
+                    imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712178735/instagram-posts/bob_uaojqj.jpg"
+                },
+                {
+                    _id: "u106",
+                    fullname: "Dob",
+                    imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712178840/instagram-posts/smash-or-pass-this-random-guy-i-saw-on-the-internet-v0-ta86yyu1m5lb1_rg1yfa.webp"
+                }
+            ],
+            tags: ["fun", "romantic"]
+        }]
     }
 }
-
-
-// ; (async () => {
-//     await userService.signup({ fullname: 'Host', username: 'host', password: '123', isHost: true, _id: "SzgiV" })
-//     await userService.signup({ fullname: 'Guest', username: 'guest', password: '123', isHost: false, _id: "dhbsb" })
-// })()
-
-
-
