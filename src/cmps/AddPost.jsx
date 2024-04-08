@@ -57,7 +57,6 @@ export function AddPost({ isModalOpen, onAddPost, onCloseModal }) {
     }
 
     async function handleSubmit(ev) {
-        console.log('new post: ', newPost)
         ev.preventDefault()
         if (!newPost.txt || !newPost.imgUrl) return
         await addPost(newPost)

@@ -1,0 +1,22 @@
+
+.post-menu {
+    display: grid;
+    grid-template-rows: 50% 50%;
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    width: 400px;
+    // height: 10%;
+
+    & button {
+        height: 3rem;
+        font-size: 14px;
+        cursor: pointer;
+    }
+}
+
+.delete-btn {
+    color: $clr-delete-btn;
+    border-bottom: 1px solid $clr-sep-line;
+    font-weight: 700;
+}

@@ -3,13 +3,15 @@ import { useState } from "react";
 import { utilService } from "../services/util.service";
 import { postService } from "../services/post.service";
 import { useEffect } from 'react';
+import { PostMenu } from "./PostMenu";
 
 
-export function PostPreview({ post, currentUser }) {
+export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
     const [isLiked, setIsLiked] = useState(false);
     const [likesCount, setLikesCount] = useState(post.likedBy.length);
     const likedByIndex = post.likedBy.findIndex(user => user._id === "u101");
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isPostMenuOpen, setIsPostMenuOpen] = useState(false);
     const [newCommentText, setNewCommentText] = useState("");
     const [showEmojis, setShowEmojis] = useState(false);
     const [commentTimestamp, setCommentTimestamp] = useState(Date.now());
@@ -18,7 +20,6 @@ export function PostPreview({ post, currentUser }) {
     const [hoveredComment, setHoveredComment] = useState(null);
 
     const emojis = ['😀', '😍', '👍', '❤️', '😂', '🎉', '🔥', '😊', '🙌', '😎'];
-
 
     const handleLikeClick = () => {
         setIsLiked(!isLiked);
@@ -54,7 +55,6 @@ export function PostPreview({ post, currentUser }) {
         setIsModalOpen(!isModalOpen);
     };
     const handleCommentSubmit = async () => {
-        console.log("submit comment")
         if (newCommentText.trim() === "") {
             return;
         }
@@ -144,11 +144,11 @@ export function PostPreview({ post, currentUser }) {
         setHoveredComment(null);
     };
 
-
-
-    function onOpenPostMenu() {
-        if (loggedinUser._id !== post.by._id) return
+    function togglePostMenu() {
+        setIsPostMenuOpen(!isPostMenuOpen)
     }
+
+
 
     return (
         <article className="post-preview flex column fs14">
@@ -159,7 +159,7 @@ export function PostPreview({ post, currentUser }) {
                 <img className="user-avatar" src={post.by.imgUrl} />
                 <Link className="clean-link fw600">{post.by.username}</Link>
                 <div className="post-time">• 1h</div>
-                <i onClick={onOpenPostMenu} className="fa-solid fa-ellipsis "></i>
+                <i onClick={togglePostMenu} className="fa-solid fa-ellipsis "></i>
             </section>
 
             <img className="post-img" src={post.imgUrl} alt="post-img" />
@@ -210,9 +210,9 @@ export function PostPreview({ post, currentUser }) {
                                         >
                                             <img src={comment.by.imgUrl} alt={comment.by.fullname} className="comment-avatar" />
                                             <div className="comment-content">
-                                            <span className="comment-text">{comment.txt}</span>
+                                                <span className="comment-text">{comment.txt}</span>
                                                 <div className="comment-actions">
-                                                   
+
                                                     <span className="comment-time">{getTimeAgo(comment.timestamp)}</span>
                                                     {hoveredComment === comment.id && (
                                                         <i className="fa-solid fa-ellipsis comment-delete-btn" onClick={() => handleDeleteComment(comment.id)}></i>
@@ -227,7 +227,7 @@ export function PostPreview({ post, currentUser }) {
                                 {showDeleteModal && (
                                     <div className="delete-modal">
                                         <button className="delete-definitivly-comments-btn" onClick={confirmDeleteComment}>Delete</button>
-                                        <button className="cancel-delete-comments-btn"onClick={cancelDeleteComment}>Cancel</button>
+                                        <button className="cancel-delete-comments-btn" onClick={cancelDeleteComment}>Cancel</button>
                                     </div>
                                 )}
                                 <div className="comment-input-container">
@@ -257,6 +257,13 @@ export function PostPreview({ post, currentUser }) {
                     </div>
                 </div>
             )}
+            {isPostMenuOpen &&
+                <PostMenu
+                    post={post}
+                    setIsPostMenuOpen={setIsPostMenuOpen}
+                    onRemovePost={onRemovePost}
+                    onUpdatePost={onUpdatePost}
+                />}
 
         </article>
     )
