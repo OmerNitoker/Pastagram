@@ -1,0 +1,60 @@
+.user-profile {
+    display: flex;
+   flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-left: 40vw;
+}
+
+.profile-info {
+    display: flex;
+    
+    align-items: center;
+    gap: 70px;
+    margin-top: 50px;
+}
+
+img.user-profile-avatar {
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.user-profile-btns {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    height: 40px;
+    place-items: center;
+    font-size: 14px;
+}
+
+.follow-btn,
+.message-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+.user-stats {
+    display: flex;
+    gap: 40px;
+}
+
+
+.user-posts-detail {
+    display: flex;
+    gap: 80px;
+    margin-top: 100px;
+   border-top: 2px solid lightgray;
+   width: 100%;
+   place-content: center;
+}
