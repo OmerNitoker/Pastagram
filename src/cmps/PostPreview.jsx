@@ -146,6 +146,10 @@ export function PostPreview({ post, currentUser }) {
 
 
 
+    function onOpenPostMenu() {
+        if (loggedinUser._id !== post.by._id) return
+    }
+
     return (
         <article className="post-preview flex column fs14">
 
@@ -155,7 +159,7 @@ export function PostPreview({ post, currentUser }) {
                 <img className="user-avatar" src={post.by.imgUrl} />
                 <Link className="clean-link fw600">{post.by.username}</Link>
                 <div className="post-time">• 1h</div>
-                <i className="fa-solid fa-ellipsis "></i>
+                <i onClick={onOpenPostMenu} className="fa-solid fa-ellipsis "></i>
             </section>
 
             <img className="post-img" src={post.imgUrl} alt="post-img" />
@@ -206,7 +210,7 @@ export function PostPreview({ post, currentUser }) {
                                         >
                                             <img src={comment.by.imgUrl} alt={comment.by.fullname} className="comment-avatar" />
                                             <div className="comment-content">
-                                                <span className="comment-text">{comment.txt}</span>
+                                            <span className="comment-text">{comment.txt}</span>
                                                 <div className="comment-actions">
                                                    
                                                     <span className="comment-time">{getTimeAgo(comment.timestamp)}</span>

@@ -10,6 +10,7 @@ import { loginDemo } from '../store/actions/user.actions.js'
 
 export function HomePage() {
     const posts = useSelector(storeState => storeState.postModule.posts)
+    const loggedinUser = useSelector(storeState => storeState.userModule.loggedinUser)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -29,7 +30,7 @@ export function HomePage() {
     return (
         <section className="home-container">
             
-            <PostList posts={posts} />
+            <PostList posts={posts} loggedinUser={loggedinUser} />
             {/* <Suggestions /> */}
         </section>
     )
