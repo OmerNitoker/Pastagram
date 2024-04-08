@@ -117,7 +117,7 @@ const gPosts = [
       }
 ]
 
-_createPosts()
+// _createPosts()
 
 async function query() {
   var stays = await storageService.query(STORAGE_KEY)

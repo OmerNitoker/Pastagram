@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { AddPost } from './AddPost';
 
 export function NavBar() {
-
+    
     const [isModalOpen, setIsModalOpen] = useState(false)
 
     function onAddPost() {

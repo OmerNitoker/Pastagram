@@ -17,6 +17,7 @@ export async function loadPosts() {
 }
 
 export async function removePost(postId) {
+    debugger
     try {
         await postService.remove(postId)
         store.dispatch({
@@ -58,3 +59,5 @@ export async function updatePost(post) {
         throw err
     }
 }
+
+

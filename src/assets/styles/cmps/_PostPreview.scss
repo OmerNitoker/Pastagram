@@ -117,7 +117,7 @@
 
 .modal-content {
     background-color: #fff;
-    border-radius: 5px;
+    border-radius: 10px;
     overflow: auto;
     z-index: 1001;
 }
@@ -330,7 +330,7 @@
 
 .delete-modal button {
     background-color: white;
-    color: red;
+    color: $clr-delete-btn;
     border: none;
     cursor: pointer;
     font-size: 16px;
