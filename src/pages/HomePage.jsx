@@ -11,6 +11,7 @@ import { AddPost } from '../cmps/AddPost.jsx'
 
 export function HomePage() {
     const posts = useSelector(storeState => storeState.postModule.posts)
+    console.log(posts)
     const loggedinUser = useSelector(storeState => storeState.userModule.loggedinUser)
 
     useEffect(() => {
@@ -39,6 +40,7 @@ export function HomePage() {
         }
     }
 
+    if (!posts) return <div>loading</div>
 
     return (
         <section className="home-container">

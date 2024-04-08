@@ -1,6 +1,6 @@
 .logo {
     font-size: 1.8em;
-    
+
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     font-family: 'Billabong', cursive;
     margin: .5em;
@@ -8,15 +8,12 @@
 }
 
 .nav-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    width: 16%;
+    position: sticky;
+    top: 0;
     border-right: 1px solid #ccc;
-    margin-left: .5em;
+    height: 100vh;
 }
 
 .nav-list {

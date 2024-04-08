@@ -189,69 +189,68 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
 
                 <div className="modal-overlay" onClick={toggleModal}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                        <div className="modal-content-wrapper">
-                            <img className="modal-post-img" src={post.imgUrl} alt="post-img" />
 
-                            <div className="comments-section">
+                        <img className="modal-post-img" src={post.imgUrl} alt="post-img" />
 
-                                <section className="post-modal-header flex align-center">
-                                    <img className="modal-user-avatar" src={post.by.imgUrl} />
-                                    <Link className="clean-link">{post.by.username}</Link>
-                                    <div className="modal-post-time">•1h</div>
-                                    <i className="fa-solid fa-ellipsis "></i>
-                                </section>
-                                <ul className="comments-list">
-                                    {post.comments.map(comment => (
-                                        <li
-                                            key={comment.id}
-                                            className="comment-item"
-                                            onMouseEnter={() => handleCommentMouseEnter(comment.id)}
-                                            onMouseLeave={handleCommentMouseLeave}
-                                        >
-                                            <img src={comment.by.imgUrl} alt={comment.by.fullname} className="comment-avatar" />
-                                            <div className="comment-content">
-                                                <span className="comment-text">{comment.txt}</span>
-                                                <div className="comment-actions">
+                        <div className="comments-section">
 
-                                                    <span className="comment-time">{getTimeAgo(comment.timestamp)}</span>
-                                                    {hoveredComment === comment.id && (
-                                                        <i className="fa-solid fa-ellipsis comment-delete-btn" onClick={() => handleDeleteComment(comment.id)}></i>
-                                                    )}
-                                                </div>
+                            <section className="post-modal-header flex align-center">
+                                <img className="modal-user-avatar" src={post.by.imgUrl} />
+                                <Link className="clean-link">{post.by.username}</Link>
+                                <div className="modal-post-time">•1h</div>
+                                <i className="fa-solid fa-ellipsis "></i>
+                            </section>
+                            <ul className="comments-list">
+                                {post.comments.map(comment => (
+                                    <li
+                                        key={comment.id}
+                                        className="comment-item"
+                                        onMouseEnter={() => handleCommentMouseEnter(comment.id)}
+                                        onMouseLeave={handleCommentMouseLeave}
+                                    >
+                                        <img src={comment.by.imgUrl} alt={comment.by.fullname} className="comment-avatar" />
+                                        <div className="comment-content">
+                                            <span className="comment-text">{comment.txt}</span>
+                                            <div className="comment-actions">
+
+                                                <span className="comment-time">{getTimeAgo(comment.timestamp)}</span>
+                                                {hoveredComment === comment.id && (
+                                                    <i className="fa-solid fa-ellipsis comment-delete-btn" onClick={() => handleDeleteComment(comment.id)}></i>
+                                                )}
                                             </div>
-                                            <i className="fa-regular fa-heart comment-like-btn"></i>
-                                        </li>
-                                    ))}
+                                        </div>
+                                        <i className="fa-regular fa-heart comment-like-btn"></i>
+                                    </li>
+                                ))}
 
-                                </ul>
-                                {showDeleteModal && (
-                                    <div className="delete-modal">
-                                        <button className="delete-definitivly-comments-btn" onClick={confirmDeleteComment}>Delete</button>
-                                        <button className="cancel-delete-comments-btn" onClick={cancelDeleteComment}>Cancel</button>
-                                    </div>
-                                )}
-                                <div className="comment-input-container">
-                                    <div className="emojis">
-                                        <i className="fa-regular fa-face-smile" onClick={toggleEmojis}></i>
-                                        {showEmojis && (
-                                            <div className="emoji-list">
-                                                {emojis.map((emoji, index) => (
-                                                    <span key={index} onClick={() => addEmojiToComment(emoji)}>
-                                                        {emoji}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        )}
-                                    </div>
-                                    <input
-                                        type="text"
-                                        placeholder="Add a comment..."
-                                        className="comment-input"
-                                        value={newCommentText}
-                                        onChange={handleCommentChange}
-                                    />
-                                    <button className="comment-btn" onClick={handleCommentSubmit}>Publish</button>
+                            </ul>
+                            {showDeleteModal && (
+                                <div className="delete-modal">
+                                    <button className="delete-definitivly-comments-btn" onClick={confirmDeleteComment}>Delete</button>
+                                    <button className="cancel-delete-comments-btn" onClick={cancelDeleteComment}>Cancel</button>
                                 </div>
+                            )}
+                            <div className="comment-input-container">
+                                <div className="emojis">
+                                    <i className="fa-regular fa-face-smile" onClick={toggleEmojis}></i>
+                                    {showEmojis && (
+                                        <div className="emoji-list">
+                                            {emojis.map((emoji, index) => (
+                                                <span key={index} onClick={() => addEmojiToComment(emoji)}>
+                                                    {emoji}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                                <input
+                                    type="text"
+                                    placeholder="Add a comment..."
+                                    className="comment-input"
+                                    value={newCommentText}
+                                    onChange={handleCommentChange}
+                                />
+                                <button className="comment-btn" onClick={handleCommentSubmit}>Publish</button>
                             </div>
                         </div>
                     </div>

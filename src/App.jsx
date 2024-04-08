@@ -29,7 +29,6 @@ export function App() {
                             <Route element={<UserDetails />} path="/user" />
                             <Route element={<Search />} path="/search" />
                             <Route element={<Notifications />} path="/notifications" />
-                            {/* <Route element={<Creat />} path="/creat" /> */}
                         </Routes>
                     </main>
                 </section>
