@@ -199,6 +199,65 @@ function getDemoUser() {
                 }
             ],
             tags: []
-        }]
+        },
+        {
+            _id: "s102",
+            txt: "In the tranquil embrace of nature's symphony, every whisper of the wind and dance of the leaves reminds us of the beauty that surrounds us, offering solace to weary souls and inspiration to wandering hearts.",
+            imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712645930/insta-project/post%20imgs/2_mjgro3.jpg",
+            by: {
+              _id: "u102",
+              fullname: "Emily Davis",
+              username: "emily_davis",
+              imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646603/insta-project/users/Emily_Davis_aumnv0.jpg"
+            },
+            comments: [
+              {
+                id: "c1002",
+                by: {
+                  _id: "u107",
+                  fullname: "Jessica Wilson",
+                  username: "jessica_wilson",
+                  imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646612/insta-project/users/Jessica_Wilson_ghro83.jpg"
+                },
+                txt: "WOW!!",
+              },
+              {
+                id: "c1003",
+                by: {
+                  _id: "u106",
+                  fullname: "Robert Jones",
+                  username: "robert_jones",
+                  imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646607/insta-project/users/Robert_Jones_ovrwnr.jpg"
+                },
+                txt: "Emily, its breathtaking!",
+              },
+              {
+                id: "c1004",
+                by: {
+                  _id: "u104",
+                  fullname: "David Johnson",
+                  username: "david_johnson",
+                  imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646604/insta-project/users/David_Johnson_vcvhgl.jpg"
+                },
+                txt: "Have fun emily, looks great",
+              }
+            ],
+            likedBy: [
+              {
+                _id: "u104",
+                fullname: "David Johnson",
+                username: "david_johnson",
+                imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646604/insta-project/users/David_Johnson_vcvhgl.jpg"
+              },
+              {
+                _id: "u106",
+                fullname: "Robert Jones",
+                username: "robert_jones",
+                imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646607/insta-project/users/Robert_Jones_ovrwnr.jpg"
+              }
+            ],
+            tags: []
+          },
+         ]
     }
 }
