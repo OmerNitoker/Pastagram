@@ -18,6 +18,7 @@ export function HomePage() {
         const fetchData = async () => {
             try {
                 await loadPosts()
+                console.log('fetch:', posts)
             } catch (err) {
                 console.log('err:', err)
             }
@@ -40,15 +41,15 @@ export function HomePage() {
         }
     }
 
-    if (!posts) return <div>loading</div>
+    if (!posts.length) return <div>loading...</div>
 
     return (
         <section className="home-container">
-            
-            <PostList 
-            posts={posts} 
-            loggedinUser={loggedinUser} 
-            onRemovePost={onRemovePost} />
+
+            <PostList
+                posts={posts}
+                loggedinUser={loggedinUser}
+                onRemovePost={onRemovePost} />
         </section>
     )
 }

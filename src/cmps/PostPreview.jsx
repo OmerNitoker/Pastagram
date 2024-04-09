@@ -188,7 +188,7 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
             {isModalOpen && (
 
                 <div className="modal-overlay" onClick={toggleModal}>
-                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                    <div className="modal-content details-modal" onClick={(e) => e.stopPropagation()}>
 
                         <img className="modal-post-img" src={post.imgUrl} alt="post-img" />
 

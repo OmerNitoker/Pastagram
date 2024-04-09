@@ -13,115 +13,186 @@ export const postService = {
 }
 
 const gPosts = [
-    {
-        _id: "s101",
-        txt: "Best trip ever",
-        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712175532/instagram-posts/1_m7hfqi.jpg", 
+  {
+    _id: "s101",
+    txt: "The best way to cross a bridge is by running 🤣",
+    imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712645917/insta-project/post%20imgs/4_bfnff0.jpg",
+    by: {
+      _id: "u101",
+      fullname: "James Smith",
+      username: "james_smith",
+      imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646609/insta-project/users/James_Smith_fq1zpt.jpg"
+    },
+    comments: [
+      {
+        id: "c1001",
         by: {
-          _id: "u101",
-          fullname: "Jim Carrey",
-          username: "jim123",
-          imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712175877/instagram-posts/jim_carrey_znnmxy.webp"
+          _id: "u105",
+          fullname: "Michael Williams",
+          username: "michael_williams",
+          imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646606/insta-project/users/Michael_Williams_p5umiy.jpg"
         },
-        comments: [
-          {
-            id: "c1001",
-            by: {
-              _id: "u105",
-              fullname: "Bob",
-              imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712178735/instagram-posts/bob_uaojqj.jpg"
-            },
-            txt: "good one!",
-            // likedBy: [ // Optional
-            //   {
-            //     "_id": "u105",
-            //     "fullname": "Bob",
-            //     "imgUrl": "http://some-img"
-            //   }
-            // ]
-          },
-          // {
-          //   id: "c1002",
-          //   by: {
-          //     _id: "u106",
-          //     fullname: "Dob",
-          //     imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712178840/instagram-posts/smash-or-pass-this-random-guy-i-saw-on-the-internet-v0-ta86yyu1m5lb1_rg1yfa.webp"
-          //   },
-          //   txt: "not good!",
-          // }
-        ],
-        likedBy: [
-          {
-            _id: "u105",
-            fullname: "Bob",
-            imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712178735/instagram-posts/bob_uaojqj.jpg"
-          },
-          {
-            _id: "u106",
-            fullname: "Dob",
-            imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712178840/instagram-posts/smash-or-pass-this-random-guy-i-saw-on-the-internet-v0-ta86yyu1m5lb1_rg1yfa.webp"
-          }
-        ],
-        tags: ["fun", "romantic"]
+        txt: "Be carful bro!!",
+      },
+    ],
+    likedBy: [
+      {
+        _id: "u105",
+        fullname: "Michael Williams",
+        username: "michael_williams",
+        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646606/insta-project/users/Michael_Williams_p5umiy.jpg"
       },
       {
-        _id: "s102",
-        txt: "went hiking",
-        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712175596/instagram-posts/2_qytjzt.jpg", 
-        by: {
-          _id: "u101",
-          fullname: "Jim Carrey",
-          username: "jim123",
-          imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712175877/instagram-posts/jim_carrey_znnmxy.webp"
-        },
-        comments: [
-          {
-            id: "c1001",
-            by: {
-              _id: "u105",
-              fullname: "Bob",
-              imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712178735/instagram-posts/bob_uaojqj.jpg"
-            },
-            txt: "good one!",
-            // likedBy: [ // Optional
-            //   {
-            //     "_id": "u105",
-            //     "fullname": "Bob",
-            //     "imgUrl": "http://some-img"
-            //   }
-            // ]
-          },
-          {
-            id: "c1002",
-            by: {
-              _id: "u106",
-              fullname: "Dob",
-              imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712178840/instagram-posts/smash-or-pass-this-random-guy-i-saw-on-the-internet-v0-ta86yyu1m5lb1_rg1yfa.webp"
-            },
-            txt: "not good!",
-          }
-        ],
-        likedBy: [
-          {
-            _id: "u105",
-            fullname: "Bob",
-            imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712178735/instagram-posts/bob_uaojqj.jpg"
-          },
-          {
-            _id: "u106",
-            fullname: "Dob",
-            imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712178840/instagram-posts/smash-or-pass-this-random-guy-i-saw-on-the-internet-v0-ta86yyu1m5lb1_rg1yfa.webp"
-          }
-        ],
-        tags: ["fun", "romantic"]
+        _id: "u102",
+        fullname: "Emily Davis",
+        username: "emily_davis",
+        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646603/insta-project/users/Emily_Davis_aumnv0.jpg"
       }
+    ],
+    tags: []
+  },
+  {
+    _id: "s102",
+    txt: "In the tranquil embrace of nature's symphony, every whisper of the wind and dance of the leaves reminds us of the beauty that surrounds us, offering solace to weary souls and inspiration to wandering hearts.",
+    imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712645930/insta-project/post%20imgs/2_mjgro3.jpg",
+    by: {
+      _id: "u102",
+      fullname: "Emily Davis",
+      username: "emily_davis",
+      imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646603/insta-project/users/Emily_Davis_aumnv0.jpg"
+    },
+    comments: [
+      {
+        id: "c1002",
+        by: {
+          _id: "u107",
+          fullname: "Jessica Wilson",
+          username: "jessica_wilson",
+          imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646612/insta-project/users/Jessica_Wilson_ghro83.jpg"
+        },
+        txt: "WOW!!",
+      },
+      {
+        id: "c1003",
+        by: {
+          _id: "u106",
+          fullname: "Robert Jones",
+          username: "robert_jones",
+          imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646607/insta-project/users/Robert_Jones_ovrwnr.jpg"
+        },
+        txt: "Emily, its breathtaking!",
+      },
+      {
+        id: "c1004",
+        by: {
+          _id: "u104",
+          fullname: "David Johnson",
+          username: "david_johnson",
+          imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646604/insta-project/users/David_Johnson_vcvhgl.jpg"
+        },
+        txt: "Have fun emily, looks great",
+      }
+    ],
+    likedBy: [
+      {
+        _id: "u104",
+        fullname: "David Johnson",
+        username: "david_johnson",
+        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646604/insta-project/users/David_Johnson_vcvhgl.jpg"
+      },
+      {
+        _id: "u106",
+        fullname: "Robert Jones",
+        username: "robert_jones",
+        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646607/insta-project/users/Robert_Jones_ovrwnr.jpg"
+      }
+    ],
+    tags: []
+  },
+  {
+    _id: "s103",
+    txt: "Manarola Cliff in Italy offers breathtaking views of the Ligurian Sea, attracting visitors with its rugged beauty and charm.",
+    imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712645921/insta-project/post%20imgs/6_fneeqm.jpg",
+    by: {
+      _id: "u103",
+      fullname: "Ashley Taylor",
+      username: "ashley_taylor",
+      imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646602/insta-project/users/Ashley_Taylor_by00jo.jpg"
+    },
+    comments: [],
+    likedBy: [
+      {
+        _id: "u106",
+        fullname: "Robert Jones",
+        username: "robert_jones",
+        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646607/insta-project/users/Robert_Jones_ovrwnr.jpg"
+      },
+    ],
+    tags: []
+  },
+  {
+    _id: "s104",
+    txt: "Amazing morning in the nature..",
+    imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712645922/insta-project/post%20imgs/3_uofiqr.jpg",
+    by: {
+      _id: "u104",
+      fullname: "David Johnson",
+      username: "david_johnson",
+      imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646604/insta-project/users/David_Johnson_vcvhgl.jpg"
+    },
+    comments: [],
+    likedBy: [],
+    tags: []
+  },
+  {
+    _id: "s105",
+    txt: "Getting ready for my daily swim 🐳🐠",
+    imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712645916/insta-project/post%20imgs/7_bm2tff.jpg",
+    by: {
+      _id: "u105",
+      fullname: "Michael Williams",
+      username: "michael_williams",
+      imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646606/insta-project/users/Michael_Williams_p5umiy.jpg"
+    },
+    comments: [],
+    likedBy: [],
+    tags: []
+  },
+  {
+    _id: "s106",
+    txt: "Another day in the office...",
+    imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712645919/insta-project/post%20imgs/5_hlzrle.jpg",
+    by: {
+      _id: "u106",
+      fullname: "Robert Jones",
+      username: "robert_jones",
+      imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646607/insta-project/users/Robert_Jones_ovrwnr.jpg"
+    },
+    comments: [],
+    likedBy: [],
+    tags: []
+  },
+  {
+    _id: "s107",
+    txt: "On my way to work",
+    imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712645925/insta-project/post%20imgs/1_ws507f.jpg",
+    by: {
+      _id: "u107",
+      fullname: "Jessica Wilson",
+      username: "jessica_wilson",
+      imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646612/insta-project/users/Jessica_Wilson_ghro83.jpg"
+    },
+    comments: [],
+    likedBy: [],
+    tags: []
+  }
 ]
 
 // _createPosts()
 
 async function query() {
-  var stays = await storageService.query(STORAGE_KEY)
-  return stays
+  var posts = await storageService.query(STORAGE_KEY)
+  return posts
 }
 
 function getById(postId) {
@@ -157,7 +228,7 @@ function _createPosts() {
 
     posts.forEach(post => {
       post.comments.forEach(comment => {
-        comment.timestamp = Date.now() - (24 * 60 * 60 * 1000); 
+        comment.timestamp = Date.now() - (24 * 60 * 60 * 1000);
       });
     });
 
@@ -170,7 +241,7 @@ function getEmptyPost() {
   return {
     // _id: utilService.makeId(),
     txt: '',
-    imgUrl: '', 
+    imgUrl: '',
     by: {
       _id: '',
       fullname: '',

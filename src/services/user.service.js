@@ -122,76 +122,83 @@ function _createUsers() {
 
 function getDemoUser() {
     return {
-        _id: "u101",
+        _id: "u108",
         username: "johnny_johnson",
-        password: "pass123",
+        password: "password123",
         fullname: "John Johnson",
         imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712492656/1517034957463_hxarzp.jpg",
         following: [
             {
-                _id: "u106",
-                fullname: "Xi Xiang",
-                imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712484508/aeecc22a67dac7987a80ac0724658493_csfop3.jpg"
+                _id: "u101",
+                fullname: "James Smith",
+                username: "james_smith",
+                imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646609/insta-project/users/James_Smith_fq1zpt.jpg"
+            },
+            {
+                _id: "u102",
+                fullname: "Emily Davis",
+                username: "emily_davis",
+                imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646603/insta-project/users/Emily_Davis_aumnv0.jpg"
+            },
+            {
+                _id: "u103",
+                fullname: "Ashley Taylor",
+                username: "ashley_taylor",
+                imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646602/insta-project/users/Ashley_Taylor_by00jo.jpg"
             }
         ],
         followers: [
             {
+                _id: "u104",
+                fullname: "David Johnson",
+                username: "david_johnson",
+                imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646604/insta-project/users/David_Johnson_vcvhgl.jpg"
+            },
+            {
                 _id: "u105",
-                fullname: "Peter Peterson",
-                imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712484718/handsome-man-with-glasses_144627-18665_pykck1.avif"
+                fullname: "Michael Williams",
+                username: "michael_williams",
+                imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646606/insta-project/users/Michael_Williams_p5umiy.jpg"
             }
         ],
         savedPostsIds: [],
         posts: [{
-            _id: "s101",
+            _id: "s108",
             txt: "Best trip ever",
-            imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712175532/instagram-posts/1_m7hfqi.jpg",
+            imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712650803/insta-project/post%20imgs/9_hd69bh.jpg",
             by: {
-                _id: "u101",
-                fullname: "Jim Carrey",
-                username: "jim123",
-                imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712175877/instagram-posts/jim_carrey_znnmxy.webp"
+                _id: "u108",
+                fullname: "John Johnson",
+                username: "johnny_johnson",
+                imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712492656/1517034957463_hxarzp.jpg"
             },
             comments: [
                 {
-                    id: "c1001",
+                    id: "c1005",
                     by: {
-                        _id: "u105",
-                        fullname: "Bob",
-                        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712178735/instagram-posts/bob_uaojqj.jpg"
+                        _id: "u104",
+                        fullname: "David Johnson",
+                        username: "david_johnson",
+                        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646604/insta-project/users/David_Johnson_vcvhgl.jpg"
                     },
-                    txt: "good one!",
-                    // likedBy: [ // Optional
-                    //   {
-                    //     "_id": "u105",
-                    //     "fullname": "Bob",
-                    //     "imgUrl": "http://some-img"
-                    //   }
-                    // ]
+                    txt: "have fun johnny! it looks amazing",
                 },
-                // {
-                //   id: "c1002",
-                //   by: {
-                //     _id: "u106",
-                //     fullname: "Dob",
-                //     imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712178840/instagram-posts/smash-or-pass-this-random-guy-i-saw-on-the-internet-v0-ta86yyu1m5lb1_rg1yfa.webp"
-                //   },
-                //   txt: "not good!",
-                // }
             ],
             likedBy: [
                 {
-                    _id: "u105",
-                    fullname: "Bob",
-                    imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712178735/instagram-posts/bob_uaojqj.jpg"
+                    _id: "u104",
+                    fullname: "David Johnson",
+                    username: "david_johnson",
+                    imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646604/insta-project/users/David_Johnson_vcvhgl.jpg"
                 },
                 {
-                    _id: "u106",
-                    fullname: "Dob",
-                    imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712178840/instagram-posts/smash-or-pass-this-random-guy-i-saw-on-the-internet-v0-ta86yyu1m5lb1_rg1yfa.webp"
+                    _id: "u105",
+                    fullname: "Michael Williams",
+                    username: "michael_williams",
+                    imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646606/insta-project/users/Michael_Williams_p5umiy.jpg"
                 }
             ],
-            tags: ["fun", "romantic"]
+            tags: []
         }]
     }
 }
