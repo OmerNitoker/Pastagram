@@ -16,7 +16,7 @@ textarea {
 }
 
 .modal-content {
-    max-width: 60vw;
+    max-width: 65vw;
     max-height: calc(100vh - 100px);
     background-color: #fff;
     border-radius: 10px;
@@ -30,4 +30,8 @@ i {
 
 .user-avatar {
     border-radius: 50%;
+}
+
+.clr-gray {
+    color: $clr-txt-sec;
 }

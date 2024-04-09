@@ -37,6 +37,7 @@
     align-items: center;
     height: 42px;
     padding: 0 5px;
+    margin-inline: 0.5em;
     border-bottom: 1px solid #c2c2c2;
     box-sizing: border-box;
     z-index: 1001;
@@ -45,6 +46,8 @@
 .share-btn {
     flex-grow: 0;
     color: $clr-btn1;
+    font-size: 14px;
+    font-weight: 600;
 }
     
 .post-user-info {

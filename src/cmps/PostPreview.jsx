@@ -187,7 +187,7 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
                     <Link className="clean-link fw600">{post.by.username}</Link>
                     <span className="story-txt">{post.txt}</span>
                 </div>
-                {post.comments.length ? <span onClick={toggleModal} >{post.comments.length} {post.comments.length === 1 ? 'comment' : 'comments'}</span> : <span></span>}
+                {post.comments.length ? <span className="clr-gray" onClick={toggleModal} >{post.comments.length > 1 ? `View all ${post.comments.length} comments` : `View 1 comment`}</span> : <span></span>}
                 <textarea name="add-comment" id="add-comment" placeholder="Add a comment..."></textarea>
             </section>
 
