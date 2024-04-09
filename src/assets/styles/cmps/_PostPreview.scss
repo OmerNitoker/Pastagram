@@ -15,12 +15,11 @@
     margin-bottom: 20px;
     gap: .8em;
     display: flex;
-}
 
-.user-avatar {
-    border-radius: 50%;
-    height: 42px;
-    width: 42px;
+    & img {
+        width: 42px;
+        height: 42px;
+    }
 }
 
 .post-time {
@@ -42,6 +41,7 @@
     &.btn-container {
         position: relative;
         gap: 13px;
+
 
     }
 }
@@ -222,8 +222,8 @@
 
 .modal-user-avatar {
     border-radius: 50%;
-    height: 42px;
-    width: 42px;
+    height: 32px;
+    width: 32px;
     margin-left: 16px;
 }
 
@@ -279,8 +279,8 @@
 }
 
 .comment-avatar {
-    height: 38px;
-    width: 38px;
+    height: 32px;
+    width: 32px;
     border-radius: 50%;
     margin-right: 25px;
 }
@@ -308,21 +308,36 @@
     font-size: 1.2em;
 }
 
-.delete-modal {
-    position: fixed;
-    top: 40%;
-    left: 36%;
-    right: 50%;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 1002;
-    height: 96px;
-    width: 420px;
+.delete-comment-modal {
+    display: grid;
+    grid-template-rows: 50% 50%;
+    width: 400px;
+    z-index: 1002 !important;
     font-size: 14px;
-    border-radius: 10px;
+
+    & button {
+        height: 3rem;
+        font-style: 14px;
+        cursor: pointer;
+    }
+    // position: fixed;
+    // top: 40%;
+    // left: 36%;
+    // right: 50%;
+    // background-color: white;
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    // justify-content: center;
+    // height: 96px;
+    // width: 420px;
+    // border-radius: 10px;
+}
+
+.delete-definitivly-comments-btn {
+    color: $clr-delete-btn;
+    border-bottom: $sep-line;
+    font-weight: 700;
 }
 
 .delete-modal button {

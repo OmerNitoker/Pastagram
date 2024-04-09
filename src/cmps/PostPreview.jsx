@@ -54,6 +54,7 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
     const toggleModal = () => {
         setIsModalOpen(!isModalOpen);
     };
+
     const handleCommentSubmit = async () => {
         if (newCommentText.trim() === "") {
             return;
@@ -108,7 +109,8 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
         if (days > 0) return `${days}d`;
         if (hours > 0) return `${hours}h`;
         if (minutes > 0) return `${minutes}m`;
-        if (seconds > 0) return `${seconds}s`;
+        if (seconds > 0) return 'Just now';
+        // if (seconds > 0) return `${seconds}s`;
 
         return 'Just now';
     };
@@ -146,6 +148,10 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
 
     function togglePostMenu() {
         setIsPostMenuOpen(!isPostMenuOpen)
+    }
+
+    function toggleDeleteModal() {
+        setShowDeleteModal(false)
     }
 
 
@@ -225,9 +231,11 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
 
                             </ul>
                             {showDeleteModal && (
-                                <div className="delete-modal">
-                                    <button className="delete-definitivly-comments-btn" onClick={confirmDeleteComment}>Delete</button>
-                                    <button className="cancel-delete-comments-btn" onClick={cancelDeleteComment}>Cancel</button>
+                                <div className="modal-overlay" onClick={toggleDeleteModal}>
+                                    <div className="modal-content delete-comment-modal">
+                                        <button className="delete-definitivly-comments-btn clean-btn" onClick={confirmDeleteComment}>Delete</button>
+                                        <button className="cancel-delete-comments-btn clean-btn" onClick={cancelDeleteComment}>Cancel</button>
+                                    </div>
                                 </div>
                             )}
                             <div className="comment-input-container">

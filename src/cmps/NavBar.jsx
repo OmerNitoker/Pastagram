@@ -6,6 +6,7 @@ import { AddPost } from './AddPost';
 export function NavBar() {
 
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const loggedinUser = useSelector(storeState => storeState.userModule.loggedinUser)
 
     function onAddPost() {
         setIsModalOpen(true)
@@ -65,7 +66,8 @@ export function NavBar() {
                 </li>
                 <li className="nav-item userDetails">
                     <Link to="/user" className="nav-link">
-                        <i className="fa-regular fa-circle"></i>
+                        {/* <i className="fa-regular fa-circle"></i> */}
+                        <img src={loggedinUser.imgUrl} className="user-avatar nav-img" />
                         Profile
                     </Link>
                 </li>
