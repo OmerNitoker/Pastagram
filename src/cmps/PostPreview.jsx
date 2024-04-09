@@ -179,7 +179,7 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
                     </div>
                     <i className="fa-regular fa-comment" onClick={toggleModal} ></i>
                     <i className="fa-regular fa-paper-plane share-post-btn"></i>
-                    <i className="fa-regular fa-bookmark save-btn" aria-hidden="true"></i>
+                    <i className="fa-regular fa-bookmark save-btn" ></i>
                 </div>
 
                 {post.likedBy.length ? <span>{post.likedBy.length} {post.likedBy.length === 1 ? 'Like' : 'Likes'}</span> : <span></span>}

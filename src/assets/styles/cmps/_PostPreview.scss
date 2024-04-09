@@ -55,7 +55,7 @@
 
 .btn-container {
     display: flex;
-    position: relative;
+    
     margin-top: .5em;
     font-size: 1.5em;
     gap: 20px;
@@ -69,17 +69,14 @@
     }
 }
 
-.save-btn {
-    position: absolute;
-    right: 0;
-}
+
 
 .btn-container i {
     cursor: pointer;
     
 }
 
-.share-btn {
+.share-post-btn {
     flex-grow: 1;
 }
 
@@ -122,6 +119,7 @@
     object-fit: cover;
     align-self: center;
     max-width: 70%;
+    
 }
 
 
@@ -131,6 +129,7 @@
     width: 500px;
     justify-self: center;
     // height: 910px;
+    
 
 }
 
@@ -138,6 +137,7 @@
     list-style-type: none;
 
     margin-left: 16px;
+    
 }
 
 .comment-item {
@@ -218,6 +218,7 @@
     .fa-ellipsis {
         margin-right: 10px;
     }
+    
 }
 
 
@@ -240,6 +241,7 @@
     flex-direction: column;
 
     flex-grow: 1;
+    
 }
 
 .comments-list {
@@ -355,4 +357,8 @@
 .delete-modal button.cancel-delete-comments-btn {
     color: black;
     border-top: 2px solid lightgray;
+}
+
+.comments-section {
+   
 }

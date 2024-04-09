@@ -16,12 +16,14 @@ textarea {
 }
 
 .modal-content {
-    max-width: 60vw;
+    max-width: 75vw;
     max-height: calc(100vh - 100px);
     background-color: #fff;
-    border-radius: 10px;
+   
     overflow: auto;
     z-index: 1001;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 i {

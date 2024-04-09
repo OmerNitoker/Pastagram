@@ -1,25 +1,37 @@
+import { userService } from '../services/user.service';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'; // Importez Link depuis 'react-router-dom'
 
+export function UserPosts() {
+    const [userPosts, setUserPosts] = useState([]);
 
+    useEffect(() => {
+        loadUserPosts();
+    }, []);
 
-
-export function UserPosts({ user }) {
-    console.log("User in UserPosts:", user);
-
-
+    async function loadUserPosts() {
+        const loggedInUser = userService.getDemoUser();
+        if (loggedInUser && loggedInUser.posts) {
+            setUserPosts(loggedInUser.posts);
+        }
+    }
 
     return (
-        <div className="post-gallery">
-            {user.posts.length > 0 ? (
-                user.posts.map(post => (
-                    <div key={post._id} className="post-item">
-                        <img src={post.imgUrl} alt={post.txt} className="post-image"/>
-                    </div>
-
+        <div className="gallery-container"> {/* Ajoutez une classe pour la galerie */}
+            {userPosts.length > 0 ? (
+                userPosts.map(post => (
+                    <Link key={post._id} to={`/post/${post._id}`}> {/* Utilisez Link pour le routage */}
+                        <div className="gallery-item">
+                            <img src={post.imgUrl} alt="post" className="gallery-image" />
+                        </div>
+                    </Link>
                 ))
             ) : (
-                <p>No posts to display.</p>
+                <p>loading...</p>
             )}
+        
+        
         </div>
-
-    )
+    );
+    
 }

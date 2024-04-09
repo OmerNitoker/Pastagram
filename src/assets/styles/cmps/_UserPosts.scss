@@ -1,28 +1,26 @@
-
-.post-gallery {
-    display: flex;
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(3, 309px);
+    grid-template-rows: repeat(auto, 309px);
+    gap: 7px;
 }
 
-.post-item {
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
     width: 100%;
-    height: 100%;
-
+    height: calc(100% - 162px);
 }
 
-.post-image {
-    width: 100%;
-    height: 100%;
-
+.gallery-item:hover {
+    cursor: pointer;
 }
 
-img.post-image {
+.gallery-image {
     width: 100%;
     height: 100%;
-
-}
-
-.post-image img {
-    width: 100%;
-    height: 100%;
-
+    display: block;
+    object-fit: cover;
+   
 }
