@@ -1,9 +1,10 @@
 .main-layout {
     display: grid;
     grid-template-columns: 300px 1fr;
-    height: 100%;
+    margin-left: 50vw; 
 }
 
 main {
     justify-self: center;
+    
 }

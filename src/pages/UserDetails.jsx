@@ -12,7 +12,7 @@ export function UserDetails() {
     const handleComponentChange = (componentName) => {
         switch (componentName) {
             case 'UserPosts':
-                setActiveComponent(<UserPosts />);
+                setActiveComponent(<UserPosts user={userDemo} />);
                 break;
             case 'UserPostsSaved':
                 setActiveComponent(<UserPostsSaved />);

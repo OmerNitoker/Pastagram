@@ -16,6 +16,7 @@
     align-items: center;
     size: 100%;
     font-size: rem(18px);
+    z-index: 1001;
 
     & img {
         width: 100%;
@@ -38,6 +39,7 @@
     padding: 0 5px;
     border-bottom: 1px solid #c2c2c2;
     box-sizing: border-box;
+    z-index: 1001;
 }
 
 .share-btn {
