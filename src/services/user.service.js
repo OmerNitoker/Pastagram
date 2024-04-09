@@ -258,6 +258,20 @@ function getDemoUser() {
             ],
             tags: []
           },
+          {
+            _id: "s105",
+            txt: "Getting ready for my daily swim 🐳🐠",
+            imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712645916/insta-project/post%20imgs/7_bm2tff.jpg",
+            by: {
+              _id: "u105",
+              fullname: "Michael Williams",
+              username: "michael_williams",
+              imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646606/insta-project/users/Michael_Williams_p5umiy.jpg"
+            },
+            comments: [],
+            likedBy: [],
+            tags: []
+          },
          ]
     }
 }

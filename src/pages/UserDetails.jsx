@@ -4,7 +4,7 @@ import { UserTagged } from "../cmps/UserTagged";
 import { useState } from "react";
 
 export function UserDetails() {
-    const [activeComponent, setActiveComponent] = useState(null);
+    const [activeComponent, setActiveComponent] = useState(<UserPosts user={userService.getDemoUser()} />); // Initialisez activeComponent avec UserPosts
 
     const userDemo = userService.getDemoUser();
     console.log("userDemo", userDemo)
@@ -21,7 +21,7 @@ export function UserDetails() {
                 setActiveComponent(<UserTagged />);
                 break;
             default:
-                setActiveComponent(null);
+                setActiveComponent(<UserPosts user={userDemo} />);
                 break;
         }
     };
