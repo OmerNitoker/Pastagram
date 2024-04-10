@@ -55,9 +55,9 @@ export function AddPost({ setIsModalOpen, onCloseModal }) {
                     <span className='fw600'>Create new post</span>
                     <a onClick={handleSubmit} className='share-btn'>Share</a>
                 </div>
-                <div className="create-post-container flex space-between">
+                <div className="create-post-container">
                     <section className="img-section">
-                        {image ? <img src={image} /> :
+                        {image ? <img className='img-to-add' src={image} /> :
                             <div className="upload-preview flex column">
                                 <i className="fa-regular fa-image"></i>
                                 <label htmlFor="imgUpload">Upload Image</label>
@@ -71,7 +71,7 @@ export function AddPost({ setIsModalOpen, onCloseModal }) {
                                 <img className='user-avatar' src={loggedinUser.imgUrl} />
                                 <span className='fw600 fs14'>{loggedinUser.username}</span>
                             </section>
-                            <textarea onChange={handleChange} name="txt" id="txt" placeholder='Write a caption...'></textarea>
+                            <textarea onChange={handleChange} name="txt" id="txt" rows="10" placeholder='Write a caption...'></textarea>
                         </div>
                         <div className="post-info-footer"></div>
                     </section>

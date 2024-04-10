@@ -5,7 +5,8 @@
 
 .create-post-container {
     display: grid;
-    grid-template-columns: 65% 35%;
+    grid-template-columns: 61% 39%;
+    grid-template-rows: 100%;
     width: 100%;
     height: calc(100% - 42px);
 }
@@ -21,6 +22,9 @@
     & img {
         width: 100%;
         height: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        align-self: center;
     }
 }
 
@@ -49,7 +53,7 @@
     font-size: 14px;
     font-weight: 600;
 }
-    
+
 .post-user-info {
     gap: rem(15px);
     padding: 1.25rem 1rem;
@@ -65,4 +69,3 @@
     }
 
 }
-
