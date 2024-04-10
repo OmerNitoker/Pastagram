@@ -2,7 +2,8 @@
     display: grid;
     grid-template-columns: repeat(3, 309px);
     grid-template-rows: repeat(auto, 309px);
-    gap: 7px;
+    gap: 5px;
+    margin-left: 4.5vw;
 }
 
 .gallery-item {
@@ -10,7 +11,7 @@
     overflow: hidden;
     cursor: pointer;
     width: 100%;
-    height: calc(100% - 162px);
+    height: calc(100% - 152px);
 }
 
 .gallery-item:hover {
@@ -22,5 +23,7 @@
     height: 100%;
     display: block;
     object-fit: cover;
-   
+
 }
+
+

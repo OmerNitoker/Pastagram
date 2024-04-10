@@ -5,11 +5,14 @@ import { useState } from "react";
 
 export function UserDetails() {
     const [activeComponent, setActiveComponent] = useState(<UserPosts user={userService.getDemoUser()} />); // Initialisez activeComponent avec UserPosts
+    const [activeTab, setActiveTab] = useState('UserPosts');
 
     const userDemo = userService.getDemoUser();
     console.log("userDemo", userDemo)
 
     const handleComponentChange = (componentName) => {
+        setActiveTab(componentName);
+
         switch (componentName) {
             case 'UserPosts':
                 setActiveComponent(<UserPosts user={userDemo} />);
@@ -39,6 +42,7 @@ export function UserDetails() {
                         <span><button className="message-btn">View archive</button></span>
                         <span><i className="fa-solid fa-gear"></i></span>
                     </div>
+
                     <div className="user-stats">
                         <span className="user-num-posts">{userDemo.posts ? userDemo.posts.length : 'Loading...'} posts</span>
                         <span className="user-num-followers">{userDemo.followers ? Object.keys(userDemo.followers).length : 'Loading...'} followers</span>
@@ -49,14 +53,13 @@ export function UserDetails() {
             </div>
 
             <section className="user-posts-detail">
-                        <div className="user-publications" onClick={() => handleComponentChange('UserPosts')}><i className="fa-solid fa-table-cells"></i>Posts</div>
-                        <div className="user-posts-saved" onClick={() => handleComponentChange('UserPostsSaved')}><i className="fa-regular fa-bookmark"></i>Saved</div>
-                        <div className="user-posts-tagged" onClick={() => handleComponentChange('UserTagged')}><i className="fa-solid fa-clipboard-user"></i>Tagged</div>
-                        {/* ajoutez d'autres divs ici si nécessaire */}
-                    </section>
-                    <div className="active-component">
-                        {activeComponent}
-                    </div>
+                <div className={`user-publications ${activeTab === 'UserPosts' ? 'active' : ''}`} onClick={() => handleComponentChange('UserPosts')}><i className="fa-solid fa-table-cells"></i> Posts</div>
+                <div className={`user-posts-saved ${activeTab === 'UserPostsSaved' ? 'active' : ''}`} onClick={() => handleComponentChange('UserPostsSaved')}><i className="fa-regular fa-bookmark"></i> Saved</div>
+                <div className={`user-posts-tagged ${activeTab === 'UserTagged' ? 'active' : ''}`} onClick={() => handleComponentChange('UserTagged')}><i className="fa-solid fa-clipboard-user"></i> Tagged</div>
+            </section>
+            <div className="active-component">
+                {activeComponent}
+            </div>
         </section>
     )
 }

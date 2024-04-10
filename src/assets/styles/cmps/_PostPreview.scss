@@ -12,7 +12,7 @@
 }
 
 .post-header {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     gap: .8em;
     display: flex;
 
@@ -29,13 +29,13 @@
 }
 
 .fa-ellipsis {
-    font-size: 1.3em;
+    font-size: 1.1em;
 }
 
 
 .post-preview {
     // width:468px;
-    width: 530px;
+    width: 470px;
     border-bottom: .01px solid #c2c2c2;
 
     &.btn-container {
@@ -47,7 +47,7 @@
 }
 
 .post-img {
-    height: 600px;
+    height: 525px;
     width: 100%;
     border-radius: 3px;
 }
@@ -78,6 +78,10 @@
 
 .share-post-btn {
     flex-grow: 1;
+}
+
+.save-btn {
+    margin-right: 5px;
 }
 
 .post-footer {
@@ -359,6 +363,3 @@
     border-top: 2px solid lightgray;
 }
 
-.comments-section {
-   
-}
