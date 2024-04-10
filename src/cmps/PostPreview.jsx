@@ -175,7 +175,7 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
 
                 <div className="btn-container flex align-center">
                     <div className="Like" onClick={handleLikeClick} style={{ color: isLiked ? 'red' : 'black' }}>
-                        {!isLiked ? <i className="fa-regular fa-heart"></i> : <i className="fa-solid fa-heart"></i>}
+                        {!isLiked ? <i className="fa-regular fa-heart"></i> : <i className="fa-solid fa-heart Like"></i>}
                     </div>
                     <i className="fa-regular fa-comment" onClick={toggleModal} ></i>
                     <i className="fa-regular fa-paper-plane share-post-btn"></i>

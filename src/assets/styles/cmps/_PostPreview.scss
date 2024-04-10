@@ -38,13 +38,17 @@
     width: 470px;
     border-bottom: .01px solid #c2c2c2;
 
+
     &.btn-container {
         position: relative;
         gap: 13px;
 
 
     }
+
 }
+
+textarea {}
 
 .post-img {
     height: 525px;
@@ -73,8 +77,19 @@
 
 .btn-container i {
     cursor: pointer;
+}
 
 
+.btn-container i {
+    cursor: pointer;
+}
+
+.btn-container i:hover:not(.Like) {
+    color: lightgray; /* Tous les boutons sauf Like */
+}
+
+.Like:hover {
+    color: red; /* Le bouton Like */
 }
 
 .share-post-btn {
@@ -86,7 +101,7 @@
 }
 
 .post-footer {
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     gap: rem(7px);
     width: 100%;
 
