@@ -55,7 +55,7 @@
 
 .btn-container {
     display: flex;
-    
+
     margin-top: .5em;
     font-size: 1.5em;
     gap: 20px;
@@ -63,9 +63,9 @@
     & i {
         cursor: pointer;
 
-        & :hover {
-            color: $clr-txt-sec;
-        }
+        // &:hover {
+        //     color: $clr-txt-sec;
+        // }
     }
 }
 
@@ -73,7 +73,8 @@
 
 .btn-container i {
     cursor: pointer;
-    
+
+
 }
 
 .share-post-btn {
@@ -93,6 +94,7 @@
 
 .story-txt {
     margin-inline-start: rem(4px);
+    overflow-wrap: break-word;
 
 }
 
@@ -122,8 +124,8 @@
     aspect-ratio: 1 / 1;
     object-fit: cover;
     align-self: center;
-    max-width: 70%;
-    
+    max-width: 60%;
+
 }
 
 
@@ -133,7 +135,7 @@
     width: 500px;
     justify-self: center;
     // height: 910px;
-    
+
 
 }
 
@@ -141,7 +143,7 @@
     list-style-type: none;
 
     margin-left: 16px;
-    
+
 }
 
 .comment-item {
@@ -160,6 +162,10 @@
 
 .comment-text {
     flex-grow: 1;
+    overflow-wrap: break-word;
+    // overflow-wrap: break-word;
+    // word-wrap: break-word;
+    // white-space: pre-wrap;
 }
 
 .comment-like-btn {
@@ -222,7 +228,7 @@
     .fa-ellipsis {
         margin-right: 10px;
     }
-    
+
 }
 
 
@@ -245,7 +251,7 @@
     flex-direction: column;
 
     flex-grow: 1;
-    
+
 }
 
 .comments-list {
@@ -296,6 +302,7 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    width: calc(100% - 90px);
 }
 
 
@@ -327,6 +334,7 @@
         font-style: 14px;
         cursor: pointer;
     }
+
     // position: fixed;
     // top: 40%;
     // left: 36%;

@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { AddPost } from './AddPost';
 
+// import { ReactComponent as HomeIcon} from '../assets/img/home.svg';
+
 export function NavBar() {
 
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -24,7 +26,9 @@ export function NavBar() {
             <ul className="nav-list">
                 <li className="nav-item home">
                     <Link to="/" className="nav-link">
-                        <i className="fa-solid fa-house"></i>
+                        {/* <i className="fa-solid fa-house"></i> */}
+                        {/* <HomeIcon /> */}
+                        <img src="../assets/img/instagram.svg"/>
                         Home
                     </Link>
                 </li>

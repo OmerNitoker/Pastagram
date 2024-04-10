@@ -49,7 +49,7 @@ export function PostEdit({ post, setIsUpdateModalOpen, setIsPostMenuOpen }) {
                                 <img className='user-avatar' src={postToEdit.by.imgUrl} />
                                 <span className='fw600 fs14'>{postToEdit.by.username}</span>
                             </section>
-                            <textarea onChange={handleChange} name="txt" id="txt" placeholder='Write a caption...'>{post.txt}</textarea>
+                            <textarea onChange={handleChange} name="txt" id="txt" rows="10" placeholder='Write a caption...'>{post.txt}</textarea>
                         </div>
                     </section>
                 </div>

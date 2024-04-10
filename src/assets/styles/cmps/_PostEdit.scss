@@ -1,9 +1,10 @@
 
 .edit-post-container {
     display: grid;
-    grid-template-columns: 65% 35%;
+    grid-template-columns: 61% 39%;
+    grid-template-rows: 100%;
     width: 100%;
-    height: 100%;
+    height: calc(100% - 42px);
 }
 
 .update-modal {

@@ -187,7 +187,7 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
                     <Link className="clean-link fw600">{post.by.username}</Link>
                     <span className="story-txt">{post.txt}</span>
                 </div>
-                {post.comments.length ? <span onClick={toggleModal} >{post.comments.length} {post.comments.length === 1 ? 'comment' : 'comments'}</span> : <span></span>}
+                {post.comments.length ? <span className="clr-gray cp" onClick={toggleModal} >{post.comments.length > 1 ? `View all ${post.comments.length} comments` : `View 1 comment`}</span> : <span></span>}
                 <textarea name="add-comment" id="add-comment" placeholder="Add a comment..."></textarea>
             </section>
 
@@ -206,30 +206,49 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
                                 <div className="modal-post-time">•1h</div>
                                 <i className="fa-solid fa-ellipsis "></i>
                             </section>
-                            <ul className="comments-list">
-                                {post.comments.map(comment => (
-                                    <li
-                                        key={comment.id}
-                                        className="comment-item"
-                                        onMouseEnter={() => handleCommentMouseEnter(comment.id)}
-                                        onMouseLeave={handleCommentMouseLeave}
-                                    >
-                                        <img src={comment.by.imgUrl} alt={comment.by.fullname} className="comment-avatar" />
-                                        <div className="comment-content">
-                                            <span className="comment-text">{comment.txt}</span>
-                                            <div className="comment-actions">
+                            {/* <div className="comment-container"> */}
 
-                                                <span className="comment-time">{getTimeAgo(comment.timestamp)}</span>
-                                                {hoveredComment === comment.id && (
-                                                    <i className="fa-solid fa-ellipsis comment-delete-btn" onClick={() => handleDeleteComment(comment.id)}></i>
-                                                )}
+                                <ul className="comments-list">
+                                    {post.comments.map(comment => (
+                                        <li
+                                            key={comment.id}
+                                            className="comment-item"
+                                            onMouseEnter={() => handleCommentMouseEnter(comment.id)}
+                                            onMouseLeave={handleCommentMouseLeave}
+                                        >
+                                            <img src={comment.by.imgUrl} alt={comment.by.fullname} className="comment-avatar" />
+                                            <div className="comment-content">
+                                                <span className="comment-text">{comment.txt}</span>
+                                                <div className="comment-actions">
+
+                                                    <span className="comment-time">{getTimeAgo(comment.timestamp)}</span>
+                                                    {hoveredComment === comment.id && (
+                                                        <i className="fa-solid fa-ellipsis comment-delete-btn" onClick={() => handleDeleteComment(comment.id)}></i>
+                                                    )}
+                                                </div>
                                             </div>
-                                        </div>
-                                        <i className="fa-regular fa-heart comment-like-btn"></i>
-                                    </li>
-                                ))}
+                                            <i className="fa-regular fa-heart comment-like-btn"></i>
+                                        </li>
+                                    ))}
 
-                            </ul>
+                                </ul>
+                                {/* <div className="details-footer-container">
+                                    <div className="btn-container flex align-center">
+                                        <div className="Like" onClick={handleLikeClick} style={{ color: isLiked ? 'red' : 'black' }}>
+                                            {!isLiked ? <i className="fa-regular fa-heart"></i> : <i className="fa-solid fa-heart"></i>}
+                                        </div>
+                                        <i className="fa-regular fa-comment" onClick={toggleModal} ></i>
+                                        <i className="fa-regular fa-paper-plane share-post-btn"></i>
+                                        <i className="fa-regular fa-bookmark save-btn" ></i>
+                                    </div>
+                                    <div className="likes-time">
+                                        <a className="clean-link">
+                                            {post.likedBy.length ? `${post.likedBy.length} ${post.likedBy.length > 1 ? 'likes' : 'like'}` : ''}
+                                        </a>
+                                        <span>1 hour ago</span>
+                                    </div>
+                                </div> */}
+                            {/* </div> */}
                             {showDeleteModal && (
                                 <div className="modal-overlay" onClick={toggleDeleteModal}>
                                     <div className="modal-content delete-comment-modal">

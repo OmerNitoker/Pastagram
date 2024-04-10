@@ -13,6 +13,7 @@ a {
 
 textarea {
     all: unset;
+    overflow-wrap: break-word;
 }
 
 .modal-content {
@@ -32,4 +33,8 @@ i {
 
 .user-avatar {
     border-radius: 50%;
+}
+
+.clr-gray {
+    color: $clr-txt-sec;
 }

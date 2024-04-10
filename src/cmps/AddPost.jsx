@@ -48,34 +48,34 @@ export function AddPost({ setIsModalOpen, onCloseModal }) {
     return (
         <div className='modal-overlay' onClick={() => setIsModalOpen(false)}>
             <div className="modal-content add-modal" onClick={(e) => e.stopPropagation()}>
-                    <div className="modal-header flex space-between">
-                        <a onClick={onCloseModal} className="back-btn">
-                            <i className="fa-solid fa-arrow-left" aria-hidden="true"></i>
-                        </a>
-                        <span className='fw600'>Create new post</span>
-                        <a onClick={handleSubmit} className='share-btn'>Share</a>
-                    </div>
-                    <div className="create-post-container flex space-between">
-                        <section className="img-section">
-                            {image ? <img src={image} /> :
-                                <div className="upload-preview flex column">
-                                    <i className="fa-regular fa-image"></i>
-                                    <label htmlFor="imgUpload">Upload Image</label>
-                                    <input type="file" accept="img/*" id="imgUpload" onChange={handleChange}></input>
-                                </div>
-                            }
-                        </section>
-                        <section className="post-info flex column">
-                            <div className="post-user-info flex column">
-                                <section className="flex">
-                                    <img className='user-avatar' src={loggedinUser.imgUrl} />
-                                    <span className='fw600 fs14'>{loggedinUser.username}</span>
-                                </section>
-                                <textarea onChange={handleChange} name="txt" id="txt" placeholder='Write a caption...'></textarea>
+                <div className="modal-header flex space-between">
+                    <a onClick={onCloseModal} className="back-btn fs24">
+                        <i className="fa-solid fa-arrow-left" aria-hidden="true"></i> 
+                    </a>
+                    <span className='fw600'>Create new post</span>
+                    <a onClick={handleSubmit} className='share-btn'>Share</a>
+                </div>
+                <div className="create-post-container">
+                    <section className="img-section">
+                        {image ? <img className='img-to-add' src={image} /> :
+                            <div className="upload-preview flex column">
+                                <i className="fa-regular fa-image"></i>
+                                <label htmlFor="imgUpload">Upload Image</label>
+                                <input type="file" accept="img/*" id="imgUpload" onChange={handleChange}></input>
                             </div>
-                            <div className="post-info-footer"></div>
-                        </section>
-                    </div>
+                        }
+                    </section>
+                    <section className="post-info flex column">
+                        <div className="post-user-info flex column">
+                            <section className="flex">
+                                <img className='user-avatar' src={loggedinUser.imgUrl} />
+                                <span className='fw600 fs14'>{loggedinUser.username}</span>
+                            </section>
+                            <textarea onChange={handleChange} name="txt" id="txt" rows="10" placeholder='Write a caption...'></textarea>
+                        </div>
+                        <div className="post-info-footer"></div>
+                    </section>
+                </div>
             </div>
         </div>
     );
