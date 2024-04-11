@@ -15,20 +15,33 @@ export function UserPosts() {
         if (loggedInUser && loggedInUser.posts) {
             setUserPosts(loggedInUser.posts);
             setIsLoading(false);
+        } else {
+            setIsLoading(false); // Si aucun post n'est disponible, arrêtez le chargement
         }
+    }
+
+    if (isLoading) {
+        // Créer des cases de chargement en fonction du nombre attendu de posts
+        const loaderItems = Array.from({ length: 9 }, (_, i) => (
+            <div key={i} className="post-loader"></div>
+        ));
+
+        return <div className='user-post-loader'>{loaderItems}</div>;
     }
 
     return (
         <div className="gallery-container">
-            {userPosts.map(post => (
-                <Link key={post._id} to={`/post/${post._id}`}>
-                    <div className="gallery-item" style={{ backgroundColor: isLoading ? '#333' : 'transparent' }}>
-                        {!isLoading && (
+            {userPosts.length > 0 ? (
+                userPosts.map(post => (
+                    <Link key={post._id} to={`/post/${post._id}`}>
+                        <div className="gallery-item">
                             <img src={post.imgUrl} alt="post" className="gallery-image" />
-                        )}
-                    </div>
-                </Link>
-            ))}
+                        </div>
+                    </Link>
+                ))
+            ) : (
+                <div>No posts available.</div>
+            )}
         </div>
     );
 }

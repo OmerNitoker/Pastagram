@@ -41,8 +41,17 @@ img.user-profile-avatar {
     place-content: center;
     font-size: 14px;
     font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 20px;
+
 
 }
+
+.userprofile-fullName {
+    font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: black;
+    font-size: 16px;
+}
+
 
 .follow-btn,
 .message-btn {
@@ -60,42 +69,31 @@ img.user-profile-avatar {
 }
 
 
+
+
+
+
 .user-posts-detail {
     display: flex;
-    gap: 130px;
-    margin-top: 195px;
+    gap: 80px;
+    margin-top: 190px;
     border-top: 2px solid lightgray;
     width: 941px;
     place-content: center;
     margin-left: 5vw;
-    padding: 10px;
+
 }
-
-
 
 
 
 .user-posts-detail>div {
-    position: relative;
-    cursor: pointer;
-    padding-top: 5px;
+    padding: 10px;
 }
+
 
 .user-posts-detail>div.active {
-    color: black;
-}
+    border-top: .125em solid black;
+    cursor: pointer;
 
-.user-posts-detail>div::before {
-    content: '';
-    position: absolute;
-    top: -11px;
-    left: -28px;
-    width: 130px;
-    height: 2px;
-    background-color: transparent;
-    transition: background-color 0.3s ease;
-}
 
-.user-posts-detail>div.active::before {
-    background-color: black;
 }
