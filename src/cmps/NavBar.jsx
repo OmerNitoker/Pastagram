@@ -10,14 +10,15 @@ import { NotificationsIcon } from './icons-cmps/NotificationsIcon';
 import { CreateIcon } from './icons-cmps/CreateIcon';
 import { MoreIcon } from './icons-cmps/MoreIcon';
 import { HomeIcon } from './icons-cmps/HomeIcon';
+import { InstagramLogo } from './icons-cmps/InstagramLogo';
 
 // import { ReactComponent as HomeIcon} from '../assets/img/home.svg';
 
 export function NavBar() {
-
     const [isModalOpen, setIsModalOpen] = useState(false)
     const loggedinUser = useSelector(storeState => storeState.userModule.loggedinUser)
 
+    
     function onAddPost() {
         setIsModalOpen(true)
     }
@@ -28,7 +29,8 @@ export function NavBar() {
 
     return (
         <section className="nav-bar">
-            <h1 className='logo'>Instagram</h1>
+            {/* <h1 className='logo'>Instagram</h1> */}
+            <InstagramLogo margin="1em" marginTop="35px" />
 
 
             <ul className="nav-list">

@@ -17,10 +17,10 @@ textarea {
 }
 
 .modal-content {
-    max-width: 70.5vw;
+    max-width: 90vw;
+    // max-width: 70.5vw;
     max-height: calc(100vh - 50px);
     background-color: #fff;
-   
     overflow: auto;
     z-index: 1001;
     border-top-right-radius: 5px;

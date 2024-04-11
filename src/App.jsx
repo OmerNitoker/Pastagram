@@ -21,6 +21,18 @@ export function App() {
         setIsLoading(false);
     }, []);
 
+    useEffect(() => {
+        const setLoginDemo = async () => {
+            try {
+                await loginDemo()
+            } catch (err) {
+                console.log('err:', err)
+                throw err
+            }
+        }
+        setLoginDemo()
+    }, [])
+
     return (
         <Provider store={store}>
             {isLoading ? (

@@ -59,8 +59,6 @@ textarea {}
 
 .btn-container {
     display: flex;
-
-    margin-top: .5em;
     font-size: 1.5em;
     gap: 20px;
 
@@ -85,11 +83,13 @@ textarea {}
 }
 
 .btn-container i:hover:not(.Like) {
-    color: lightgray; /* Tous les boutons sauf Like */
+    color: lightgray;
+    /* Tous les boutons sauf Like */
 }
 
 .Like:hover {
-    color: red; /* Le bouton Like */
+    color: red;
+    /* Le bouton Like */
 }
 
 .share-post-btn {
@@ -132,6 +132,9 @@ textarea {}
 
 .details-modal {
     display: flex;
+    height: 94.5vh;
+    width: 1011px;
+    // max-width: 65vw !important;
     // grid-template-columns: 50% 50%;
 }
 
@@ -140,26 +143,13 @@ textarea {}
     object-fit: cover;
     align-self: center;
     max-width: 60%;
+    width: 50.8%;
 
 }
 
-
-.comments-section {
-    display: flex;
-    flex-direction: column;
-    width: 500px;
-    justify-self: center;
-    // height: 910px;
-
-
-}
-
-.comments-list {
-    list-style-type: none;
-
-    margin-left: 16px;
-
-}
+// .comments-list {
+//     list-style-type: none;
+// }
 
 .comment-item {
     display: flex;
@@ -188,18 +178,15 @@ textarea {}
 }
 
 .comment-input-container {
-    margin-top: 10px;
     display: flex;
     align-items: center;
+    gap: 10px;
+    padding-inline-start: 1em;
+    margin-top: 10px;
     height: 57px;
     border-top: .1px lightgrey solid;
     font-size: 24px;
-    gap: 10px;
 
-}
-
-.emojis {
-    margin-left: 16px;
 }
 
 .comment-input {
@@ -218,9 +205,15 @@ textarea {}
 .comment-btn {
     padding: 10px 20px;
     background-color: transparent;
-    color: #0095f6;
+    color: #b5dbff6d;
     border: none;
     border-radius: 5px;
+    font-weight: 600;
+}
+
+.comment-btn-full {
+    color: $clr-btn1 !important;
+
     cursor: pointer;
 }
 
@@ -234,10 +227,11 @@ textarea {}
 
 
 .post-modal-header {
+    display: flex;
+    padding-inline-start: 1em;
     margin-bottom: 20px;
     gap: .8em;
-    display: flex;
-    border-bottom: .1px lightgrey solid;
+    border-bottom: .1px $clr-sep-line solid;
     height: 57px;
 
     .fa-ellipsis {
@@ -251,7 +245,6 @@ textarea {}
     border-radius: 50%;
     height: 32px;
     width: 32px;
-    margin-left: 16px;
 }
 
 .modal-post-time {
@@ -264,9 +257,9 @@ textarea {}
 .comments-section {
     display: flex;
     flex-direction: column;
-
+    justify-self: center;
     flex-grow: 1;
-
+    width: 500px;
 }
 
 .comments-list {
@@ -302,8 +295,9 @@ textarea {}
 .comment-item {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
     flex-grow: 1;
+    padding-inline-start: 1em;
+    margin-bottom: 10px;
 }
 
 .comment-avatar {
@@ -320,7 +314,9 @@ textarea {}
     width: calc(100% - 90px);
 }
 
-
+.comment-actions {
+    margin-top: 5px;
+}
 
 .comment-like-btn {
     margin-left: 10px;
@@ -329,12 +325,12 @@ textarea {}
 .comment-time {
     color: $clr-txt-sec;
     font-size: 0.9em;
-    margin-top: 5px;
 }
 
 .comment-delete-btn {
     margin-left: 20px;
     font-size: 1.2em;
+    color: $clr-txt-sec;
 }
 
 .delete-comment-modal {
@@ -383,6 +379,16 @@ textarea {}
 
 .delete-modal button.cancel-delete-comments-btn {
     color: black;
-    border-top: 2px solid lightgray;
+    border-top: 2px solid $clr-sep-line;
 }
 
+.likes-time {
+    display: flex;
+    flex-direction: column;
+}
+
+.details-footer-container {
+    padding-top: 1em;
+    padding-inline-start: 1em;
+    border-top: 0.1px $clr-sep-line solid;
+}
