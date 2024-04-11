@@ -22,7 +22,6 @@ export function AddPost({ setIsModalOpen, onCloseModal }) {
     function handleChange(ev) {
         const { target } = ev
         // const { _id, fullname, username, imgUrl } = loggedinUser
-        console.log('loggedinUser: ', loggedinUser)
         if (target.type === 'textarea') {
             setNewPost(prevState => ({ ...prevState, txt: target.value }))
         }
@@ -39,8 +38,20 @@ export function AddPost({ setIsModalOpen, onCloseModal }) {
     async function handleSubmit(ev) {
         ev.preventDefault()
         if (!newPost.txt || !newPost.imgUrl) return
-        await addPost(newPost)
-        console.log('new post: ', newPost)
+        const firstComment = {
+            _id: utilService.makeId(),
+            by: {
+                _id: {loggedinUser},
+                fullname: {loggedinUser},
+                username: {loggedinUser},
+                imgUrl: {loggedinUser}
+            },
+            txt: newPost.txt,
+            timestamp: Date.now()
+        }
+        let postToAdd = {...newPost}
+        postToAdd.comments.push(firstComment)
+        await addPost(postToAdd)
         onCloseModal()
     }
 

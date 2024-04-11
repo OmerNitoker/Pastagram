@@ -62,7 +62,7 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
         }
 
         const newComment = {
-            id: utilService.makeId(),
+            _id: utilService.makeId(),
             by: {
                 _id: currentUser._id,
                 fullname: currentUser.fullname,
@@ -133,7 +133,7 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
     const confirmDeleteComment = async () => {
         if (commentToDelete) {
             const updatedPost = { ...post };
-            const commentIndex = updatedPost.comments.findIndex(comment => comment.id === commentToDelete);
+            const commentIndex = updatedPost.comments.findIndex(comment => comment._id === commentToDelete);
 
             if (commentIndex !== -1) {
                 updatedPost.comments.splice(commentIndex, 1);
@@ -221,9 +221,9 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
                             <ul className="comments-list">
                                 {post.comments.map(comment => (
                                     <li
-                                        key={comment.id}
+                                        key={comment._id}
                                         className="comment-item"
-                                        onMouseEnter={() => handleCommentMouseEnter(comment.id)}
+                                        onMouseEnter={() => handleCommentMouseEnter(comment._id)}
                                         onMouseLeave={handleCommentMouseLeave}
                                     >
                                         <img src={comment.by.imgUrl} alt={comment.by.fullname} className="comment-avatar" />
@@ -235,8 +235,8 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
                                             <div className="comment-actions">
 
                                                 <span className="comment-time">{getTimeAgo(comment.timestamp)}</span>
-                                                {hoveredComment === comment.id && (
-                                                    <i className="fa-solid fa-ellipsis comment-delete-btn" onClick={() => handleDeleteComment(comment.id)}></i>
+                                                {hoveredComment === comment._id && (
+                                                    <i className="fa-solid fa-ellipsis comment-delete-btn" onClick={() => handleDeleteComment(comment._id)}></i>
                                                 )}
                                             </div>
                                         </div>

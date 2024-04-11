@@ -5,7 +5,6 @@ export function PostMenu({ post, setIsPostMenuOpen, onRemovePost }) {
     const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false)
 
     function onHandleRemove() {
-        console.log('post to remove: PostMenu', post)
         onRemovePost(post._id)
     }
 

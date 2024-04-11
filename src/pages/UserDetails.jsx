@@ -10,7 +10,6 @@ export function UserDetails() {
     const [activeTab, setActiveTab] = useState('UserPosts');
 
     const userDemo = userService.getDemoUser();
-    console.log("userDemo", userDemo)
 
     const handleComponentChange = (componentName) => {
         setActiveTab(componentName);

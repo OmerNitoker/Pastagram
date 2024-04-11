@@ -11,7 +11,7 @@ import { Explore } from './pages/Explore';
 import './assets/styles/main.scss';
 import { Search } from './cmps/Search';
 import { Notifications } from './cmps/Notifications';
-import { Creat } from './cmps/Creat';
+import { loginDemo } from './store/actions/user.actions';
 
 export function App() {
     const [isLoading, setIsLoading] = useState(true);
