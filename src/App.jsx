@@ -11,9 +11,23 @@ import './assets/styles/main.scss'
 import { Search } from './cmps/Search'
 import { Notifications } from './cmps/Notifications'
 import { Creat } from './cmps/Creat'
+import { loginDemo } from './store/actions/user.actions'
+import { useEffect } from 'react'
 
 
 export function App() {
+
+    useEffect(() => {
+        const setLoginDemo = async () => {
+            try {
+                await loginDemo()
+            } catch (err) {
+                console.log('err:', err)
+                throw err
+            }
+        }
+        setLoginDemo()
+    }, [])
 
     return (
         <Provider store={store}>
