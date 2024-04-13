@@ -24,18 +24,18 @@ const gPosts = [
       imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646609/insta-project/users/James_Smith_fq1zpt.jpg"
     },
     comments: [
+      // {
+      //   _id: "c1001",
+      //   by: {
+      //     _id: "u101",
+      //     fullname: "James Smith",
+      //     username: "james_smith",
+      //     imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646609/insta-project/users/James_Smith_fq1zpt.jpg"
+      //   },
+      //   txt: "The best way to cross a bridge is by running 🤣"
+      // },
       {
         _id: "c1001",
-        by: {
-          _id: "u101",
-          fullname: "James Smith",
-          username: "james_smith",
-          imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646609/insta-project/users/James_Smith_fq1zpt.jpg"
-        },
-        txt: "The best way to cross a bridge is by running 🤣"
-      },
-      {
-        _id: "c1002",
         by: {
           _id: "u105",
           fullname: "Michael Williams",
@@ -72,19 +72,19 @@ const gPosts = [
       imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646603/insta-project/users/Emily_Davis_aumnv0.jpg"
     },
     comments: [
-      {
-        _id: "c1003",
-        by: {
-          _id: "u102",
-          fullname: "Emily Davis",
-          username: "emily_davis",
-          imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646603/insta-project/users/Emily_Davis_aumnv0.jpg"
-        },
-        txt: "In the tranquil embrace of nature's symphony, every whisper of the wind and dance of the leaves reminds us of the beauty that surrounds us, offering solace to weary souls and inspiration to wandering hearts."
+      // {
+      //   _id: "c1003",
+      //   by: {
+      //     _id: "u102",
+      //     fullname: "Emily Davis",
+      //     username: "emily_davis",
+      //     imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646603/insta-project/users/Emily_Davis_aumnv0.jpg"
+      //   },
+      //   txt: "In the tranquil embrace of nature's symphony, every whisper of the wind and dance of the leaves reminds us of the beauty that surrounds us, offering solace to weary souls and inspiration to wandering hearts."
 
-      },
+      // },
       {
-        _id: "c1004",
+        _id: "c1002",
         by: {
           _id: "u107",
           fullname: "Jessica Wilson",
@@ -94,7 +94,7 @@ const gPosts = [
         txt: "WOW!!",
       },
       {
-        _id: "c1005",
+        _id: "c1003",
         by: {
           _id: "u106",
           fullname: "Robert Jones",
@@ -104,7 +104,7 @@ const gPosts = [
         txt: "Emily, its breathtaking!",
       },
       {
-        _id: "c1006",
+        _id: "c1004",
         by: {
           _id: "u104",
           fullname: "David Johnson",
@@ -141,16 +141,16 @@ const gPosts = [
       imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646602/insta-project/users/Ashley_Taylor_by00jo.jpg"
     },
     comments: [
-      {
-        _id: "c1007",
-        by: {
-          _id: "u103",
-          fullname: "Ashley Taylor",
-          username: "ashley_taylor",
-          imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646602/insta-project/users/Ashley_Taylor_by00jo.jpg"
-        },
-        txt: "Manarola Cliff in Italy offers breathtaking views of the Ligurian Sea, attracting visitors with its rugged beauty and charm.",
-      }
+      // {
+      //   _id: "c1007",
+      //   by: {
+      //     _id: "u103",
+      //     fullname: "Ashley Taylor",
+      //     username: "ashley_taylor",
+      //     imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646602/insta-project/users/Ashley_Taylor_by00jo.jpg"
+      //   },
+      //   txt: "Manarola Cliff in Italy offers breathtaking views of the Ligurian Sea, attracting visitors with its rugged beauty and charm.",
+      // }
     ],
     likedBy: [
       {
@@ -173,16 +173,16 @@ const gPosts = [
       imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646604/insta-project/users/David_Johnson_vcvhgl.jpg"
     },
     comments: [
-      {
-        _id: "c1008",
-        by: {
-          _id: "u104",
-          fullname: "David Johnson",
-          username: "david_johnson",
-          imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646604/insta-project/users/David_Johnson_vcvhgl.jpg"
-        },
-        txt: "Amazing morning in the nature.."
-      }
+      // {
+      //   _id: "c1008",
+      //   by: {
+      //     _id: "u104",
+      //     fullname: "David Johnson",
+      //     username: "david_johnson",
+      //     imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646604/insta-project/users/David_Johnson_vcvhgl.jpg"
+      //   },
+      //   txt: "Amazing morning in the nature.."
+      // }
     ],
     likedBy: [],
     tags: []
@@ -198,16 +198,16 @@ const gPosts = [
       imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646606/insta-project/users/Michael_Williams_p5umiy.jpg"
     },
     comments: [
-      {
-        _id: "c1009",
-        by: {
-          _id: "u105",
-          fullname: "Michael Williams",
-          username: "michael_williams",
-          imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646606/insta-project/users/Michael_Williams_p5umiy.jpg"
-        },
-        txt: "Getting ready for my daily swim 🐳🐠"
-      }
+      // {
+      //   _id: "c1009",
+      //   by: {
+      //     _id: "u105",
+      //     fullname: "Michael Williams",
+      //     username: "michael_williams",
+      //     imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646606/insta-project/users/Michael_Williams_p5umiy.jpg"
+      //   },
+      //   txt: "Getting ready for my daily swim 🐳🐠"
+      // }
     ],
     likedBy: [],
     tags: []
@@ -223,16 +223,16 @@ const gPosts = [
       imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646607/insta-project/users/Robert_Jones_ovrwnr.jpg"
     },
     comments: [
-      {
-        _id: "c1010",
-        by: {
-          _id: "u106",
-          fullname: "Robert Jones",
-          username: "robert_jones",
-          imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646607/insta-project/users/Robert_Jones_ovrwnr.jpg"
-        },
-        txt: "Another day in the office..."
-      }
+      // {
+      //   _id: "c1010",
+      //   by: {
+      //     _id: "u106",
+      //     fullname: "Robert Jones",
+      //     username: "robert_jones",
+      //     imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646607/insta-project/users/Robert_Jones_ovrwnr.jpg"
+      //   },
+      //   txt: "Another day in the office..."
+      // }
     ],
     likedBy: [],
     tags: []
@@ -248,23 +248,23 @@ const gPosts = [
       imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646612/insta-project/users/Jessica_Wilson_ghro83.jpg"
     },
     comments: [
-      {
-        _id: "c1011",
-        by: {
-          _id: "u107",
-          fullname: "Jessica Wilson",
-          username: "jessica_wilson",
-          imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646612/insta-project/users/Jessica_Wilson_ghro83.jpg"
-        },
-        txt: "On my way to work"
-      }
+      // {
+      //   _id: "c1011",
+      //   by: {
+      //     _id: "u107",
+      //     fullname: "Jessica Wilson",
+      //     username: "jessica_wilson",
+      //     imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646612/insta-project/users/Jessica_Wilson_ghro83.jpg"
+      //   },
+      //   txt: "On my way to work"
+      // }
     ],
     likedBy: [],
     tags: []
   }
 ]
 
-_createPosts()
+// _createPosts()
 
 async function query() {
   var posts = await storageService.query(STORAGE_KEY)
