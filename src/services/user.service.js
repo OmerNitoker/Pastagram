@@ -93,16 +93,8 @@ const gUsers = [
         followers: [],
         savedPostsIds: []
     },
-    {
-        _id: utilService.makeId,
-        username: "johnny_johnson",
-        password: "password123",
-        fullname: "John Johnson",
-        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712492656/1517034957463_hxarzp.jpg",
-        following: [],
-        followers: [],
-        savedPostsIds: []
-    }
+    getDemoUser()
+
 ];
 
 
@@ -111,7 +103,7 @@ const gUsers = [
 
 function getUsers() {
     const usersFromStorage = storageService.query('user');
-    
+
     // Vérifiez si des utilisateurs ont été trouvés dans le storageService
     if (usersFromStorage && usersFromStorage.length > 0) {
         return usersFromStorage;
@@ -133,15 +125,26 @@ function remove(userId) {
     // return httpService.delete(`user/${userId}`)
 }
 
-async function update({ _id }) {
-    const user = await storageService.get('user', _id)
-    await storageService.put('user', user)
+async function update(updatedUser) {
+    const userFromStorage = await getById(updatedUser._id); 
 
-    // const user = await httpService.put(`user/${_id}`, {_id, score})
-    // Handle case in which admin updates other user's details
-    if (getLoggedinUser()._id === user._id) saveLocalUser(user)
-    return user
+    if (userFromStorage) {
+        // Créez une copie de l'utilisateur depuis le stockage
+        const updatedUserInStorage = { ...userFromStorage };
+
+        // Mettez à jour la copie de l'utilisateur avec les données mises à jour
+        updatedUserInStorage.savedPostsIds = updatedUser.savedPostsIds;
+
+        // Mettez à jour l'utilisateur dans le stockage avec la copie mise à jour
+        await storageService.put('user', updatedUserInStorage);
+
+        return updatedUserInStorage;
+    } else {
+        throw new Error('User not found');
+    }
 }
+
+
 
 async function login(userCred) {
     const users = await storageService.query('user')
@@ -192,11 +195,11 @@ function getLoggedinUser() {
 function _createUsers() {
     const usersWithIds = gUsers.map(user => ({
         ...user,
-        _id: utilService.makeId() // appel de la fonction makeId pour générer un ID unique
+        _id: utilService.makeId()
     }));
-    
+
     utilService.saveToStorage('user', usersWithIds);
-    saveUsersToStorage(usersWithIds);  // Ajoutez cette ligne
+    saveUsersToStorage(usersWithIds);
 }
 
 

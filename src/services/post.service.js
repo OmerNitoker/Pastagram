@@ -9,10 +9,11 @@ export const postService = {
   getById,
   remove,
   save,
-  getEmptyPost
+  getEmptyPost,
+  
 }
 
-const gPosts = [
+export const gPosts = [
   {
     _id: "s101",
     txt: "The best way to cross a bridge is by running 🤣",

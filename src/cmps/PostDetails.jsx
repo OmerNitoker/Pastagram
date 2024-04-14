@@ -33,6 +33,7 @@ export function PostDetails({ lastPath }) {
     // }, [likedByIndex]);
 
     useEffect(() => {
+        console.log("currentUser", currentUser)
         const currPost = currentUser.posts.find(post => post._id === postId)
         if (!currPost) console.log('could not find post')
         else {
