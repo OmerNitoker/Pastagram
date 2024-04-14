@@ -9,11 +9,12 @@ import { userService } from "../services/user.service"
 export function PostDetails({ lastPath }) {
     const navigate = useNavigate()
 
-    // const post = useSelector((storeState) => storeState.postModule.currPost)
-    const [post, setPost] = useState(null)
+    const currentUser = userService.getLoggedinUser()
+    const posts = useSelector((storeState) => storeState.postModule.posts)
+
     // const [likesCount, setLikesCount] = useState(post ? post.likedBy.length : null);
-    // const likedByIndex = post ? post.likedBy.findIndex(user => user._id === "u101") : null;
-    const currentUser = useSelector((storeState) => storeState.userModule.loggedinUser)
+    const [post, setPost] = useState(null)
+    const likedByIndex = post ? post.likedBy.findIndex(user => user._id === currentUser._id) : null;
     const [hoveredComment, setHoveredComment] = useState(null)
     const [commentToDelete, setCommentToDelete] = useState(null)
     const [showDeleteModal, setShowDeleteModal] = useState(false)
@@ -21,47 +22,55 @@ export function PostDetails({ lastPath }) {
     const [newCommentText, setNewCommentText] = useState("")
     const [commentTimestamp, setCommentTimestamp] = useState(Date.now())
     const [isEmptyComment, setIsEmptyComment] = useState(true)
-    // const [isLiked, setIsLiked] = useState(false)
+    const [isLiked, setIsLiked] = useState(false)
 
     const emojis = ['😀', '😍', '👍', '❤️', '😂', '🎉', '🔥', '😊', '🙌', '😎']
     const { postId } = useParams()
 
-    // useEffect(() => {
-    //     if (likedByIndex !== -1) {
-    //         setIsLiked(true);
-    //     }
-    // }, [likedByIndex]);
+    useEffect(() => {
+        if (likedByIndex !== -1 && likedByIndex !== null) {
+            setIsLiked(true);
+        }
+    }, [likedByIndex]);
 
     useEffect(() => {
-        const currPost = currentUser.posts.find(post => post._id === postId)
-        if (!currPost) console.log('could not find post')
+        let currPost
+        if (lastPath === '/') {
+            currPost = posts.find(post => post._id === postId)
+        }
+        else if (lastPath === '/user') {
+            currPost = currentUser.posts.find(post => post._id === postId)
+        }
+        if (!currPost) {
+            console.log('could not find post')
+        }
         else {
             setPost(currPost)
         }
     }, [])
 
-    // const handleLikeClick = () => {
-    //     setIsLiked(!isLiked);
+    const handleLikeClick = () => {
 
-    //     const updatedPost = { ...post };
+        const updatedPost = { ...post }
 
-    //     if (!isLiked) {
-    //         const likedUser = {
-    //             _id: "u101",
-    //             fullname: "John Johnson",
-    //             imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712178735/instagram-posts/bob_uaojqj.jpg",
-    //         };
+        if (!isLiked) {
+            const likedUser = {
+                _id: currentUser._id,
+                fullname: currentUser.fullname,
+                imgUrl: currentUser.imgUrl
+            };
 
-    //         updatedPost.likedBy.push(likedUser);
-    //     } else {
-    //         const index = updatedPost.likedBy.findIndex(user => user._id === "u101"); // Recherchez l'utilisateur démo
-    //         if (index !== -1) {
-    //             updatedPost.likedBy.splice(index, 1);
-    //         }
-    //     }
+            updatedPost.likedBy.push(likedUser);
+        } else {
+            const index = updatedPost.likedBy.findIndex(user => user._id === currentUser._id); // Recherchez l'utilisateur démo
+            if (index !== -1) {
+                updatedPost.likedBy.splice(index, 1);
+            }
+        }
 
-    //     postService.save(updatedPost);
-    // }
+        postService.save(updatedPost);
+        setIsLiked(!isLiked)
+    }
 
     function generateId() {
         return utilService.makeId()
@@ -170,21 +179,13 @@ export function PostDetails({ lastPath }) {
         await postService.save(post)
     }
 
-    async function handleWraperClicked() {
-        try {
-            await setPost(null)
-            navigate(`${lastPath}`)
-            // navigate('/')
-        }
-        catch (err) {
-            console.log('had a problem setting currPost to null')
-            throw err
-        }
-
+    function handleWraperClicked() {
+        setPost(null)
+        navigate(`${lastPath}`)
     }
 
     if (!post) return (
-        <span>loading...</span>
+        <span></span>
     )
 
     return (
@@ -243,10 +244,10 @@ export function PostDetails({ lastPath }) {
                         </ul>
                         <div className="details-footer-container">
                             <div className="btn-container flex align-center">
-                                <div className="like" /*onClick={handleLikeClick} style={{ color: isLiked ? 'red' : 'black' }}*/ >
-                                    {/* {!isLiked ? */}
-                                     <i className="fa-regular fa-heart"></i> 
-                                     {/* : <i className="fa-solid fa-heart like"></i>} */}
+                                <div className="like" onClick={handleLikeClick} style={{ color: isLiked ? 'red' : 'black' }}>
+                                    {!isLiked ?
+                                        <i className="fa-regular fa-heart"></i>
+                                        : <i className="fa-solid fa-heart like"></i>}
                                 </div>
                                 <i className="fa-regular fa-comment"></i>
                                 <i className="fa-regular fa-paper-plane share-post-btn"></i>
@@ -257,7 +258,7 @@ export function PostDetails({ lastPath }) {
                                     <a className="clean-link fw600">
                                         {post.likedBy.length} {post.likedBy.length > 1 ? 'likes' : 'like'}
                                     </a> :
-                                    <span>be the first to <span className="fw600 cp" /*onClick={handleLikeClick}*/>like this</span></span>
+                                    <span>be the first to <span className="fw600 cp" onClick={handleLikeClick}>like this</span></span>
                                 }
                                 <span>1 hour ago</span>
                             </div>

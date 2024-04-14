@@ -11,12 +11,14 @@ import { CreateIcon } from './icons-cmps/CreateIcon';
 import { MoreIcon } from './icons-cmps/MoreIcon';
 import { HomeIcon } from './icons-cmps/HomeIcon';
 import { InstagramLogo } from './icons-cmps/InstagramLogo';
+import { userService } from '../services/user.service';
 
 // import { ReactComponent as HomeIcon} from '../assets/img/home.svg';
 
 export function NavBar() {
     const [isModalOpen, setIsModalOpen] = useState(false)
-    const loggedinUser = useSelector(storeState => storeState.userModule.loggedinUser)
+    // const loggedinUser = useSelector(storeState => storeState.userModule.loggedinUser)
+    const loggedinUser = userService.getLoggedinUser()
 
     
     function onAddPost() {
@@ -85,8 +87,8 @@ export function NavBar() {
                 </li>
                 <li className="nav-item userDetails">
                     <Link to="/user" className="nav-link">
-                        <i className="fa-regular fa-circle"></i>
-                        {/* <img src={loggedinUser.imgUrl} className="user-avatar nav-img" /> */}
+                        {/* <i className="fa-regular fa-circle"></i> */}
+                        <img src={loggedinUser.imgUrl} className="user-avatar nav-img" />
                         Profile
                     </Link>
                 </li>

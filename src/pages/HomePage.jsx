@@ -5,11 +5,13 @@ import { useSelector } from 'react-redux'
 import { loadPosts, removePost } from '../store/actions/post.actions.js'
 import { PostList } from '../cmps/PostList.jsx'
 import { AddPost } from '../cmps/AddPost.jsx'
+import { userService } from '../services/user.service.js'
 
 
 export function HomePage() {
     const posts = useSelector(storeState => storeState.postModule.posts)
-    const loggedinUser = useSelector(storeState => storeState.userModule.loggedinUser)
+    // const loggedinUser = useSelector(storeState => storeState.userModule.loggedinUser)
+    const loggedinUser = userService.getLoggedinUser()
     const location = useLocation()
 
     useEffect(() => {

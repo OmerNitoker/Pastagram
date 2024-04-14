@@ -8,8 +8,8 @@ import { PostMenu } from "./PostMenu"
 
 
 export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
-    const [likesCount, setLikesCount] = useState(post.likedBy.length);
-    const likedByIndex = post.likedBy.findIndex(user => user._id === "u101");
+    // const [likesCount, setLikesCount] = useState(post.likedBy.length);
+    const likedByIndex = post.likedBy.findIndex(user => user._id === currentUser._id);
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [isPostMenuOpen, setIsPostMenuOpen] = useState(false)
     const [isLiked, setIsLiked] = useState(false)
@@ -27,28 +27,28 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
     }
 
     const handleLikeClick = () => {
-        setIsLiked(!isLiked);
-
-        const updatedPost = { ...post };
-
+        
+        const updatedPost = { ...post }
+        
         if (!isLiked) {
             const likedUser = {
-                _id: "u101",
-                fullname: "John Johnson",
-                imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712178735/instagram-posts/bob_uaojqj.jpg",
+                _id: currentUser._id,
+                fullname: currentUser.fullname,
+                imgUrl: currentUser.imgUrl
             };
-
+            
             updatedPost.likedBy.push(likedUser);
         } else {
-            const index = updatedPost.likedBy.findIndex(user => user._id === "u101"); // Recherchez l'utilisateur démo
+            const index = updatedPost.likedBy.findIndex(user => user._id === currentUser._id); // Recherchez l'utilisateur démo
             if (index !== -1) {
                 updatedPost.likedBy.splice(index, 1);
             }
         }
-
+        
         postService.save(updatedPost);
+        setIsLiked(!isLiked)
     }
-
+    
 
 
 

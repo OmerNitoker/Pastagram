@@ -1,20 +1,26 @@
 import { useSelector } from 'react-redux'
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
 import { UserPosts } from "../cmps/UserPosts";
 import { UserPostsSaved } from "../cmps/UserPostsSaved";
 import { UserTagged } from "../cmps/UserTagged";
 import { SettingsIcon } from "../cmps/icons-cmps/SettingsIcon";
 import { TaggedIcon } from "../cmps/icons-cmps/TaggedIcon";
+import { userService } from '../services/user.service';
 
 export function UserDetails() {
-    const currentUser = useSelector((storeState) => storeState.userModule.loggedinUser)
-    
+    // const currentUser = useSelector((storeState) => storeState.userModule.loggedinUser)
+    const currentUser = userService.getLoggedinUser()
+
     const [activeComponent, setActiveComponent] = useState(<UserPosts currentUser={currentUser} />); // Initialisez activeComponent avec UserPosts
     const [activeTab, setActiveTab] = useState('UserPosts');
 
     // const userDemo = userService.getDemoUser();
 
+    // useEffect(() => {
+    //     console.log(currentUser)
+    // }, [currentUser])
+
+    
     const handleComponentChange = (componentName) => {
         setActiveTab(componentName);
 
@@ -32,7 +38,13 @@ export function UserDetails() {
                 setActiveComponent(<UserPosts user={currentUser} />);
                 break;
         }
-    };
+    }
+
+    // if (!currentUser) {
+    //     return (
+    //         <span>loading...</span>
+    //     )
+    // }
 
 
     return (
