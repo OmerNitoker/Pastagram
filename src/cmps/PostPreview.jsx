@@ -5,17 +5,17 @@ import { userService } from "../services/user.service"; // Assurez-vous d'import
 import { PostMenu } from "./PostMenu";
 
 export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
-    const [likesCount, setLikesCount] = useState(post.likedBy.length);
-    const likedByIndex = post.likedBy.findIndex(user => user._id === "u101");
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isPostMenuOpen, setIsPostMenuOpen] = useState(false);
-    const [isLiked, setIsLiked] = useState(false);
-    const [isSaved, setIsSaved] = useState(currentUser.savedPostsIds.includes(post._id)); // Nouvel état pour suivre si le post est sauvegardé
+    // const [likesCount, setLikesCount] = useState(post.likedBy.length);
+    const likedByIndex = post.likedBy.findIndex(user => user._id === currentUser._id);
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isPostMenuOpen, setIsPostMenuOpen] = useState(false)
+    const [isLiked, setIsLiked] = useState(false)
+    const [isSaved, setIsSaved] = useState(currentUser.savedPostsIds.includes(post._id));
 
     const location = useLocation();
 
     useEffect(() => {
-        if (likedByIndex !== -1) {
+        if (likedByIndex !== -1 && likedByIndex !== null) {
             setIsLiked(true);
         }
     }, [likedByIndex]);
@@ -43,9 +43,34 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
         }
 
         postService.save(updatedPost);
-    };
+    }
 
-   
+    const handleSaveClick = () => {
+        const updatedUser = { ...currentUser };
+        const postIndex = updatedUser.savedPostsIds.indexOf(post._id);
+
+        if (postIndex === -1) {
+            updatedUser.savedPostsIds.push(post._id);
+            setIsSaved(true); // Met à jour l'état pour indiquer que le post est sauvegardé
+            userService.update(updatedUser)
+                .then(updatedUser => {
+                    alert('Post saved successfully!');
+                })
+                .catch(error => {
+                    alert('Error saving post.');
+                });
+        } else {
+            updatedUser.savedPostsIds.splice(postIndex, 1);
+            setIsSaved(false); // Met à jour l'état pour indiquer que le post n'est plus sauvegardé
+            userService.update(updatedUser)
+                .then(updatedUser => {
+                    alert('Post removed from saved posts.');
+                })
+                .catch(error => {
+                    alert('Error removing post.');
+                });
+        }
+    };
 
     return (
         // ... (le reste de votre JSX reste inchangé)

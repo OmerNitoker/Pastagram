@@ -137,6 +137,7 @@ async function update(updatedUser) {
 
         // Mettez à jour l'utilisateur dans le stockage avec la copie mise à jour
         await storageService.put('user', updatedUserInStorage);
+        saveLocalUser(updatedUser)
 
         return updatedUserInStorage;
     } else {
