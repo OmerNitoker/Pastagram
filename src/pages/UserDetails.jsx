@@ -1,22 +1,26 @@
+import { useSelector } from 'react-redux'
+import { useState } from "react";
+
 import { UserPosts } from "../cmps/UserPosts";
 import { UserPostsSaved } from "../cmps/UserPostsSaved";
 import { UserTagged } from "../cmps/UserTagged";
-import { useState } from "react";
 import { SettingsIcon } from "../cmps/icons-cmps/SettingsIcon";
 import { TaggedIcon } from "../cmps/icons-cmps/TaggedIcon";
 
 export function UserDetails() {
-    const [activeComponent, setActiveComponent] = useState(<UserPosts user={userService.getDemoUser()} />); // Initialisez activeComponent avec UserPosts
+    const currentUser = useSelector((storeState) => storeState.userModule.loggedinUser)
+    
+    const [activeComponent, setActiveComponent] = useState(<UserPosts currentUser={currentUser} />); // Initialisez activeComponent avec UserPosts
     const [activeTab, setActiveTab] = useState('UserPosts');
 
-    const userDemo = userService.getDemoUser();
+    // const userDemo = userService.getDemoUser();
 
     const handleComponentChange = (componentName) => {
         setActiveTab(componentName);
 
         switch (componentName) {
             case 'UserPosts':
-                setActiveComponent(<UserPosts user={userDemo} />);
+                setActiveComponent(<UserPosts user={currentUser} />);
                 break;
             case 'UserPostsSaved':
                 setActiveComponent(<UserPostsSaved />);
@@ -25,7 +29,7 @@ export function UserDetails() {
                 setActiveComponent(<UserTagged />);
                 break;
             default:
-                setActiveComponent(<UserPosts user={userDemo} />);
+                setActiveComponent(<UserPosts user={currentUser} />);
                 break;
         }
     };
@@ -34,22 +38,22 @@ export function UserDetails() {
     return (
         <section className="user-profile">
             <div className="profile-info">
-                <img className="user-profile-avatar" src={userDemo.imgUrl} alt={`${userDemo.fullname}'s avatar`} />
+                <img className="user-profile-avatar" src={currentUser.imgUrl} alt={`${currentUser.fullname}'s avatar`} />
                 <div className="user-details">
 
                     <div className="user-profile-btns">
-                        <span>{userDemo.username}</span>
+                        <span>{currentUser.username}</span>
                         <span> <button className="follow-btn">Edit profile </button></span>
                         <span><button className="message-btn">View archive</button></span>
                         <span><SettingsIcon /></span> 
                     </div>
                     
                     <div className="user-stats">
-                        <span className="user-num-posts">{userDemo.posts ? userDemo.posts.length : 'Loading...'} posts</span>
-                        <span className="user-num-followers">{userDemo.followers ? Object.keys(userDemo.followers).length : 'Loading...'} followers</span>
-                        <span className="user-num-following">{userDemo.following ? Object.keys(userDemo.following).length : 'Loading...'} following</span>
+                        <span className="user-num-posts">{currentUser.posts ? currentUser.posts.length : 'Loading...'} posts</span>
+                        <span className="user-num-followers">{currentUser.followers ? Object.keys(currentUser.followers).length : 'Loading...'} followers</span>
+                        <span className="user-num-following">{currentUser.following ? Object.keys(currentUser.following).length : 'Loading...'} following</span>
                     </div>
-                    <h2 className="userprofile-fullName">{userDemo.fullname}</h2>
+                    <h2 className="userprofile-fullName">{currentUser.fullname}</h2>
                 </div>
             </div>
 

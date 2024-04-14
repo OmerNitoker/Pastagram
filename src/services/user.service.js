@@ -62,7 +62,6 @@ async function login(userCred) {
     }
 }
 async function signup(userCred) {
-    // userCred.score = 10000
     if (!userCred.imgUrl) userCred.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
     const user = await storageService.post('user', userCred)
     // const user = await httpService.post('auth/signup', userCred)
@@ -82,7 +81,8 @@ function saveLocalUser(user) {
         imgUrl: user.imgUrl,
         following: user.following,
         followers: user.followers,
-        savedPostsIds: user.savedPostsIds
+        savedPostsIds: user.savedPostsIds,
+        posts: user.posts
     }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
@@ -109,7 +109,6 @@ function _createUsers() {
 
 function getDemoUser() {
     return {
-        _id: "u108",
         username: "johnny_johnson",
         password: "password123",
         fullname: "John Johnson",

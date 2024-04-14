@@ -2,7 +2,7 @@ import { userService } from '../services/user.service';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-export function UserPosts() {
+export function UserPosts({currentUser}) {
     const [userPosts, setUserPosts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -13,9 +13,8 @@ export function UserPosts() {
     }, []);
 
     async function loadUserPosts() {
-        const loggedInUser = userService.getDemoUser();
-        if (loggedInUser && loggedInUser.posts) {
-            setUserPosts(loggedInUser.posts);
+        if (currentUser && currentUser.posts) {
+            setUserPosts(currentUser.posts);
             setIsLoading(false);
         } else {
             setIsLoading(false); // Si aucun post n'est disponible, arrêtez le chargement

@@ -11,7 +11,6 @@ export function HomePage() {
     const posts = useSelector(storeState => storeState.postModule.posts)
     const loggedinUser = useSelector(storeState => storeState.userModule.loggedinUser)
     const location = useLocation()
-    console.log('location:', location)
 
     useEffect(() => {
         const fetchData = async () => {

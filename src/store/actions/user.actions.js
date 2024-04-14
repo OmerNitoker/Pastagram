@@ -20,6 +20,7 @@ export function login(credentials) {
 export function signup(credentials) {
     return userService.signup(credentials)
         .then(user => {
+            console.log('user from signup in action: ', user)
             store.dispatch({ type: SET_USER, user })
             return user
         })
@@ -49,6 +50,7 @@ export async function loginDemo() {
         } 
         else {
             const demoUser = userService.getDemoUser()
+            console.log('demouser from logindemo 1: ', demoUser)
             await signup(demoUser)
         }
     }
