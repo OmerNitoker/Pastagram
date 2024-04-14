@@ -9,12 +9,10 @@ import { userService } from '../services/user.service';
 
 export function UserDetails() {
     // const currentUser = useSelector((storeState) => storeState.userModule.loggedinUser)
-    const currentUser = userService.getLoggedinUser()
-
     const [activeComponent, setActiveComponent] = useState(<UserPosts currentUser={currentUser} />); // Initialisez activeComponent avec UserPosts
+
     //const currentUser = useSelector((storeState) => storeState.userModule.loggedinUser);
     const currentUser = userService.getLoggedinUser()
-    const [activeComponent, setActiveComponent] = useState(<UserPosts user={currentUser} />);
     const [activeTab, setActiveTab] = useState('UserPosts');
 
     useEffect(() => {
