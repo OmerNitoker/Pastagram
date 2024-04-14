@@ -184,7 +184,7 @@ export function PostDetails({ lastPath }) {
     }
 
     if (!post) return (
-        <span></span>
+        <span>loading...</span>
     )
 
     return (
