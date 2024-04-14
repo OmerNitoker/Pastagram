@@ -12,11 +12,12 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [isPostMenuOpen, setIsPostMenuOpen] = useState(false)
     const [isLiked, setIsLiked] = useState(false)
+    const [isSaved, setIsSaved] = useState(currentUser.savedPostsIds.includes(post._id));
 
     const location = useLocation();
 
     useEffect(() => {
-        if (likedByIndex !== -1) {
+        if (likedByIndex !== -1 && likedByIndex !== null) {
             setIsLiked(true);
         }
     }, [likedByIndex]);
@@ -44,13 +45,36 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
                 updatedPost.likedBy.splice(index, 1);
             }
         }
-        
+
         postService.save(updatedPost);
     }
 
+    const handleSaveClick = () => {
+        const updatedUser = { ...currentUser };
+        const postIndex = updatedUser.savedPostsIds.indexOf(post._id);
 
-
-
+        if (postIndex === -1) {
+            updatedUser.savedPostsIds.push(post._id);
+            setIsSaved(true); // Met à jour l'état pour indiquer que le post est sauvegardé
+            userService.update(updatedUser)
+                .then(updatedUser => {
+                    alert('Post saved successfully!');
+                })
+                .catch(error => {
+                    alert('Error saving post.');
+                });
+        } else {
+            updatedUser.savedPostsIds.splice(postIndex, 1);
+            setIsSaved(false); // Met à jour l'état pour indiquer que le post n'est plus sauvegardé
+            userService.update(updatedUser)
+                .then(updatedUser => {
+                    alert('Post removed from saved posts.');
+                })
+                .catch(error => {
+                    alert('Error removing post.');
+                });
+        }
+    };
 
     return (
         <article className="post-preview flex column fs14">
