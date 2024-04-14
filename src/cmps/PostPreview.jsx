@@ -5,6 +5,7 @@ import { userService } from "../services/user.service"; // Assurez-vous d'import
 import { PostMenu } from "./PostMenu";
 
 export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
+    console.log("post", post)
     // const [likesCount, setLikesCount] = useState(post.likedBy.length);
     const likedByIndex = post.likedBy.findIndex(user => user._id === currentUser._id);
     const [isModalOpen, setIsModalOpen] = useState(false)
