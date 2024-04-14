@@ -31,7 +31,7 @@ export function App() {
     useEffect(() => {
         const setLoginDemo = async () => {
             try {
-                await loginDemo()
+                await loginDemO()
             } catch (err) {
                 console.log('err:', err)
                 throw err

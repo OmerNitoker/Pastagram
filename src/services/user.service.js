@@ -22,20 +22,7 @@ export const userService = {
 window.userService = userService
 
 const gUsers = [
-    {
-        fullname: 'Host',
-        username: 'host',
-        password: '123',
-        isHost: true,
-        _id: "SzgiV"
-    },
-    {
-        fullname: 'Guest',
-        username: 'guest',
-        password: '123',
-        isHost: false,
-        _id: "dhbsb"
-    }
+   
 ]
 
 // _createUsers()
