@@ -49,7 +49,7 @@ export function PostDetails({ lastPath }) {
         }
     }, [])
 
-    const handleLikeClick = () => {
+    const handleLikeClick = async () => {
 
         const updatedPost = { ...post }
 
@@ -68,8 +68,14 @@ export function PostDetails({ lastPath }) {
             }
         }
 
-        postService.save(updatedPost);
-        setIsLiked(!isLiked)
+       try {
+           await postService.save(updatedPost);
+           setIsLiked(!isLiked)
+       }
+       catch(err) {
+        console.log('could not save updated post')
+        throw err
+       }
     }
 
     function generateId() {
@@ -181,6 +187,7 @@ export function PostDetails({ lastPath }) {
 
     function handleWraperClicked() {
         setPost(null)
+        setIsLiked(false)
         navigate(`${lastPath}`)
     }
 

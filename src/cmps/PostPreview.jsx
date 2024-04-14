@@ -8,46 +8,59 @@ import { PostMenu } from "./PostMenu";
 
 export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
     // const [likesCount, setLikesCount] = useState(post.likedBy.length);
-    const likedByIndex = post.likedBy.findIndex(user => user._id === currentUser._id);
-    const [isModalOpen, setIsModalOpen] = useState(false)
+    const likedByIdx = post.likedBy.findIndex(user => user._id === currentUser._id);
+    // const [isModalOpen, setIsModalOpen] = useState(false)
     const [isPostMenuOpen, setIsPostMenuOpen] = useState(false)
-    const [isLiked, setIsLiked] = useState(false)
+    const [isLikePost, setIsLikePost] = useState(false)
     const [isSaved, setIsSaved] = useState(currentUser.savedPostsIds.includes(post._id));
 
     const location = useLocation();
 
     useEffect(() => {
-        if (likedByIndex !== -1 && likedByIndex !== null) {
-            setIsLiked(true);
+        if (likedByIdx !== -1) {
+            setIsLikePost(true);
         }
-    }, [likedByIndex]);
+        else {
+            setIsLikePost(false)
+        }
+    }, [likedByIdx]);
 
     function togglePostMenu() {
         setIsPostMenuOpen(!isPostMenuOpen);
     }
 
-    const handleLikeClick = () => {
-        setIsLiked(!isLiked);
-
+    const handleLikeClick = async () => {
         const updatedPost = { ...post };
-
-        if (!isLiked) {
+        
+        if (!isLikePost) {
             const likedUser = {
                 _id: currentUser._id,
                 fullname: currentUser.fullname,
                 imgUrl: currentUser.imgUrl
             };
-
+            
             updatedPost.likedBy.push(likedUser);
         } else {
-            const index = updatedPost.likedBy.findIndex(user => user._id === "u101"); // Recherchez l'utilisateur démo
+            const index = updatedPost.likedBy.findIndex(user => user._id === currentUser._id); // Recherchez l'utilisateur démo
             if (index !== -1) {
                 updatedPost.likedBy.splice(index, 1);
             }
         }
-
-        postService.save(updatedPost);
+        
+        try {
+            await postService.save(updatedPost);
+        }
+        catch (err) {
+            console.log('could not save updated post')
+            throw err
+        }
+        finally {
+            setIsLikePost(!isLikePost)
+        }
     }
+
+    // postService.save(updatedPost);
+    // setIsLiked(!isLiked);
 
     const handleSaveClick = () => {
         const updatedUser = { ...currentUser };
@@ -94,8 +107,8 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
 
 
                 <div className="btn-container flex align-center">
-                    <div className="like" onClick={handleLikeClick} style={{ color: isLiked ? 'red' : 'black' }}>
-                        {!isLiked ? <i className="fa-regular fa-heart"></i> : <i className="fa-solid fa-heart like"></i>}
+                    <div className="like" onClick={handleLikeClick} style={{ color: isLikePost ? 'red' : 'black' }}>
+                        {!isLikePost ? <i className="fa-regular fa-heart"></i> : <i className="fa-solid fa-heart like"></i>}
                     </div>
                     <Link className="clean-link" to={`/post/${post._id}`} state={{ previousLocation: location }}>
                         <i className="fa-regular fa-comment"></i>
@@ -132,4 +145,5 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
                 />}
         </article>
     )
+
 }
