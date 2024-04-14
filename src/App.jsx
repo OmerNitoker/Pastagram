@@ -19,8 +19,7 @@ import { PostDetails } from './cmps/PostDetails';
 export function App() {
     const location = useLocation()
     const previousLocation = location.state?.previousLocation
-    console.log('previousLocation', previousLocation)
-    // console.log('location:', location)
+    
 
     const [isLoading, setIsLoading] = useState(true)
 
@@ -62,7 +61,7 @@ export function App() {
                         </Routes>
                         {previousLocation && (
                             <Routes>
-                                <Route path="/post/:postId" element={<PostDetails />} />
+                                <Route path="/post/:postId" element={<PostDetails lastPath={previousLocation.pathname} />} />
                             </Routes>
                         )}
                     </main>

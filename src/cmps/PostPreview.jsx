@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { useState } from "react"
 import { utilService } from "../services/util.service"
 import { postService } from "../services/post.service"
 import { useEffect } from 'react'
 import { PostMenu } from "./PostMenu"
-import { PostDetails } from "./PostDetails"
+// import { PostDetails } from "./PostDetails"
 
 
 export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
@@ -14,16 +14,13 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
     const [isPostMenuOpen, setIsPostMenuOpen] = useState(false)
     const [isLiked, setIsLiked] = useState(false)
 
+    const location = useLocation()
+
     useEffect(() => {
         if (likedByIndex !== -1) {
             setIsLiked(true);
         }
     }, [likedByIndex]);
-
-
-    const toggleModal = () => {
-        setIsModalOpen(!isModalOpen);
-    };
 
     function togglePostMenu() {
         setIsPostMenuOpen(!isPostMenuOpen)
@@ -77,7 +74,12 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
                     <div className="like" onClick={handleLikeClick} style={{ color: isLiked ? 'red' : 'black' }}>
                         {!isLiked ? <i className="fa-regular fa-heart"></i> : <i className="fa-solid fa-heart like"></i>}
                     </div>
-                    <i className="fa-regular fa-comment" onClick={toggleModal} ></i>
+                    <Link
+                        className="clean-link"
+                        to={`/post/${post._id}`}
+                        state={{ previousLocation: location }}>
+                        <i className="fa-regular fa-comment"></i>
+                    </Link>
                     <i className="fa-regular fa-paper-plane share-post-btn"></i>
                     <i className="fa-regular fa-bookmark save-btn" ></i>
                 </div>
@@ -87,18 +89,20 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
                     <Link className="clean-link fw600">{post.by.username}</Link>
                     <span className="story-txt">{post.txt}</span>
                 </div>
-                {post.comments.length ? <span className="clr-gray cp" onClick={toggleModal} >{post.comments.length > 1 ? `View all ${post.comments.length} comments` : `View 1 comment`}</span> : <span></span>}
+                <Link
+                    className="clean-link"
+                    to={`/post/${post._id}`}
+                    state={{ previousLocation: location }}>
+                    {post.comments.length ? <span className="clr-gray cp">{post.comments.length > 1 ? `View all ${post.comments.length} comments` : `View 1 comment`}</span> : <span></span>}
+                </Link>
                 <textarea name="add-comment" id="add-comment" placeholder="Add a comment..."></textarea>
             </section>
 
-            {isModalOpen &&
+            {/* {isModalOpen &&
                 <PostDetails
-                    post={post}
-                    toggleModal={toggleModal}
-                    currentUser={currentUser}
                     handleLikeClick={handleLikeClick}
                     isLiked={isLiked}
-                />}
+                />} */}
             {isPostMenuOpen &&
                 <PostMenu
                     post={post}

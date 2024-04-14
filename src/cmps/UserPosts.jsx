@@ -1,10 +1,12 @@
 import { userService } from '../services/user.service';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export function UserPosts() {
     const [userPosts, setUserPosts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+
+    const location = useLocation()
 
     useEffect(() => {
         loadUserPosts();
@@ -33,7 +35,7 @@ export function UserPosts() {
         <div className="gallery-container">
             {userPosts.length > 0 ? (
                 userPosts.map(post => (
-                    <Link key={post._id} to={`/post/${post._id}`}>
+                    <Link key={post._id} to={`/post/${post._id}`} state={{ previousLocation: location }}>
                         <div className="gallery-item">
                             <img src={post.imgUrl} alt="post" className="gallery-image" />
                         </div>

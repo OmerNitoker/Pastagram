@@ -1,10 +1,18 @@
-import { useState } from "react"
-import { Link } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { useSelector } from 'react-redux'
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { utilService } from "../services/util.service"
 import { postService } from "../services/post.service"
+import { setCurrPost } from "../store/actions/post.actions"
 
-export function PostDetails({toggleModal, post, currentUser, isLiked, handleLikeClick}) {
+export function PostDetails({ lastPath }) {
+    const navigate = useNavigate()
 
+    const post = useSelector((storeState) => storeState.postModule.currPost)
+
+    const [likesCount, setLikesCount] = useState(post ? post.likedBy.length : null);
+    const likedByIndex = post ? post.likedBy.findIndex(user => user._id === "u101") : null;
+    const currentUser = useSelector((storeState) => storeState.userModule.loggedinUser)
     const [hoveredComment, setHoveredComment] = useState(null)
     const [commentToDelete, setCommentToDelete] = useState(null)
     const [showDeleteModal, setShowDeleteModal] = useState(false)
@@ -12,8 +20,43 @@ export function PostDetails({toggleModal, post, currentUser, isLiked, handleLike
     const [newCommentText, setNewCommentText] = useState("")
     const [commentTimestamp, setCommentTimestamp] = useState(Date.now())
     const [isEmptyComment, setIsEmptyComment] = useState(true)
+    const [isLiked, setIsLiked] = useState(false)
 
     const emojis = ['😀', '😍', '👍', '❤️', '😂', '🎉', '🔥', '😊', '🙌', '😎']
+    const { postId } = useParams()
+
+    useEffect(() => {
+        if (likedByIndex !== -1) {
+            setIsLiked(true);
+        }
+    }, [likedByIndex]);
+
+    useEffect(() => {
+        setCurrPost(postId)
+    }, [])
+
+    const handleLikeClick = () => {
+        setIsLiked(!isLiked);
+
+        const updatedPost = { ...post };
+
+        if (!isLiked) {
+            const likedUser = {
+                _id: "u101",
+                fullname: "John Johnson",
+                imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712178735/instagram-posts/bob_uaojqj.jpg",
+            };
+
+            updatedPost.likedBy.push(likedUser);
+        } else {
+            const index = updatedPost.likedBy.findIndex(user => user._id === "u101"); // Recherchez l'utilisateur démo
+            if (index !== -1) {
+                updatedPost.likedBy.splice(index, 1);
+            }
+        }
+
+        postService.save(updatedPost);
+    }
 
     function generateId() {
         return utilService.makeId()
@@ -122,11 +165,27 @@ export function PostDetails({toggleModal, post, currentUser, isLiked, handleLike
         await postService.save(post)
     }
 
+    async function handleWraperClicked() {
+        try {
+            await setCurrPost()
+            navigate(`${lastPath}`)
+            // navigate('/')
+        }
+        catch (err) {
+            console.log('had a problem setting currPost to null')
+            throw err
+        }
+
+    }
+
+    if (!post) return (
+        <span></span>
+    )
 
     return (
         <div className="details-container">
 
-            <div className="modal-overlay" onClick={toggleModal}>
+            <div className="modal-overlay" onClick={handleWraperClicked}>
                 <div className="modal-content details-modal" onClick={(e) => e.stopPropagation()}>
 
                     <img className="modal-post-img" src={post.imgUrl} alt="post-img" />
@@ -182,7 +241,7 @@ export function PostDetails({toggleModal, post, currentUser, isLiked, handleLike
                                 <div className="like" onClick={handleLikeClick} style={{ color: isLiked ? 'red' : 'black' }}>
                                     {!isLiked ? <i className="fa-regular fa-heart"></i> : <i className="fa-solid fa-heart like"></i>}
                                 </div>
-                                <i className="fa-regular fa-comment" onClick={toggleModal} ></i>
+                                <i className="fa-regular fa-comment"></i>
                                 <i className="fa-regular fa-paper-plane share-post-btn"></i>
                                 <i className="fa-regular fa-bookmark save-btn" ></i>
                             </div>
