@@ -29,7 +29,7 @@ export function UserPosts() {
         return <div className='user-post-loader'>{loaderItems}</div>;
     }
 
-    
+
 
     return (
         <div className="gallery-container">
