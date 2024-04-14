@@ -9,6 +9,7 @@ export function PostDetails({ lastPath }) {
     const navigate = useNavigate()
 
     const post = useSelector((storeState) => storeState.postModule.currPost)
+    console.log("post", post)
 
     const [likesCount, setLikesCount] = useState(post ? post.likedBy.length : null);
     const likedByIndex = post ? post.likedBy.findIndex(user => user._id === "u101") : null;
@@ -179,7 +180,7 @@ export function PostDetails({ lastPath }) {
     }
 
     if (!post) return (
-        <span></span>
+        <span>loading...</span>
     )
 
     return (

@@ -21,16 +21,106 @@ export const userService = {
 
 window.userService = userService
 
+
 const gUsers = [
-   
-]
+    {
+        _id: utilService.makeId,
+        username: "james_smith",
+        password: "password123",
+        fullname: "James Smith",
+        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646609/insta-project/users/James_Smith_fq1zpt.jpg",
+        following: [],
+        followers: [],
+        savedPostsIds: []
+    },
+    {
+        _id: utilService.makeId,
+        username: "emily_davis",
+        password: "password123",
+        fullname: "Emily Davis",
+        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646603/insta-project/users/Emily_Davis_aumnv0.jpg",
+        following: [],
+        followers: [],
+        savedPostsIds: []
+    },
+    {
+        _id: utilService.makeId,
+        username: "ashley_taylor",
+        password: "password123",
+        fullname: "Ashley Taylor",
+        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646602/insta-project/users/Ashley_Taylor_by00jo.jpg",
+        following: [],
+        followers: [],
+        savedPostsIds: []
+    },
+    {
+        _id: utilService.makeId,
+        username: "david_johnson",
+        password: "password123",
+        fullname: "David Johnson",
+        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646604/insta-project/users/David_Johnson_vcvhgl.jpg",
+        following: [],
+        followers: [],
+        savedPostsIds: []
+    },
+    {
+        _id: utilService.makeId,
+        username: "michael_williams",
+        password: "password123",
+        fullname: "Michael Williams",
+        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646606/insta-project/users/Michael_Williams_p5umiy.jpg",
+        following: [],
+        followers: [],
+        savedPostsIds: []
+    },
+    {
+        _id: utilService.makeId,
+        username: "robert_jones",
+        password: "password123",
+        fullname: "Robert Jones",
+        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646607/insta-project/users/Robert_Jones_ovrwnr.jpg",
+        following: [],
+        followers: [],
+        savedPostsIds: []
+    },
+    {
+        _id: utilService.makeId,
+        username: "jessica_wilson",
+        password: "password123",
+        fullname: "Jessica Wilson",
+        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646612/insta-project/users/Jessica_Wilson_ghro83.jpg",
+        following: [],
+        followers: [],
+        savedPostsIds: []
+    },
+    {
+        _id: utilService.makeId,
+        username: "johnny_johnson",
+        password: "password123",
+        fullname: "John Johnson",
+        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712492656/1517034957463_hxarzp.jpg",
+        following: [],
+        followers: [],
+        savedPostsIds: []
+    }
+];
+
+
 
 // _createUsers()
 
 function getUsers() {
-    return storageService.query('user')
-    // return httpService.get(`user`)
+    const usersFromStorage = storageService.query('user');
+    
+    // Vérifiez si des utilisateurs ont été trouvés dans le storageService
+    if (usersFromStorage && usersFromStorage.length > 0) {
+        return usersFromStorage;
+    } else {
+        // Retournez les utilisateurs pré-définis gUsers
+        return gUsers;
+    }
 }
+
 
 async function getById(userId) {
     const user = await storageService.get('user', userId)
@@ -98,14 +188,22 @@ function updateLocalUserFields(user) {
 function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
 }
-
+//_createUsers()
 function _createUsers() {
-    let users = utilService.loadFromStorage('user')
-    if (!users || !users.length) {
-        users = gUsers
-        utilService.saveToStorage('user', users)
-    }
+    const usersWithIds = gUsers.map(user => ({
+        ...user,
+        _id: utilService.makeId() // appel de la fonction makeId pour générer un ID unique
+    }));
+    
+    utilService.saveToStorage('user', usersWithIds);
+    saveUsersToStorage(usersWithIds);  // Ajoutez cette ligne
 }
+
+
+function saveUsersToStorage(users) {
+    localStorage.setItem('users', JSON.stringify(users));
+}
+
 
 function getDemoUser() {
     return {
@@ -192,73 +290,73 @@ function getDemoUser() {
             txt: "In the tranquil embrace of nature's symphony, every whisper of the wind and dance of the leaves reminds us of the beauty that surrounds us, offering solace to weary souls and inspiration to wandering hearts.",
             imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712645930/insta-project/post%20imgs/2_mjgro3.jpg",
             by: {
-              _id: "u102",
-              fullname: "Emily Davis",
-              username: "emily_davis",
-              imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646603/insta-project/users/Emily_Davis_aumnv0.jpg"
+                _id: "u102",
+                fullname: "Emily Davis",
+                username: "emily_davis",
+                imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646603/insta-project/users/Emily_Davis_aumnv0.jpg"
             },
             comments: [
-              {
-                id: "c1002",
-                by: {
-                  _id: "u107",
-                  fullname: "Jessica Wilson",
-                  username: "jessica_wilson",
-                  imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646612/insta-project/users/Jessica_Wilson_ghro83.jpg"
+                {
+                    id: "c1002",
+                    by: {
+                        _id: "u107",
+                        fullname: "Jessica Wilson",
+                        username: "jessica_wilson",
+                        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646612/insta-project/users/Jessica_Wilson_ghro83.jpg"
+                    },
+                    txt: "WOW!!",
                 },
-                txt: "WOW!!",
-              },
-              {
-                id: "c1003",
-                by: {
-                  _id: "u106",
-                  fullname: "Robert Jones",
-                  username: "robert_jones",
-                  imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646607/insta-project/users/Robert_Jones_ovrwnr.jpg"
+                {
+                    id: "c1003",
+                    by: {
+                        _id: "u106",
+                        fullname: "Robert Jones",
+                        username: "robert_jones",
+                        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646607/insta-project/users/Robert_Jones_ovrwnr.jpg"
+                    },
+                    txt: "Emily, its breathtaking!",
                 },
-                txt: "Emily, its breathtaking!",
-              },
-              {
-                id: "c1004",
-                by: {
-                  _id: "u104",
-                  fullname: "David Johnson",
-                  username: "david_johnson",
-                  imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646604/insta-project/users/David_Johnson_vcvhgl.jpg"
-                },
-                txt: "Have fun emily, looks great",
-              }
+                {
+                    id: "c1004",
+                    by: {
+                        _id: "u104",
+                        fullname: "David Johnson",
+                        username: "david_johnson",
+                        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646604/insta-project/users/David_Johnson_vcvhgl.jpg"
+                    },
+                    txt: "Have fun emily, looks great",
+                }
             ],
             likedBy: [
-              {
-                _id: "u104",
-                fullname: "David Johnson",
-                username: "david_johnson",
-                imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646604/insta-project/users/David_Johnson_vcvhgl.jpg"
-              },
-              {
-                _id: "u106",
-                fullname: "Robert Jones",
-                username: "robert_jones",
-                imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646607/insta-project/users/Robert_Jones_ovrwnr.jpg"
-              }
+                {
+                    _id: "u104",
+                    fullname: "David Johnson",
+                    username: "david_johnson",
+                    imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646604/insta-project/users/David_Johnson_vcvhgl.jpg"
+                },
+                {
+                    _id: "u106",
+                    fullname: "Robert Jones",
+                    username: "robert_jones",
+                    imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646607/insta-project/users/Robert_Jones_ovrwnr.jpg"
+                }
             ],
             tags: []
-          },
-          {
+        },
+        {
             _id: "s105",
             txt: "Getting ready for my daily swim 🐳🐠",
             imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712645916/insta-project/post%20imgs/7_bm2tff.jpg",
             by: {
-              _id: "u105",
-              fullname: "Michael Williams",
-              username: "michael_williams",
-              imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646606/insta-project/users/Michael_Williams_p5umiy.jpg"
+                _id: "u105",
+                fullname: "Michael Williams",
+                username: "michael_williams",
+                imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646606/insta-project/users/Michael_Williams_p5umiy.jpg"
             },
             comments: [],
             likedBy: [],
             tags: []
-          },
-         ]
+        },
+        ]
     }
 }
