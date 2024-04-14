@@ -1,11 +1,10 @@
-import { Link, useLocation } from "react-router-dom"
-import { useState } from "react"
-import { utilService } from "../services/util.service"
-import { postService } from "../services/post.service"
-import { useEffect } from 'react'
-import { PostMenu } from "./PostMenu"
-// import { PostDetails } from "./PostDetails"
 
+
+import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { postService } from "../services/post.service";
+import { userService } from "../services/user.service"; // Assurez-vous d'importer userService si vous l'utilisez
+import { PostMenu } from "./PostMenu";
 
 export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
     // const [likesCount, setLikesCount] = useState(post.likedBy.length);
@@ -14,7 +13,7 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
     const [isPostMenuOpen, setIsPostMenuOpen] = useState(false)
     const [isLiked, setIsLiked] = useState(false)
 
-    const location = useLocation()
+    const location = useLocation();
 
     useEffect(() => {
         if (likedByIndex !== -1) {
@@ -23,32 +22,32 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
     }, [likedByIndex]);
 
     function togglePostMenu() {
-        setIsPostMenuOpen(!isPostMenuOpen)
+        setIsPostMenuOpen(!isPostMenuOpen);
     }
 
     const handleLikeClick = () => {
-        
-        const updatedPost = { ...post }
-        
+        setIsLiked(!isLiked);
+
+        const updatedPost = { ...post };
+
         if (!isLiked) {
             const likedUser = {
                 _id: currentUser._id,
                 fullname: currentUser.fullname,
                 imgUrl: currentUser.imgUrl
             };
-            
+
             updatedPost.likedBy.push(likedUser);
         } else {
-            const index = updatedPost.likedBy.findIndex(user => user._id === currentUser._id); // Recherchez l'utilisateur démo
+            const index = updatedPost.likedBy.findIndex(user => user._id === "u101"); // Recherchez l'utilisateur démo
             if (index !== -1) {
                 updatedPost.likedBy.splice(index, 1);
             }
         }
         
         postService.save(updatedPost);
-        setIsLiked(!isLiked)
     }
-    
+
 
 
 
@@ -74,14 +73,11 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
                     <div className="like" onClick={handleLikeClick} style={{ color: isLiked ? 'red' : 'black' }}>
                         {!isLiked ? <i className="fa-regular fa-heart"></i> : <i className="fa-solid fa-heart like"></i>}
                     </div>
-                    <Link
-                        className="clean-link"
-                        to={`/post/${post._id}`}
-                        state={{ previousLocation: location }}>
+                    <Link className="clean-link" to={`/post/${post._id}`} state={{ previousLocation: location }}>
                         <i className="fa-regular fa-comment"></i>
                     </Link>
                     <i className="fa-regular fa-paper-plane share-post-btn"></i>
-                    <i className="fa-regular fa-bookmark save-btn" ></i>
+                    <i className={`fa-regular fa-bookmark${isSaved ? ' saved' : ''}`} onClick={handleSaveClick}></i> {/* Utilisation de l'état isSaved pour conditionner l'affichage de l'icône "Save" ou "Saved" */}
                 </div>
 
                 {post.likedBy.length ? <span>{post.likedBy.length} {post.likedBy.length === 1 ? 'Like' : 'Likes'}</span> : <span></span>}

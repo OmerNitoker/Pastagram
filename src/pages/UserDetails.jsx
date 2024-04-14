@@ -12,31 +12,29 @@ export function UserDetails() {
     const currentUser = userService.getLoggedinUser()
 
     const [activeComponent, setActiveComponent] = useState(<UserPosts currentUser={currentUser} />); // Initialisez activeComponent avec UserPosts
+    //const currentUser = useSelector((storeState) => storeState.userModule.loggedinUser);
+    const currentUser = userService.getLoggedinUser()
+    const [activeComponent, setActiveComponent] = useState(<UserPosts user={currentUser} />);
     const [activeTab, setActiveTab] = useState('UserPosts');
 
-    // const userDemo = userService.getDemoUser();
+    useEffect(() => {
+        setActiveComponent(getActiveComponent(activeTab, currentUser));
+    }, [ activeTab]);
 
-    // useEffect(() => {
-    //     console.log(currentUser)
-    // }, [currentUser])
-
-    
     const handleComponentChange = (componentName) => {
         setActiveTab(componentName);
+    };
 
+    const getActiveComponent = (componentName, user={currentUser}) => {
         switch (componentName) {
             case 'UserPosts':
-                setActiveComponent(<UserPosts user={currentUser} />);
-                break;
+                return <UserPosts user={user} />;
             case 'UserPostsSaved':
-                setActiveComponent(<UserPostsSaved />);
-                break;
+                return <UserPostsSaved currentUser={user} />;
             case 'UserTagged':
-                setActiveComponent(<UserTagged />);
-                break;
+                return <UserTagged />;
             default:
-                setActiveComponent(<UserPosts user={currentUser} />);
-                break;
+                return <UserPosts user={user} />;
         }
     }
 
@@ -45,6 +43,7 @@ export function UserDetails() {
     //         <span>loading...</span>
     //     )
     // }
+
 
 
     return (
@@ -57,9 +56,9 @@ export function UserDetails() {
                         <span>{currentUser.username}</span>
                         <span> <button className="follow-btn">Edit profile </button></span>
                         <span><button className="message-btn">View archive</button></span>
-                        <span><SettingsIcon /></span> 
+                        <span><SettingsIcon /></span>
                     </div>
-                    
+
                     <div className="user-stats">
                         <span className="user-num-posts">{currentUser.posts ? currentUser.posts.length : 'Loading...'} posts</span>
                         <span className="user-num-followers">{currentUser.followers ? Object.keys(currentUser.followers).length : 'Loading...'} followers</span>

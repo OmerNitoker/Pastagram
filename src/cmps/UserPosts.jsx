@@ -1,24 +1,26 @@
-import { userService } from '../services/user.service';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-export function UserPosts({currentUser}) {
+export function UserPosts({ user }) {
+    console.log("currentUser", user);
+
     const [userPosts, setUserPosts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    const location = useLocation()
+    const location = useLocation();
 
     useEffect(() => {
-        loadUserPosts();
-    }, []);
-
-    async function loadUserPosts() {
-        if (currentUser && currentUser.posts) {
-            setUserPosts(currentUser.posts);
+        if (user && user.posts) {
+            setUserPosts(user.posts);
             setIsLoading(false);
         } else {
-            setIsLoading(false); // Si aucun post n'est disponible, arrêtez le chargement
+            setUserPosts([]); // Réinitialiser les posts si aucun post n'est disponible
+            setIsLoading(false);
         }
+    }, [user]);
+
+    if (!user) {
+        return <div>Loading...</div>;
     }
 
     if (isLoading) {
@@ -29,8 +31,6 @@ export function UserPosts({currentUser}) {
 
         return <div className='user-post-loader'>{loaderItems}</div>;
     }
-
-
 
     return (
         <div className="gallery-container">
