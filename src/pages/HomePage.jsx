@@ -8,14 +8,12 @@ import { AddPost } from '../cmps/AddPost.jsx'
 
 export function HomePage() {
     const posts = useSelector(storeState => storeState.postModule.posts)
-    console.log(posts)
     const loggedinUser = useSelector(storeState => storeState.userModule.loggedinUser)
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 await loadPosts()
-                console.log('fetch:', posts)
             } catch (err) {
                 console.log('err:', err)
             }
@@ -26,7 +24,6 @@ export function HomePage() {
     
     async function onRemovePost(postId) {
         try {
-            console.log('post to remove: ', postId)
             await removePost(postId)
         }
         catch (err) {

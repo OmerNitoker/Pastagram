@@ -1,20 +1,28 @@
 import React, { useEffect, useState } from 'react';
-import { Route, HashRouter as Router, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { Provider } from 'react-redux';
+
 import { HomePage } from './pages/HomePage';
-import { store } from './store/store';
 import { NavBar } from './cmps/NavBar';
 import { UserDetails } from './pages/UserDetails';
 import { Chat } from './pages/Chat';
 import { Reels } from './pages/Reels';
 import { Explore } from './pages/Explore';
-import './assets/styles/main.scss';
 import { Search } from './cmps/Search';
 import { Notifications } from './cmps/Notifications';
-import { Creat } from './cmps/Creat';
+
+import { store } from './store/store';
+import './assets/styles/main.scss';
+import { loginDemo } from './store/actions/user.actions';
+import { PostDetails } from './cmps/PostDetails';
 
 export function App() {
-    const [isLoading, setIsLoading] = useState(true);
+    const location = useLocation()
+    const previousLocation = location.state?.previousLocation
+    console.log('previousLocation', previousLocation)
+    // console.log('location:', location)
+
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         // Cacher le loader une fois que tout le contenu est chargé
@@ -32,7 +40,6 @@ export function App() {
         }
         setLoginDemo()
     }, [])
-
     return (
         <Provider store={store}>
             {isLoading ? (
@@ -41,24 +48,27 @@ export function App() {
                     <i className="loader-icon fa-brands fa-instagram"></i>
                 </div>
             ) : (
-                // Application
-                <Router>
-                    <section className="main-layout app">
-                        <NavBar />
-                        <main>
+                <section className="main-layout app">
+                    <NavBar />
+                    <main>
+                        <Routes location={previousLocation || location}>
+                            <Route element={<HomePage />} path="/" />
+                            <Route element={<Explore />} path="/explore" />
+                            <Route element={<Reels />} path="/reels" />
+                            <Route element={<Chat />} path="/chat" />
+                            <Route element={<UserDetails />} path="/user" />
+                            <Route element={<Search />} path="/search" />
+                            <Route element={<Notifications />} path="/notifications" />
+                        </Routes>
+                        {previousLocation && (
                             <Routes>
-                                <Route element={<HomePage />} path="/" />
-                                <Route element={<Explore />} path="/explore" />
-                                <Route element={<Reels />} path="/reels" />
-                                <Route element={<Chat />} path="/chat" />
-                                <Route element={<UserDetails />} path="/user" />
-                                <Route element={<Search />} path="/search" />
-                                <Route element={<Notifications />} path="/notifications" />
+                                <Route path="/post/:postId" element={<PostDetails />} />
                             </Routes>
-                        </main>
-                    </section>
-                </Router>
-            )}
-        </Provider>
+                        )}
+                    </main>
+                </section>
+            )
+            }
+        </Provider >
     );
 }

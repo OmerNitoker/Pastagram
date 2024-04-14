@@ -55,9 +55,6 @@ export async function loginDemo() {
     catch (err) {
         console.log ('had an error')
     }
-    finally {
-        console.log('after logindemo')
-    }
 }
     // const user = userService.getDemoUser()
     // userService.getUsers()

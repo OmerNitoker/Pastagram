@@ -22,8 +22,6 @@ function get(entityType, entityId) {
 function post(entityType, newEntity) {
     newEntity = JSON.parse(JSON.stringify(newEntity))    
     newEntity._id = _makeId()
-    console.log('newEntity._id: ', newEntity._id)
-    console.log('newEntity: ', newEntity)
     return query(entityType).then(entities => {
         entities.push(newEntity)
         _save(entityType, entities)
