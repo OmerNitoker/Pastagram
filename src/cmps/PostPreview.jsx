@@ -68,7 +68,7 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
             setIsSaved(false); // Met à jour l'état pour indiquer que le post n'est plus sauvegardé
             userService.update(updatedUser)
                 .then(updatedUser => {
-                    alert('Post removed from saved posts.');
+                    alert('Post removed from saved posts!');
                 })
                 .catch(error => {
                     alert('Error removing post.');
