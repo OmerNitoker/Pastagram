@@ -1,10 +1,18 @@
-.gallery-container {
+:root {
+    --grid-rows: 10; /* Valeur par défaut */
+  }
+  
+
+
+  .gallery-container {
     display: grid;
     grid-template-columns: repeat(3, 309px);
-    grid-template-rows: repeat(3, 309px);
+    grid-template-rows: repeat(var(--grid-rows), 309px); /* Utilisation de la variable CSS */
     gap: 5px;
     margin-left: 4.5vw;
-}
+    margin-bottom: 20px;
+  }
+  
 
 .gallery-item {
     overflow: hidden;

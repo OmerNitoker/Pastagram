@@ -1,23 +1,34 @@
-import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 export function UserPosts({ user }) {
     console.log("currentUser", user);
 
     const [userPosts, setUserPosts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [gridRows, setGridRows] = useState(10); // Initial value pour le nombre de lignes
 
     const location = useLocation();
 
     useEffect(() => {
         if (user && user.posts) {
-            setUserPosts(user.posts);
-            setIsLoading(false);
+          setUserPosts(user.posts);
+      
+          // Calculer le nombre de lignes nécessaires
+          const rowCount = Math.ceil(user.posts.length / 3);
+          setGridRows(rowCount);
+      
+          // Mettre à jour la variable CSS
+          document.documentElement.style.setProperty('--grid-rows', rowCount);
+      
+          setIsLoading(false);
         } else {
-            setUserPosts([]); // Réinitialiser les posts si aucun post n'est disponible
-            setIsLoading(false);
+          setUserPosts([]); // Réinitialiser les posts si aucun post n'est disponible
+          setIsLoading(false);
         }
-    }, [user]);
+      }, [user]);
+    
+      
 
     if (!user) {
         return <div>Loading...</div>;
@@ -25,7 +36,7 @@ export function UserPosts({ user }) {
 
     if (isLoading) {
         // Créer des cases de chargement en fonction du nombre attendu de posts
-        const loaderItems = Array.from({ length: 9 }, (_, i) => (
+        const loaderItems = Array.from({ length: 3 * gridRows }, (_, i) => (
             <div key={i} className="post-loader"></div>
         ));
 
