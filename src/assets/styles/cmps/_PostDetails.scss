@@ -1,6 +1,6 @@
 .details-modal {
     display: flex;
-    height: 94.5vh;
+    // height: 94.5vh;
 }
 
 .modal-post-img {
@@ -194,6 +194,7 @@
 
 .comment-btn {
     padding: 10px 20px;
+    padding-inline-end: 0;
     background-color: transparent;
     color: #b5dbff6d;
     border: none;
