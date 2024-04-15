@@ -33,7 +33,9 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
         setIsPostMenuOpen(!isPostMenuOpen);
     }
 
-    const handleLikeClick = async () => {
+     const  handleLikeClick = async () => {
+        
+
         const updatedPost = { ...post };
 
         if (!isLikePost) {
@@ -154,7 +156,7 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
                         <i className="fa-regular fa-comment"></i>
                     </Link>
                     <i className="fa-regular fa-paper-plane share-post-btn"></i>
-                    <i className={`fa-regular fa-bookmark${isSaved ? ' saved' : ''}`} onClick={handleSaveClick}></i> {/* Utilisation de l'état isSaved pour conditionner l'affichage de l'icône "Save" ou "Saved" */}
+                    <i className={`fa-${isSaved ? 'solid' : 'regular'} fa-bookmark`} onClick={handleSaveClick}></i> {/* Utilisation de l'état isSaved pour conditionner l'affichage de l'icône "Save" ou "Saved" */}
                 </div>
 
                 {post.likedBy.length ? <span>{post.likedBy.length} {post.likedBy.length === 1 ? 'Like' : 'Likes'}</span> : <span></span>}
@@ -196,5 +198,4 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
                 />}
         </article>
     )
-
 }

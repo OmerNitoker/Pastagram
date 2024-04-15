@@ -25,7 +25,7 @@ export function HomePage() {
         fetchData()
     }, [location])
 
-    
+
     async function onRemovePost(postId) {
         try {
             await removePost(postId)

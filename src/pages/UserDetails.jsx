@@ -66,9 +66,9 @@ export function UserDetails() {
             </div>
 
             <section className="user-posts-detail">
-                <div className={`user-publications ${activeTab === 'UserPosts' ? 'active' : ''}`} onClick={() => handleComponentChange('UserPosts')}><i className="fa-solid fa-table-cells"></i> Posts</div>
-                <div className={`user-posts-saved ${activeTab === 'UserPostsSaved' ? 'active' : ''}`} onClick={() => handleComponentChange('UserPostsSaved')}><i className="fa-regular fa-bookmark"></i> Saved</div>
-                <div className={`user-posts-tagged ${activeTab === 'UserTagged' ? 'active' : ''}`} onClick={() => handleComponentChange('UserTagged')}><TaggedIcon /> Tagged</div>
+                <div className={`user-publications ${activeTab === 'UserPosts' ? 'active' : ''}`} onClick={() => handleComponentChange('UserPosts')}><i className="fa-solid fa-table-cells"></i> POSTS</div>
+                <div className={`user-posts-saved ${activeTab === 'UserPostsSaved' ? 'active' : ''}`} onClick={() => handleComponentChange('UserPostsSaved')}><i className="fa-regular fa-bookmark"></i> SAVED</div>
+                <div className={`user-posts-tagged ${activeTab === 'UserTagged' ? 'active' : ''}`} onClick={() => handleComponentChange('UserTagged')}><TaggedIcon /> TAGGED</div>
 
             </section>
             <div className="active-component">

@@ -2,7 +2,9 @@ import { userService } from '../services/user.service'
 import { PostPreview } from './PostPreview'
 
 export function PostList({ posts, loggedinUser, onRemovePost }) {
+    { console.log(posts)}
     return (
+       
         <section >
             <ul className="post-list clean-list">
                 {posts.map(post =>

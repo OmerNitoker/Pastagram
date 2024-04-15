@@ -6,18 +6,25 @@ export function UserPostsSaved({ currentUser }) {
 
     useEffect(() => {
         if (currentUser && currentUser.savedPostsIds) {
-            const posts = currentUser.savedPostsIds.map(postId => {
-                const post = gPosts.find(p => p._id === postId);
-                if (!post) {
-                    console.warn(`Post with ID ${postId} not found`);
-                    return null; // Ignore IDs of posts not found
-                }
-                return post;
-            }).filter(Boolean);
-
-            setSavedPosts(posts);
+          const posts = currentUser.savedPostsIds.map(postId => {
+            const post = gPosts.find(p => p._id === postId);
+            if (!post) {
+              console.warn(`Post with ID ${postId} not found`);
+              return null; // Ignore IDs of posts not found
+            }
+            return post;
+          }).filter(Boolean);
+      
+          setSavedPosts(posts);
+      
+          // Calculer le nombre de lignes nécessaires pour la grille
+          const rowCount = Math.ceil(posts.length / 3);
+          
+          // Mettre à jour la variable CSS
+          document.documentElement.style.setProperty('--saved-grid-rows', rowCount);
         }
-    }, [currentUser]);
+      }, [currentUser]);
+      
 
     if (!savedPosts.length) {
         return <div>Loading saved posts...</div>;

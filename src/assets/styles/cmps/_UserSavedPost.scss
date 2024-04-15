@@ -1,18 +1,25 @@
 /* UserPostsSaved.css */
 
-.saved-posts-container {
+:root {
+    --saved-grid-rows: 1; /* Valeur par défaut */
+  }
+  
+
+  .saved-posts-container {
     display: grid;
     grid-template-columns: repeat(3, 309px);
-    grid-template-rows: repeat(auto, 309px);
+    grid-template-rows: repeat(var(--saved-grid-rows), 309px); /* Utilisation de la variable CSS */
     gap: 5px;
     margin-left: 4.5vw;
-}
+    margin-bottom: 20px;
+  }
+  
 
 .saved-post-item {
     overflow: hidden;
     cursor: pointer;
     width: 100%;
-    height: calc(100% - 150px);
+    height: 100%
 }
 
 

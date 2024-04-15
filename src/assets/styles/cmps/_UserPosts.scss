@@ -1,16 +1,24 @@
-.gallery-container {
+:root {
+    --grid-rows: 10; /* Valeur par défaut */
+  }
+  
+
+
+  .gallery-container {
     display: grid;
     grid-template-columns: repeat(3, 309px);
-    grid-template-rows: repeat(auto, 309px);
+    grid-template-rows: repeat(var(--grid-rows), 309px); /* Utilisation de la variable CSS */
     gap: 5px;
     margin-left: 4.5vw;
-}
+    margin-bottom: 20px;
+  }
+  
 
 .gallery-item {
     overflow: hidden;
     cursor: pointer;
     width: 100%;
-    height: calc(100% - 152px);
+    height: 100%;
 }
 
 .gallery-item:hover {
