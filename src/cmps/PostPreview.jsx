@@ -5,33 +5,40 @@ import { useState, useEffect } from "react";
 import { postService } from "../services/post.service";
 import { userService } from "../services/user.service"; // Assurez-vous d'importer userService si vous l'utilisez
 import { PostMenu } from "./PostMenu";
+import { utilService } from "../services/util.service";
 
 export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
     // const [likesCount, setLikesCount] = useState(post.likedBy.length);
-    const likedByIndex = post.likedBy.findIndex(user => user._id === currentUser._id);
-    const [isModalOpen, setIsModalOpen] = useState(false)
+    const likedByIdx = post.likedBy.findIndex(user => user._id === currentUser._id);
+    // const [isModalOpen, setIsModalOpen] = useState(false)
     const [isPostMenuOpen, setIsPostMenuOpen] = useState(false)
-    const [isLiked, setIsLiked] = useState(false)
+    const [isLikePost, setIsLikePost] = useState(false)
     const [isSaved, setIsSaved] = useState(currentUser.savedPostsIds.includes(post._id));
+    const [isEmptyComment, setIsEmptyComment] = useState(true)
+    const [newCommentText, setNewCommentText] = useState("")
+    const [commentTimestamp, setCommentTimestamp] = useState(Date.now())
 
     const location = useLocation();
 
     useEffect(() => {
-        if (likedByIndex !== -1 && likedByIndex !== null) {
-            setIsLiked(true);
+        if (likedByIdx !== -1) {
+            setIsLikePost(true);
         }
-    }, [likedByIndex]);
+        else {
+            setIsLikePost(false)
+        }
+    }, [likedByIdx]);
 
     function togglePostMenu() {
         setIsPostMenuOpen(!isPostMenuOpen);
     }
 
-    const handleLikeClick = () => {
-        setIsLiked(!isLiked);
+     const  handleLikeClick = async () => {
+        
 
         const updatedPost = { ...post };
 
-        if (!isLiked) {
+        if (!isLikePost) {
             const likedUser = {
                 _id: currentUser._id,
                 fullname: currentUser.fullname,
@@ -40,14 +47,62 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
 
             updatedPost.likedBy.push(likedUser);
         } else {
-            const index = updatedPost.likedBy.findIndex(user => user._id === "u101"); // Recherchez l'utilisateur démo
+            const index = updatedPost.likedBy.findIndex(user => user._id === currentUser._id); // Recherchez l'utilisateur démo
             if (index !== -1) {
                 updatedPost.likedBy.splice(index, 1);
             }
         }
 
-        postService.save(updatedPost);
+        try {
+            await postService.save(updatedPost);
+        }
+        catch (err) {
+            console.log('could not save updated post')
+            throw err
+        }
+        finally {
+            setIsLikePost(!isLikePost)
+        }
     }
+
+    const handleCommentChange = (e) => {
+        const comment = e.target.value
+        setNewCommentText(comment);
+        setCommentTimestamp(Date.now());
+        if (comment.length) {
+            setIsEmptyComment(false)
+        }
+        else {
+            setIsEmptyComment(true)
+        }
+    }
+
+    const handleCommentSubmit = async () => {
+        if (newCommentText.trim() === "") {
+            return;
+        }
+
+        const newComment = {
+            _id: utilService.makeId(),
+            by: {
+                _id: currentUser._id,
+                fullname: currentUser.fullname,
+                username: currentUser.username,
+                imgUrl: currentUser.imgUrl
+            },
+            txt: newCommentText,
+            timestamp: Date.now()
+        };
+
+        post.comments.push(newComment)
+        setNewCommentText("");
+        setIsEmptyComment(true)
+
+        await postService.save(post)
+    }
+
+    // postService.save(updatedPost);
+    // setIsLiked(!isLiked);
 
     const handleSaveClick = () => {
         const updatedUser = { ...currentUser };
@@ -68,7 +123,7 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
             setIsSaved(false); // Met à jour l'état pour indiquer que le post n'est plus sauvegardé
             userService.update(updatedUser)
                 .then(updatedUser => {
-                    alert('Post removed from saved posts.');
+                    alert('Post removed from saved posts!');
                 })
                 .catch(error => {
                     alert('Error removing post.');
@@ -94,8 +149,8 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
 
 
                 <div className="btn-container flex align-center">
-                    <div className="like" onClick={handleLikeClick} style={{ color: isLiked ? 'red' : 'black' }}>
-                        {!isLiked ? <i className="fa-regular fa-heart"></i> : <i className="fa-solid fa-heart like"></i>}
+                    <div className="like" onClick={handleLikeClick} style={{ color: isLikePost ? 'red' : 'black' }}>
+                        {!isLikePost ? <i className="fa-regular fa-heart"></i> : <i className="fa-solid fa-heart like"></i>}
                     </div>
                     <Link className="clean-link" to={`/post/${post._id}`} state={{ previousLocation: location }}>
                         <i className="fa-regular fa-comment"></i>
@@ -115,7 +170,18 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
                     state={{ previousLocation: location }}>
                     {post.comments.length ? <span className="clr-gray cp">{post.comments.length > 1 ? `View all ${post.comments.length} comments` : `View 1 comment`}</span> : <span></span>}
                 </Link>
-                <textarea name="add-comment" id="add-comment" placeholder="Add a comment..."></textarea>
+                <div className="flex">
+
+                    <input
+                        type="text"
+                        placeholder="Add a comment..."
+                        className="comment-input"
+                        value={newCommentText}
+                        onChange={handleCommentChange}
+                    />
+                    <button className={`comment-btn ${isEmptyComment ? 'hidden' : 'comment-btn-full'}`} onClick={handleCommentSubmit}>Post</button>
+                </div>
+                {/* <textarea name="add-comment" id="add-comment" placeholder="Add a comment..."></textarea> */}
             </section>
 
             {/* {isModalOpen &&
