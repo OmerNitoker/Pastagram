@@ -1,0 +1,67 @@
+.search-page {
+    /* Autres styles pour la page de recherche */
+    width: 397px;
+}
+
+.search-page h1 {
+    /* Styles pour le titre */
+}
+
+.search-input {
+    /* Styles pour l'input de recherche */
+    margin-bottom: 20px;
+    margin-top: 30px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background-color: rgba(211, 211, 211, 0.415);
+    width: 100%;
+    padding: 10px;
+}
+
+.delete-all-search {
+    display: flex;
+    border-top: 2px solid gray;
+    justify-content: space-between;
+    place-items: center;
+    font-size: 16px;
+
+    button {
+        height: 30px;
+        border: none;
+        background-color: transparent;
+        color: #0095f6;
+        font-size: 14px;
+    }
+}
+
+.search-list {
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+}
+
+.search-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    height: 60px;
+    font-size: 14px;
+}
+
+.user-image {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.search-user-names {
+    flex-grow: 1;
+    font-size: 14px;
+}
+
+/* Si vous souhaitez ajouter des styles pour le nom de l'utilisateur */
+.search-item span {
+    /* Styles pour le nom de l'utilisateur */
+}
