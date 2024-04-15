@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { postService } from "../services/post.service";
 import { userService } from "../services/user.service"; // Assurez-vous d'importer userService si vous l'utilisez
 import { PostMenu } from "./PostMenu";
+import { utilService } from "../services/util.service";
 
 export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
     // const [likesCount, setLikesCount] = useState(post.likedBy.length);
@@ -13,6 +14,9 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
     const [isPostMenuOpen, setIsPostMenuOpen] = useState(false)
     const [isLikePost, setIsLikePost] = useState(false)
     const [isSaved, setIsSaved] = useState(currentUser.savedPostsIds.includes(post._id));
+    const [isEmptyComment, setIsEmptyComment] = useState(true)
+    const [newCommentText, setNewCommentText] = useState("")
+    const [commentTimestamp, setCommentTimestamp] = useState(Date.now())
 
     const location = useLocation();
 
@@ -31,14 +35,14 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
 
     const handleLikeClick = async () => {
         const updatedPost = { ...post };
-        
+
         if (!isLikePost) {
             const likedUser = {
                 _id: currentUser._id,
                 fullname: currentUser.fullname,
                 imgUrl: currentUser.imgUrl
             };
-            
+
             updatedPost.likedBy.push(likedUser);
         } else {
             const index = updatedPost.likedBy.findIndex(user => user._id === currentUser._id); // Recherchez l'utilisateur démo
@@ -46,7 +50,7 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
                 updatedPost.likedBy.splice(index, 1);
             }
         }
-        
+
         try {
             await postService.save(updatedPost);
         }
@@ -57,6 +61,42 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
         finally {
             setIsLikePost(!isLikePost)
         }
+    }
+
+    const handleCommentChange = (e) => {
+        const comment = e.target.value
+        setNewCommentText(comment);
+        setCommentTimestamp(Date.now());
+        if (comment.length) {
+            setIsEmptyComment(false)
+        }
+        else {
+            setIsEmptyComment(true)
+        }
+    }
+
+    const handleCommentSubmit = async () => {
+        if (newCommentText.trim() === "") {
+            return;
+        }
+
+        const newComment = {
+            _id: utilService.makeId(),
+            by: {
+                _id: currentUser._id,
+                fullname: currentUser.fullname,
+                username: currentUser.username,
+                imgUrl: currentUser.imgUrl
+            },
+            txt: newCommentText,
+            timestamp: Date.now()
+        };
+
+        post.comments.push(newComment)
+        setNewCommentText("");
+        setIsEmptyComment(true)
+
+        await postService.save(post)
     }
 
     // postService.save(updatedPost);
@@ -128,7 +168,18 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
                     state={{ previousLocation: location }}>
                     {post.comments.length ? <span className="clr-gray cp">{post.comments.length > 1 ? `View all ${post.comments.length} comments` : `View 1 comment`}</span> : <span></span>}
                 </Link>
-                <textarea name="add-comment" id="add-comment" placeholder="Add a comment..."></textarea>
+                <div className="flex">
+
+                    <input
+                        type="text"
+                        placeholder="Add a comment..."
+                        className="comment-input"
+                        value={newCommentText}
+                        onChange={handleCommentChange}
+                    />
+                    <button className={`comment-btn ${isEmptyComment ? 'hidden' : 'comment-btn-full'}`} onClick={handleCommentSubmit}>Post</button>
+                </div>
+                {/* <textarea name="add-comment" id="add-comment" placeholder="Add a comment..."></textarea> */}
             </section>
 
             {/* {isModalOpen &&
