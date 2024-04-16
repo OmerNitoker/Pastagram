@@ -13,7 +13,7 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
     // const [isModalOpen, setIsModalOpen] = useState(false)
     const [isPostMenuOpen, setIsPostMenuOpen] = useState(false)
     const [isLikePost, setIsLikePost] = useState(false)
-    const [isSaved, setIsSaved] = useState(currentUser.savedPostsIds.includes(post._id));
+    const [isSaved, setIsSaved] = useState(currentUser.savedPostsIds ? currentUser.savedPostsIds.includes(post._id) : false);
     const [isEmptyComment, setIsEmptyComment] = useState(true)
     const [newCommentText, setNewCommentText] = useState("")
     const [commentTimestamp, setCommentTimestamp] = useState(Date.now())

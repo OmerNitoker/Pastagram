@@ -10,7 +10,8 @@ export function loginUser(credentials) {
         try {
             const user = await userService.login(credentials);
             dispatch({ type: SET_USER, user });
-            sessionStorage.setItem('loggedinUser', JSON.stringify(user));  // Stocker l'utilisateur dans la session storage
+            sessionStorage.setItem('loggedinUser', JSON.stringify(user));
+            updateUserInGUsers(user);
             return user;
         } catch (err) {
             console.log('user actions -> Cannot login', err);
@@ -24,7 +25,8 @@ export function signupUser(credentials) {
         try {
             const user = await userService.signup(credentials);
             dispatch({ type: SET_USER, user });
-            sessionStorage.setItem('loggedinUser', JSON.stringify(user));  // Stocker l'utilisateur dans la session storage
+            sessionStorage.setItem('loggedinUser', JSON.stringify(user));
+            updateUserInGUsers(user);
             return user;
         } catch (err) {
             console.log('user actions -> Cannot signup', err);
@@ -33,7 +35,27 @@ export function signupUser(credentials) {
     };
 }
 
+function updateUserInGUsers(user) {
+    const index = gUsers.findIndex(u => u._id === user._id);
+    if (index !== -1) {
+        gUsers.splice(index, 1);
+    }
+    gUsers.unshift(user);
+}
 
+
+export function login(credentials) {
+
+    return userService.login(credentials)
+        .then(user => {
+            store.dispatch({ type: SET_USER, user })
+            return user
+        })
+        .catch(err => {
+            console.log('user actions => Cannot login, err')
+            throw err
+        })
+}
 
 export function logoutUser() {
     return async (dispatch) => {
@@ -46,7 +68,7 @@ export function logoutUser() {
         }
     };
 }
-       
+
 
 
 export async function loginDemo() {
@@ -54,7 +76,7 @@ export async function loginDemo() {
         const users = await userService.getUsers()
         if (users.length) {
             await login(users[0])
-        } 
+        }
         else {
             const demoUser = userService.getDemoUser()
             console.log('demouser from logindemo 1: ', demoUser)
@@ -62,19 +84,20 @@ export async function loginDemo() {
         }
     }
     catch (err) {
-        console.log ('had an error')
+        console.log('had an error')
     }
 }
-    // const user = userService.getDemoUser()
-    // userService.getUsers()
-    // .then (users => {
-    //     if (users.length) {
-    //         login(users[0])
-    //         .then(() =>{return}) 
-    //     }
-    //     signup(user)
-    //     .then(() => {return})
-    // })
+// const user = userService.getDemoUser()
+// userService.getUsers()
+// .then (users => {
+//     if (users.length) {
+//         login(users[0])
+//         .then(() =>{return})
+//     }
+//     signup(user)
+//     .then(() => {return})
+// })
+
 
 
 

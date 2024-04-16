@@ -1,49 +1,37 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { loginUser } from '../store/actions/user.actions';
+import React from 'react';
+import { userService } from '../services/user.service';
 
 export function Login() {
-    const dispatch = useDispatch();
-    const [credentials, setCredentials] = useState({
-        email: '',
-        password: ''
-    });
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setCredentials(prevState => ({ ...prevState, [name]: value }));
-    };
+        const username = event.target.username.value;
+        const password = event.target.password.value;
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
         try {
-            const user = await dispatch(loginUser(credentials));
-            // Handle successful login (e.g., redirect to dashboard)
-        } catch (err) {
-            // Handle login error (e.g., show error message)
+            const loggedInUser = await userService.login({ username, password });
+            sessionStorage.setItem('loggedinUser', JSON.stringify(loggedInUser));
+            window.location.href = '/';  // Redirige vers la page d'accueil ou autre après connexion
+        } catch (error) {
+            console.error('Login failed:', error);
         }
     };
 
     return (
-        <div>
+        <div className="container">
             <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={credentials.email}
-                    onChange={handleChange}
-                />
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    value={credentials.password}
-                    onChange={handleChange}
-                />
-                <button type="submit">Login</button>
+            <form id="loginForm" onSubmit={handleSubmit}>
+                <div className="input-group">
+                    <label htmlFor="username">Nom d'utilisateur :</label>
+                    <input type="text" id="username" name="username" required />
+                </div>
+                <div className="input-group">
+                    <label htmlFor="password">Mot de passe :</label>
+                    <input type="password" id="password" name="password" required />
+                </div>
+                <button type="submit">Se connecter</button>
             </form>
+            <p>Vous n'avez pas de compte ? <a href="/signup">S'inscrire</a></p>
         </div>
     );
 }

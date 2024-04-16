@@ -20,7 +20,7 @@ import { Signup } from './pages/Signup';
 import { userService } from './services/user.service';
 
 export function App() {
-    const dispatch = useDispatch();
+    
     const location = useLocation()
     const previousLocation = location.state?.previousLocation
     
@@ -63,8 +63,8 @@ export function App() {
                             <Route element={<UserDetails />} path="/user" />
                             <Route element={<Search />} path="/search" />
                             <Route element={<Notifications />} path="/notifications" />
-                            <Route element={<Login />} path="/login" />  // Ajoutez cette ligne
-                            <Route element={<Signup />} path="/signup" />  // Ajoutez cette ligne
+                            <Route element={<Login />} path="/login" />  
+                            <Route element={<Signup />} path="/signup" />  
                         </Routes>
                         {previousLocation && (
                             <Routes>
