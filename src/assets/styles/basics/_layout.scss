@@ -7,7 +7,33 @@
 }
 
 main {
-    justify-self: center; 
+    justify-self: center;
+}
+
+@media all and (max-width: 620px) {
+
+    .main-layout {
+        display: block;
+    }
+
+    .nav-bar {
+        display: flex;
+        flex-direction: row !important;
+        justify-content: space-around;
+        position: fixed !important;
+        bottom: 0;
+        left: 0;
+        top: auto !important;
+        width: 100%;
+        z-index: 1111;
+        background-color: #fff;
+        height: auto !important;
+    }
+
+
+    .nav-list {
+        flex-direction: row !important;
+    }
 }
 
 @media all and (max-width: 750px) {
@@ -30,11 +56,10 @@ main {
         padding-block-start: 2.1rem;
         margin-bottom: 1em;
     }
-}
 
-@media all and (max-width: 620px) {
-
-    .main-layout {
-        display: block;
+    .post-list {
+        align-items: center;
     }
+
+   
 }
