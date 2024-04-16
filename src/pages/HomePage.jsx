@@ -36,7 +36,7 @@ export function HomePage() {
         }
     }
 
-    if (!posts.length) return <div>loading...</div>
+    //if (!posts.length) return <div>loading...</div>
 
     return (
         <section className="home-container">

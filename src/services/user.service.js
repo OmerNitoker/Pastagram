@@ -99,7 +99,7 @@ const gUsers = [
 
 
 
-// _createUsers()
+ //_createUsers()
 
 function getUsers() {
     const usersFromStorage = storageService.query('user');
@@ -176,7 +176,8 @@ function saveLocalUser(user) {
         following: user.following,
         followers: user.followers,
         savedPostsIds: user.savedPostsIds,
-        posts: user.posts
+        posts: user.posts,
+        description: user.description,
     }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
@@ -192,7 +193,7 @@ function updateLocalUserFields(user) {
 function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
 }
-//_createUsers()
+
 function _createUsers() {
     const usersWithIds = gUsers.map(user => ({
         ...user,
@@ -214,6 +215,7 @@ function getDemoUser() {
         username: "johnny_johnson",
         password: "password123",
         fullname: "John Johnson",
+        description:"I'm a 📸 lover, always on the hunt for the perfect shot! Whether it's a breathtaking 🏞️ or a candid 😄, I've got my camera ready to capture the magic!",
         imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712492656/1517034957463_hxarzp.jpg",
         following: [
             {

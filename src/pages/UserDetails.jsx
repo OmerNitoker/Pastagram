@@ -6,6 +6,8 @@ import { UserTagged } from "../cmps/UserTagged";
 import { SettingsIcon } from "../cmps/icons-cmps/SettingsIcon";
 import { TaggedIcon } from "../cmps/icons-cmps/TaggedIcon";
 import { userService } from '../services/user.service';
+import { TableIcon } from '../cmps/icons-cmps/TableIcon';
+import { SaveIcon } from '../cmps/icons-cmps/SaveIcon';
 
 export function UserDetails() {
     // const currentUser = useSelector((storeState) => storeState.userModule.loggedinUser)
@@ -16,13 +18,13 @@ export function UserDetails() {
 
     useEffect(() => {
         setActiveComponent(getActiveComponent(activeTab, currentUser));
-    }, [ activeTab]);
+    }, [activeTab]);
 
     const handleComponentChange = (componentName) => {
         setActiveTab(componentName);
     };
 
-    const getActiveComponent = (componentName, user={currentUser}) => {
+    const getActiveComponent = (componentName, user = { currentUser }) => {
         switch (componentName) {
             case 'UserPosts':
                 return <UserPosts user={user} />;
@@ -61,13 +63,21 @@ export function UserDetails() {
                         <span className="user-num-followers">{currentUser.followers ? Object.keys(currentUser.followers).length : 'Loading...'} followers</span>
                         <span className="user-num-following">{currentUser.following ? Object.keys(currentUser.following).length : 'Loading...'} following</span>
                     </div>
-                    <h2 className="userprofile-fullName">{currentUser.fullname}</h2>
+                    <div className="userprofile-description">
+                    <div className="user-profile-fullname">
+                            {currentUser.fullname}
+                        </div>
+                        <div className="user-profile-description">
+                            {currentUser.description}
+
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <section className="user-posts-detail">
-                <div className={`user-publications ${activeTab === 'UserPosts' ? 'active' : ''}`} onClick={() => handleComponentChange('UserPosts')}><i className="fa-solid fa-table-cells"></i> POSTS</div>
-                <div className={`user-posts-saved ${activeTab === 'UserPostsSaved' ? 'active' : ''}`} onClick={() => handleComponentChange('UserPostsSaved')}><i className="fa-regular fa-bookmark"></i> SAVED</div>
+                <div className={`user-publications ${activeTab === 'UserPosts' ? 'active' : ''}`} onClick={() => handleComponentChange('UserPosts')}><TableIcon /> POSTS</div>
+                <div className={`user-posts-saved ${activeTab === 'UserPostsSaved' ? 'active' : ''}`} onClick={() => handleComponentChange('UserPostsSaved')}><SaveIcon /> SAVED</div>
                 <div className={`user-posts-tagged ${activeTab === 'UserTagged' ? 'active' : ''}`} onClick={() => handleComponentChange('UserTagged')}><TaggedIcon /> TAGGED</div>
 
             </section>

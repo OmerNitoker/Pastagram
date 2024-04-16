@@ -36,7 +36,7 @@ export async function addPost(post) {
         const savedPost = await postService.save(post)
         store.dispatch({
             type: ADD_POST,
-            post
+            savedPost
         })
         return savedPost
     } catch (err) {

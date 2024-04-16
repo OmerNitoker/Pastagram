@@ -33,6 +33,7 @@ function getTimeAgo(timestamp) {
     return 'Just now';
 }
 
+
 function makeId(length = 6) {
     var txt = ''
     var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
