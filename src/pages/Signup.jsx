@@ -22,16 +22,16 @@ export function Signup() {
             <h1>Inscription</h1>
             <form id="signupForm" onSubmit={handleSubmit}>
                 <div className="input-group">
-                    <label htmlFor="username">Nom d'utilisateur :</label>
+                    <label htmlFor="username">User name :</label>
                     <input type="text" id="username" name="username" required />
                 </div>
                 <div className="input-group">
-                    <label htmlFor="password">Mot de passe :</label>
+                    <label htmlFor="password">Password :</label>
                     <input type="password" id="password" name="password" required />
                 </div>
                 <button type="submit">S'inscrire</button>
             </form>
-            <p>Vous avez déjà un compte ? <a href="/login">Se connecter</a></p>
+            <p>You have an acount ? <a href="/login">Log in</a></p>
         </div>
     );
 }
