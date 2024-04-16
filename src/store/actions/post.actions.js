@@ -36,7 +36,7 @@ export async function addPost(post) {
         const savedPost = await postService.save(post)
         store.dispatch({
             type: ADD_POST,
-            savedPost
+            post
         })
         return savedPost
     } catch (err) {
@@ -77,5 +77,4 @@ export async function setCurrPost(postId = null) {
     }
 
 }
-
 
