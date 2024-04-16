@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import { Provider, useDispatch } from 'react-redux';
 
 import { HomePage } from './pages/HomePage';
 import { NavBar } from './cmps/NavBar';
@@ -15,8 +15,12 @@ import { store } from './store/store';
 import './assets/styles/main.scss';
 import { loginDemo } from './store/actions/user.actions';
 import { PostDetails } from './cmps/PostDetails';
+import { Login } from './pages/Login';
+import { Signup } from './pages/Signup';
+import { userService } from './services/user.service';
 
 export function App() {
+    
     const location = useLocation()
     const previousLocation = location.state?.previousLocation
     
@@ -59,6 +63,8 @@ export function App() {
                             <Route element={<UserDetails />} path="/user" />
                             <Route element={<Search />} path="/search" />
                             <Route element={<Notifications />} path="/notifications" />
+                            <Route element={<Login />} path="/login" />  
+                            <Route element={<Signup />} path="/signup" />  
                         </Routes>
                         {previousLocation && (
                             <Routes>

@@ -24,8 +24,8 @@ window.userService = userService
 
 const gUsers = [
     getDemoUser(),
-    
-        {
+
+    {
         _id: "u101",
         fullname: "James Smith",
         username: "james_smith",
@@ -257,7 +257,7 @@ const gUsers = [
 
 
 
-_createUsers()
+//_createUsers()
 
 function getUsers() {
     const usersFromStorage = storageService.query('user');
@@ -284,46 +284,58 @@ function remove(userId) {
 }
 
 async function update(updatedUser) {
-    const userFromStorage = await getById(updatedUser._id);
+    // ... (le reste du code)
+    
+    await storageService.put('user', updatedUserInStorage);
+    saveLocalUser(updatedUser);
 
-    if (userFromStorage) {
-        // Créez une copie de l'utilisateur depuis le stockage
-        const updatedUserInStorage = { ...userFromStorage };
+    // Mettez à jour sessionStorage également
+    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(updatedUserInStorage));
 
-        // Mettez à jour la copie de l'utilisateur avec les données mises à jour
-        updatedUserInStorage.savedPostsIds = updatedUser.savedPostsIds;
-
-        // Mettez à jour l'utilisateur dans le stockage avec la copie mise à jour
-        await storageService.put('user', updatedUserInStorage);
-        saveLocalUser(updatedUser)
-
-        return updatedUserInStorage;
-    } else {
-        throw new Error('User not found');
-    }
+    return updatedUserInStorage;
 }
+
 
 
 
 async function login(userCred) {
-    const users = await storageService.query('user')
-    const user = users.find(user => user.username === userCred.username)
-    // const user = await httpService.post('auth/login', userCred)
+    const loggedInUser = getLoggedinUser();
+
+    // Vérifiez si un utilisateur est déjà connecté
+    if (loggedInUser) {
+        throw new Error('User already logged in');
+    }
+
+    const users = await storageService.query('user');
+    const user = users.find(user => user.username === userCred.username && user.password === userCred.password);
+
     if (user) {
-        return saveLocalUser(user)
+        saveLocalUser(user);
+        return user;
+    } else {
+        throw new Error('Invalid credentials');
     }
 }
+
+
 async function signup(userCred) {
-    if (!userCred.imgUrl) userCred.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
-    const user = await storageService.post('user', userCred)
-    // const user = await httpService.post('auth/signup', userCred)
-    return saveLocalUser(user)
+    if (!userCred.imgUrl) userCred.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png';
+    
+    const newUser = await storageService.post('user', userCred);
+    
+    if (newUser) {
+        saveLocalUser(newUser);
+        return newUser;
+    } else {
+        throw new Error('Signup failed');
+    }
 }
+
+
 async function logout() {
     sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
     // return httpService.post('auth/logout')
 }
-
 function saveLocalUser(user) {
     user = {
         _id: user._id,
@@ -334,11 +346,14 @@ function saveLocalUser(user) {
         following: user.following,
         followers: user.followers,
         savedPostsIds: user.savedPostsIds,
-        posts: user.posts
+        posts: user.posts,
+        description: user.description,
     }
-    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
+    localStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
+    alert('Utilisateur sauvegardé dans le localStorage');
     return user
 }
+
 
 function updateLocalUserFields(user) {
     const currUser = getLoggedinUser()
@@ -372,6 +387,7 @@ function getDemoUser() {
         username: "johnny_johnson",
         password: "password123",
         fullname: "John Johnson",
+        description: "I'm a 📸 lover, always on the hunt for the perfect shot! Whether it's a breathtaking 🏞️ or a candid 😄, I've got my camera ready to capture the magic!",
         imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712492656/1517034957463_hxarzp.jpg",
         following: [
             {

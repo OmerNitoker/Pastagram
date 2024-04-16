@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Link, useLocation } from 'react-router-dom';
 import { AddPost } from './AddPost';
 import { SearchIcon } from './icons-cmps/SearchIcon';
 import { ExploreIcon } from './icons-cmps/ExploreIcon';
@@ -14,20 +14,34 @@ import { InstagramLogo } from './icons-cmps/InstagramLogo';
 import { userService } from '../services/user.service';
 import { InstaIcon } from './icons-cmps/InstaIcon';
 
-// import { ReactComponent as HomeIcon} from '../assets/img/home.svg';
-
 export function NavBar() {
-    const [isModalOpen, setIsModalOpen] = useState(false)
-    // const loggedinUser = useSelector(storeState => storeState.userModule.loggedinUser)
-    const loggedinUser = userService.getLoggedinUser()
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    const loggedinUser = userService.getLoggedinUser();
+    const location = useLocation();
 
-    
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    function isLinkActive(path) {
+        return location.pathname === path;
+    }
+
     function onAddPost() {
-        setIsModalOpen(true)
+        setIsModalOpen(true);
     }
 
     function onCloseModal() {
-        setIsModalOpen(false)
+        setIsModalOpen(false);
     }
 
     return (
@@ -38,7 +52,6 @@ export function NavBar() {
             <div className="vista-logo">
             <InstagramLogo margin="1.5em" marginTop="40px" />
             </div>
-
 
             <ul className="nav-list">
                 <li className="nav-item home">
@@ -92,8 +105,8 @@ export function NavBar() {
                 </li>
                 <li className="nav-item userDetails">
                     <Link to="/user" className="nav-link">
-                        {/* <i className="fa-regular fa-circle"></i> */}
-                        <img src={loggedinUser.imgUrl} className="user-avatar nav-img" />
+                         <i className="fa-regular fa-circle"></i> 
+                       {/* <img src={loggedinUser.imgUrl} className="user-avatar nav-img" />*/}
                         <span className='nav-name'>Profile</span>
                     </Link>
                 </li>
@@ -107,5 +120,5 @@ export function NavBar() {
             </ul>
             {isModalOpen && <AddPost setIsModalOpen={setIsModalOpen} onCloseModal={onCloseModal} />}
         </section>
-    )
+    );
 }

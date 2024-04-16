@@ -36,8 +36,8 @@ export function HomePage() {
         }
     }
 
-    if (!posts.length) return <div>loading...</div>
-    console.log('home posts: ', posts)
+    //if (!posts.length) return <div>loading...</div>
+
     return (
         <section className="home-container">
 

@@ -13,7 +13,7 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
     // const [isModalOpen, setIsModalOpen] = useState(false)
     const [isPostMenuOpen, setIsPostMenuOpen] = useState(false)
     const [isLikePost, setIsLikePost] = useState(false)
-    const [isSaved, setIsSaved] = useState(currentUser.savedPostsIds.includes(post._id));
+    const [isSaved, setIsSaved] = useState(currentUser.savedPostsIds ? currentUser.savedPostsIds.includes(post._id) : false);
     const [isEmptyComment, setIsEmptyComment] = useState(true)
     const [newCommentText, setNewCommentText] = useState("")
     const [commentTimestamp, setCommentTimestamp] = useState(Date.now())
@@ -131,6 +131,10 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
         }
     };
 
+
+    const timeAgo = utilService.getTimeAgo(post.timestamp);
+
+
     return (
         <article className="post-preview flex column fs14">
 
@@ -139,7 +143,7 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
             <section className="post-header flex align-center">
                 <img className="user-avatar" src={post.by.imgUrl} />
                 <Link className="clean-link fw600">{post.by.username}</Link>
-                <div className="post-time">• 1h</div>
+                <div className="post-time">• {timeAgo}</div>  
                 <i onClick={togglePostMenu} className="fa-solid fa-ellipsis "></i>
             </section>
 

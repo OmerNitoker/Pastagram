@@ -10,12 +10,13 @@ export const postService = {
   remove,
   save,
   getEmptyPost,
-  
+
 }
 
 export const gPosts = [
   {
     _id: "s101",
+    timestamp: Date.now(),
     txt: "The best way to cross a bridge is by running 🤣",
     imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712645917/insta-project/post%20imgs/4_bfnff0.jpg",
     by: {
@@ -54,6 +55,7 @@ export const gPosts = [
   },
   {
     _id: "s102",
+    timestamp: Date.now(),
     txt: "In the tranquil embrace of nature's symphony, every whisper of the wind and dance of the leaves reminds us of the beauty that surrounds us, offering solace to weary souls and inspiration to wandering hearts.",
     imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712645930/insta-project/post%20imgs/2_mjgro3.jpg",
     by: {
@@ -123,6 +125,7 @@ export const gPosts = [
   },
   {
     _id: "s103",
+    timestamp: Date.now(),
     txt: "Manarola Cliff in Italy offers breathtaking views of the Ligurian Sea, attracting visitors with its rugged beauty and charm.",
     imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712645921/insta-project/post%20imgs/6_fneeqm.jpg",
     by: {
@@ -155,6 +158,7 @@ export const gPosts = [
   },
   {
     _id: "s104",
+    timestamp: Date.now(),
     txt: "Amazing morning in the nature..",
     imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712645922/insta-project/post%20imgs/3_uofiqr.jpg",
     by: {
@@ -180,6 +184,7 @@ export const gPosts = [
   },
   {
     _id: "s105",
+    timestamp: Date.now(),
     txt: "Getting ready for my daily swim 🐳🐠",
     imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712645916/insta-project/post%20imgs/7_bm2tff.jpg",
     by: {
@@ -205,6 +210,7 @@ export const gPosts = [
   },
   {
     _id: "s106",
+    timestamp: Date.now(),
     txt: "Another day in the office...",
     imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712645919/insta-project/post%20imgs/5_hlzrle.jpg",
     by: {
@@ -230,6 +236,7 @@ export const gPosts = [
   },
   {
     _id: "s107",
+    timestamp: Date.now(),
     txt: "On my way to work",
     imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712645925/insta-project/post%20imgs/1_ws507f.jpg",
     by: {
@@ -305,7 +312,7 @@ function _createPosts() {
 
 function getEmptyPost() {
   return {
-    // _id: utilService.makeId(),
+    //_id: utilService.makeId(),
     txt: '',
     imgUrl: '',
     by: {
@@ -316,7 +323,8 @@ function getEmptyPost() {
     },
     comments: [],
     likedBy: [],
-    tags: []
+    tags: [],
+    timestamp: Date.now(),
   }
 }
 
