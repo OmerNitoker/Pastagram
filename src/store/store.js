@@ -5,6 +5,7 @@ import { userReducer } from "./reducers/user.reducer.js"
 
 
 
+
 const rootReducer = combineReducers({
     postModule: postReducer,
     userModule: userReducer

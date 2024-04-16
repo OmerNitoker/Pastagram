@@ -43,15 +43,7 @@ export function App() {
         }
         setLoginDemo()
     }, [])
-
-    useEffect(() => {
-        const loggedinUser = userService.getLoggedinUser();
-        if (loggedinUser) {
-          dispatch({ type: SET_USER, user: loggedinUser });
-        }
-      }, [dispatch]);
-
-
+    
     return (
         <Provider store={store}>
             {isLoading ? (

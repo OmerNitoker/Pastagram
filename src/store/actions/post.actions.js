@@ -34,9 +34,10 @@ export async function removePost(postId) {
 export async function addPost(post) {
     try {
         const savedPost = await postService.save(post)
+        console.log('savedpost:', savedPost)
         store.dispatch({
             type: ADD_POST,
-            post
+            savedPost
         })
         return savedPost
     } catch (err) {
@@ -50,7 +51,7 @@ export async function updatePost(post) {
         const savedPost = await postService.save(post)
         store.dispatch({
             type: UPDATE_POST,
-            post
+            savedPost
         })
         return savedPost
     } catch (err) {

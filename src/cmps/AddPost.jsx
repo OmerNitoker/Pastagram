@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux'
 
 import { cloudinaryService } from '../services/cloudinary-service.js';
 import { postService } from '../services/post.service.js';
 import { utilService } from '../services/util.service.js';
 import { addPost } from '../store/actions/post.actions.js';
+import { userService } from '../services/user.service.js';
+import { useNavigate } from 'react-router';
 
 
 export function AddPost({ setIsModalOpen, onCloseModal }) {
-    const loggedinUser = useSelector(storeState => storeState.userModule.loggedinUser)
-
+    const loggedinUser = userService.getLoggedinUser()
     const [newPost, setNewPost] = useState(postService.getEmptyPost())
     const [image, setImage] = useState('')
 
@@ -37,22 +37,39 @@ export function AddPost({ setIsModalOpen, onCloseModal }) {
     async function handleSubmit(ev) {
         ev.preventDefault()
         if (!newPost.txt || !newPost.imgUrl) return
-        const firstComment = {
-            _id: utilService.makeId(),
-            by: {
-                _id: {loggedinUser},
-                fullname: {loggedinUser},
-                username: {loggedinUser},
-                imgUrl: {loggedinUser}
-            },
-            txt: newPost.txt,
-            timestamp: Date.now()
+        const postToAdd = { ...newPost }
+        const userToUpdate = { ...loggedinUser }
+        try {
+            const addedPost = await addPost(postToAdd)
+            console.log('addedPost: ', addedPost)
+            userToUpdate.posts.push(addedPost._id)
+            await userService.update(userToUpdate)
+            onCloseModal()
         }
-        let postToAdd = {...newPost}
-        postToAdd.comments.push(firstComment)
-        await addPost(postToAdd)
-        onCloseModal()
+        catch(err) {
+            console.log('cannot add post: ', err)
+            throw err
+        }
     }
+
+    // function handleSubmit(ev) {
+    //     ev.preventDefault()
+    //     if (!newPost.txt || !newPost.imgUrl) return
+    //     const postToAdd = {...newPost}
+    //     const updatedUser = {...loggedinUser}
+    //     addPost(postToAdd)
+    //     .then (addedPost => {
+    //         updatedUser.posts.push(addedPost._id)
+    //         userService.update(updatedUser)
+    //         .then(() => onCloseModal())
+    //         .catch (err => console.log('could not update user: ', err))
+    //     })
+    //     .catch(err => console.log('could not add post: ', err))
+    //     // const addedPost = await addPost(postToAdd)
+    //     // updatedUser.posts.push(addedPost._id)
+    //     // await userService.update(updatedUser)
+    //     // onCloseModal()
+    // }
 
 
     return (
@@ -60,7 +77,7 @@ export function AddPost({ setIsModalOpen, onCloseModal }) {
             <div className="modal-content add-modal" onClick={(e) => e.stopPropagation()}>
                 <div className="modal-header flex space-between">
                     <a onClick={onCloseModal} className="back-btn fs24">
-                        <i className="fa-solid fa-arrow-left" aria-hidden="true"></i> 
+                        <i className="fa-solid fa-arrow-left" aria-hidden="true"></i>
                     </a>
                     <span className='fw600'>Create new post</span>
                     <a onClick={handleSubmit} className='share-btn'>Share</a>
