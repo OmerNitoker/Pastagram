@@ -1,5 +1,5 @@
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useLocation } from "react-router-dom"
 import { useSelector } from 'react-redux'
 import { loadPosts, removePost } from '../store/actions/post.actions.js'
@@ -24,7 +24,7 @@ export function HomePage() {
         }
         fetchData()
     }, [location])
-
+    
 
     async function onRemovePost(postId) {
         try {
@@ -37,7 +37,7 @@ export function HomePage() {
     }
 
     if (!posts.length) return <div>loading...</div>
-
+    console.log('home posts: ', posts)
     return (
         <section className="home-container">
 

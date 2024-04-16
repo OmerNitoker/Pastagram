@@ -25,16 +25,6 @@ export const gPosts = [
       imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646609/insta-project/users/James_Smith_fq1zpt.jpg"
     },
     comments: [
-      // {
-      //   _id: "c1001",
-      //   by: {
-      //     _id: "u101",
-      //     fullname: "James Smith",
-      //     username: "james_smith",
-      //     imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646609/insta-project/users/James_Smith_fq1zpt.jpg"
-      //   },
-      //   txt: "The best way to cross a bridge is by running 🤣"
-      // },
       {
         _id: "c1001",
         by: {
@@ -265,7 +255,7 @@ export const gPosts = [
   }
 ]
 
- _createPosts()
+//  _createPosts()
 
 async function query() {
   var posts = await storageService.query(STORAGE_KEY)
@@ -287,11 +277,11 @@ async function save(post) {
     savedPost = await storageService.put(STORAGE_KEY, post);
   } else {
     // post.host = userService.getLoggedinUser();
-    post.comments.forEach(comment => {
-      if (!comment.timestamp) {
-        comment.timestamp = Date.now() - (24 * 60 * 60 * 1000); // 1 jour en millisecondes
-      }
-    });
+    // post.comments.forEach(comment => {
+    //   if (!comment.timestamp) {
+    //     comment.timestamp = Date.now() - (24 * 60 * 60 * 1000); // 1 jour en millisecondes
+    //   }
+    // });
 
     savedPost = await storageService.post(STORAGE_KEY, post);
   }
@@ -329,6 +319,7 @@ function getEmptyPost() {
     tags: []
   }
 }
+
 
 
 

@@ -35,12 +35,13 @@ export function PostDetails({ lastPath }) {
 
     useEffect(() => {
         let currPost
-        if (lastPath === '/') {
-            currPost = posts.find(post => post._id === postId)
-        }
-        else if (lastPath === '/user') {
-            currPost = currentUser.posts.find(post => post._id === postId)
-        }
+        currPost = posts.find(post => post._id === postId)
+        // if (lastPath === '/') {
+        // }
+        // else if (lastPath === '/user') {
+        //      currPost = currentUser.posts.find(post => post._id === postId)
+        //      currPost = postService.getById(postId)
+        // }
         if (!currPost) {
             console.log('could not find post')
         }
@@ -68,14 +69,14 @@ export function PostDetails({ lastPath }) {
             }
         }
 
-       try {
-           await postService.save(updatedPost);
-           setIsLiked(!isLiked)
-       }
-       catch(err) {
-        console.log('could not save updated post')
-        throw err
-       }
+        try {
+            await postService.save(updatedPost);
+            setIsLiked(!isLiked)
+        }
+        catch (err) {
+            console.log('could not save updated post')
+            throw err
+        }
     }
 
     function generateId() {

@@ -7,6 +7,34 @@
 }
 
 main {
-    justify-self: center;
-    
+    justify-self: center; 
+}
+
+@media all and (max-width: 750px) {
+
+    .main-layout {
+        grid-template-columns: 75px 1fr;
+    }
+
+    .nav-name {
+        display: none;
+    }
+
+    .vista-logo {
+        display: none;
+    }
+
+    .insta-icon {
+        display: inline !important;
+        padding-inline-start: 1.5rem;
+        padding-block-start: 2.1rem;
+        margin-bottom: 1em;
+    }
+}
+
+@media all and (max-width: 620px) {
+
+    .main-layout {
+        display: block;
+    }
 }

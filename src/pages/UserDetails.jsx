@@ -10,7 +10,6 @@ import { userService } from '../services/user.service';
 export function UserDetails() {
     // const currentUser = useSelector((storeState) => storeState.userModule.loggedinUser)
     const currentUser = userService.getLoggedinUser()
-    console.log('user: ', currentUser)
     const [activeComponent, setActiveComponent] = useState(<UserPosts user={currentUser} />);
     const [activeTab, setActiveTab] = useState('UserPosts');
 

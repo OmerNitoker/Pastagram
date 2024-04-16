@@ -46,7 +46,7 @@ export async function loginDemo() {
     try {
         const users = await userService.getUsers()
         if (users.length) {
-            await login(users[users.length-1])
+            await login(users[0])
         } 
         else {
             const demoUser = userService.getDemoUser()

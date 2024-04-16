@@ -12,6 +12,7 @@ import { MoreIcon } from './icons-cmps/MoreIcon';
 import { HomeIcon } from './icons-cmps/HomeIcon';
 import { InstagramLogo } from './icons-cmps/InstagramLogo';
 import { userService } from '../services/user.service';
+import { InstaIcon } from './icons-cmps/InstaIcon';
 
 // import { ReactComponent as HomeIcon} from '../assets/img/home.svg';
 
@@ -31,8 +32,12 @@ export function NavBar() {
 
     return (
         <section className="nav-bar">
-            {/* <h1 className='logo'>Instagram</h1> */}
-            <InstagramLogo margin="1em" marginTop="35px" />
+            <div className="insta-icon">
+            <InstaIcon />
+            </div>
+            <div className="vista-logo">
+            <InstagramLogo margin="1.5em" marginTop="40px" />
+            </div>
 
 
             <ul className="nav-list">
@@ -40,63 +45,63 @@ export function NavBar() {
                     <Link to="/" className="nav-link">
                         {/* <i className="fa-solid fa-house"></i> */}
                         <HomeIcon marginRight="1em"/>
-                        Home
+                        <span className='nav-name'>Home</span>
                     </Link>
                 </li>
                 <li className="nav-item search">
                     <Link to="/search" className="nav-link">
                         {/* <i className="fa-solid fa-magnifying-glass"></i> */}
                         <SearchIcon marginRight="1em"/>
-                        Search
+                        <span className='nav-name'>Search</span>
                     </Link>
                 </li>
                 <li className="nav-item explore">
                     <Link to="/explore" className="nav-link">
                         {/* <i className="fa-regular fa-compass"></i> */}
                         <ExploreIcon marginRight="1em"/>
-                        Explore
+                        <span className='nav-name'>Explore</span>
                     </Link>
                 </li>
                 <li className="nav-item reels">
                     <Link to="/reels" className="nav-link">
                         {/* <i className="fa-regular fa-square-caret-right"></i> */}
                         <ReelsIcon  marginRight="1em"/>
-                        Reels
+                        <span className='nav-name'>Reels</span>
                     </Link>
                 </li>
                 <li className="nav-item chat">
                     <Link to="/chat" className="nav-link">
                         {/* <i className="fa-brands fa-facebook-messenger"></i> */}
                         <MessagesIcon marginRight="1em"/>
-                        Messages
+                        <span className='nav-name'>Messages</span>
                     </Link>
                 </li>
                 <li className="nav-item notifications">
                     <Link to="/notifications" className="nav-link">
                         {/* <i className="fa-regular fa-heart"></i> */}
                         <NotificationsIcon marginRight="1em"/>
-                        Notifications
+                        <span className='nav-name'>Notifications</span>
                     </Link>
                 </li>
                 <li onClick={onAddPost} className="nav-item creat">
                     <Link className="nav-link">
                         {/* <i className="fa-regular fa-square-plus"></i> */}
                         <CreateIcon marginRight="1em"/>
-                        Create
+                        <span className='nav-name'>Create</span>
                     </Link>
                 </li>
                 <li className="nav-item userDetails">
                     <Link to="/user" className="nav-link">
                         {/* <i className="fa-regular fa-circle"></i> */}
                         <img src={loggedinUser.imgUrl} className="user-avatar nav-img" />
-                        Profile
+                        <span className='nav-name'>Profile</span>
                     </Link>
                 </li>
                 <li className="nav-item hamburger-menu">
                     <Link to="/" className="nav-link">
                         {/* <i className="fa-solid fa-bars"></i> */}
                         <MoreIcon marginRight="1em"/>
-                        More
+                        <span className='nav-name'>More</span>
                     </Link>
                 </li>
             </ul>

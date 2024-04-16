@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { postService } from "../services/post.service";
 
 export function UserPosts({ user }) {
-    console.log("currentUser", user);
 
     const [userPosts, setUserPosts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -12,23 +12,33 @@ export function UserPosts({ user }) {
 
     useEffect(() => {
         if (user && user.posts) {
-          setUserPosts(user.posts);
-      
-          // Calculer le nombre de lignes nécessaires
-          const rowCount = Math.ceil(user.posts.length / 3);
-          setGridRows(rowCount);
-      
-          // Mettre à jour la variable CSS
-          document.documentElement.style.setProperty('--grid-rows', rowCount);
-      
-          setIsLoading(false);
+            const postsToShow = user.posts.map(postId => {
+                return postService.getById(postId)
+                // .then (post => console.log('post: ', post))
+            })
+            Promise.all(postsToShow)
+                .then((res) => {
+                    setUserPosts(res)
+                    setIsLoading(false);
+                })
+                .catch(err => console.log('had a problem fetching the posts: ', err))
+
+
+            // Calculer le nombre de lignes nécessaires
+            const rowCount = Math.ceil(user.posts.length / 3);
+            setGridRows(rowCount);
+
+            // Mettre à jour la variable CSS
+            document.documentElement.style.setProperty('--grid-rows', rowCount);
+
+            
         } else {
-          setUserPosts([]); // Réinitialiser les posts si aucun post n'est disponible
-          setIsLoading(false);
+            setUserPosts([]); // Réinitialiser les posts si aucun post n'est disponible
+            setIsLoading(false);
         }
-      }, [user]);
-    
-      
+    }, [user]);
+
+
 
     if (!user) {
         return <div>Loading...</div>;

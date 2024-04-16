@@ -1,0 +1,19 @@
+//Media queries breakpoints mixins
+
+@mixin main-for-mobile-layout {
+    @media (max-width: $main-layout-narrow-breakpoint) {
+        @content;
+    }
+}
+
+@mixin main-for-narrow-layout {
+    @media (max-width: $main-layout-med-breakpoint) {
+        @content;
+    }
+}
+
+@mixin main-for-normal-layout {
+    @media (max-width: $main-layout-mid-wide-breakpoint) {
+        @content
+    }
+}

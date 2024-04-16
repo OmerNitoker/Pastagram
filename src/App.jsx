@@ -39,6 +39,7 @@ export function App() {
         }
         setLoginDemo()
     }, [])
+    
     return (
         <Provider store={store}>
             {isLoading ? (
