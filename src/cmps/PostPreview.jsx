@@ -13,10 +13,7 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
     // const [isModalOpen, setIsModalOpen] = useState(false)
     const [isPostMenuOpen, setIsPostMenuOpen] = useState(false)
     const [isLikePost, setIsLikePost] = useState(false)
-    //const [isSaved, setIsSaved] = useState(currentUser.savedPostsIds ? currentUser.savedPostsIds.includes(post._id) : false);
-    //const [isSaved, setIsSaved] = useState( currentUser.savedPostsIds.includes(post._id) );
-    const [isSaved, setIsSaved] = useState( currentUser.savedPostsIds ? currentUser.savedPostsIds.includes(post._id) : false );
-
+    const [isSaved, setIsSaved] = useState(currentUser.savedPostIds ? currentUser.savedPostIds.includes(post._id) : false);
     const [isEmptyComment, setIsEmptyComment] = useState(true)
     const [newCommentText, setNewCommentText] = useState("")
     const [commentTimestamp, setCommentTimestamp] = useState(Date.now())
@@ -108,32 +105,22 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
     // setIsLiked(!isLiked);
 
     const handleSaveClick = () => {
-        if (!currentUser) {
-            console.error("currentUser is not defined");
-            return;
-        }
-    
-        const updatedUser = { ...currentUser };
-        const savedPostsIds = updatedUser.savedPostsIds || []; // Assurez-vous que savedPostsIds est un tableau
-        const postIndex = savedPostsIds.indexOf(post._id);
-    
+        const updatedUser = { ...currentUser }
+        console.log('user:', updatedUser)
+        const postIndex = updatedUser.savedPostIds.length ? updatedUser.savedPostIds.indexOf(post._id) : -1;
         if (postIndex === -1) {
-            savedPostsIds.push(post._id);
-            setIsSaved(true);
-            updatedUser.savedPostsIds = savedPostsIds;
+            updatedUser.savedPostIds.push(post._id);
+            setIsSaved(true); // Met à jour l'état pour indiquer que le post est sauvegardé
             userService.update(updatedUser)
                 .then(updatedUser => {
-                    console.log('User updated:', updatedUser);
-                    alert('Post saved successfully!');
+                    // alert('Post saved successfully!');
                 })
                 .catch(error => {
-                    console.error('Error saving post:', error);
-                    alert('Error saving post.');
+                    // alert('Error saving post.');
                 });
         } else {
-            savedPostsIds.splice(postIndex, 1);
-            setIsSaved(false);
-            updatedUser.savedPostsIds = savedPostsIds;
+            updatedUser.savedPostIds.splice(postIndex, 1);
+            setIsSaved(false); // Met à jour l'état pour indiquer que le post n'est plus sauvegardé
             userService.update(updatedUser)
                 .then(updatedUser => {
                     console.log('User updated:', updatedUser);

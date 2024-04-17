@@ -15,6 +15,10 @@ main {
         display: block;
     }
 
+    .post-list {
+        margin-top: 3.75rem !important;
+    }
+
     .nav-bar {
         display: flex;
         flex-direction: row !important;
@@ -23,19 +27,93 @@ main {
         bottom: 0;
         left: 0;
         top: auto !important;
-        width: 100%;
+        width: 100vw;
         z-index: 1111;
         background-color: #fff;
         height: auto !important;
+        border-right: none !important;
+        border-top: 0.1px solid $clr-sep-line;
+    }
+
+    
+     .chat {
+        position: fixed !important;
+        bottom: auto;
+        right: 0;
+        top: 0 !important;
+        z-index: 1001;
+    }
+
+    .notifications {
+        position: fixed !important;
+        bottom: auto;
+        right: 40px;
+        top: 0 !important;
+        z-index: 1001;
     }
 
 
     .nav-list {
         flex-direction: row !important;
+        flex-grow: 0 !important;
     }
+    
+    .vista-logo {
+        display: inline !important;
+        position: fixed;
+        top: -25px;
+        left: 20px;
+        padding-block-start: 1rem !important;
+        z-index: 1001;
+    }
+
+    .logo {
+        font-size: 1.4rem !important;
+        margin-left: 0 !important;
+    }
+
+    .narrow-top-bar {
+        background-color: white;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 60px;
+        z-index: 1000;
+    }
+
+    .post-img {
+        height: auto !important;
+    }
+
+    .hamburger-menu {
+        display: none;
+    }
+
+    .explore {
+        display: none;
+    }
+
+    .userDetails {
+        flex-grow: 0 !important;
+    }
+
+    .insta-icon {
+        display: none !important;
+    }
+
+    .nav-name {
+        display: none;
+    }
+
+    .post-list {
+        align-items: center;
+    }
+
+
 }
 
-@media all and (max-width: 750px) {
+@media only screen and (min-width: 620px) and (max-width: 750px) {
 
     .main-layout {
         grid-template-columns: 75px 1fr;
@@ -50,7 +128,7 @@ main {
     }
 
     .insta-icon {
-        display: inline !important;
+        display: inline;
         padding-inline-start: 1.5rem;
         padding-block-start: 2.1rem;
         margin-bottom: 1em;

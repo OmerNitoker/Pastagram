@@ -257,7 +257,7 @@ const gUsers = [
 
 
 
-//_createUsers()
+_createUsers()
 
 function getUsers() {
     const usersFromStorage = storageService.query('user');
@@ -286,13 +286,13 @@ function remove(userId) {
 async function update(updatedUser) {
     // ... (le reste du code)
     
-    await storageService.put('user', updatedUserInStorage);
+    await storageService.put('user', updatedUser);
     saveLocalUser(updatedUser);
 
     // Mettez à jour sessionStorage également
-    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(updatedUserInStorage));
+    // sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(updatedUserInStorage));
 
-    return updatedUserInStorage;
+    return updatedUser;
 }
 
 
@@ -320,10 +320,17 @@ async function login(userCred) {
 
 async function signup(userCred) {
     if (!userCred.imgUrl) userCred.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png';
-    
-    const newUser = await storageService.post('user', userCred);
+    const userToSignup = {...userCred}
+    userToSignup.description = ''
+    userToSignup.followers = []
+    userToSignup.following = []
+    userToSignup.posts = []
+    userToSignup.savedPostIds = []
+
+    const newUser = await storageService.post('user', userToSignup);
     
     if (newUser) {
+        console.log('newUser:',newUser)
         saveLocalUser(newUser);
         return newUser;
     } else {
@@ -345,12 +352,12 @@ function saveLocalUser(user) {
         imgUrl: user.imgUrl,
         following: user.following,
         followers: user.followers,
-        savedPostsIds: user.savedPostsIds,
+        savedPostIds: user.savedPostIds,
         posts: user.posts,
         description: user.description,
     }
-    localStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
-    alert('Utilisateur sauvegardé dans le localStorage');
+    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
+    // alert('Utilisateur sauvegardé dans le localStorage');
     return user
 }
 
