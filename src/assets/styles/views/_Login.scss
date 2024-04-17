@@ -1,0 +1,55 @@
+.login-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh; /* Pour centrer le contenu verticalement */
+    width: 33vw;
+    border: 2px solid rgb(53, 53, 53);
+    padding: 20px;
+    margin-top: 100px;
+
+    h1 {
+        font-size:50px;
+        text-align: center;
+    }
+}
+
+
+#loginForm {
+    width: 100%;
+    border-bottom: 1px solid gray;
+
+}
+
+.login-input-group,
+.input-group {
+    width: 100%; /* Les inputs et le bouton auront la même largeur */
+    margin-bottom: 20px; /* Espacement entre les groupes d'inputs */
+}
+
+label {
+    display: block;
+    margin-bottom: 5px; /* Espacement entre le label et l'input */
+}
+
+input[type="text"],
+input[type="password"],
+button[type="submit"] {
+    width: 100%; /* Les inputs et le bouton auront la même largeur */
+    padding: 10px;
+    margin-top: 5px; /* Espacement entre les inputs et le bouton */
+}
+
+.login-submit-btn {
+    background-color: blue; /* Couleur de fond bleue pour le bouton */
+    color: white; /* Texte blanc pour le bouton */
+    border: none;
+    cursor: pointer;
+    margin-bottom: 40px;
+}
+
+p {
+    margin-top: 20px; /* Espacement entre le formulaire et le lien pour se connecter */
+}

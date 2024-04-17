@@ -33,8 +33,8 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
         setIsPostMenuOpen(!isPostMenuOpen);
     }
 
-     const  handleLikeClick = async () => {
-        
+    const handleLikeClick = async () => {
+
 
         const updatedPost = { ...post };
 
@@ -123,14 +123,16 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
             setIsSaved(false); // Met à jour l'état pour indiquer que le post n'est plus sauvegardé
             userService.update(updatedUser)
                 .then(updatedUser => {
+                    console.log('User updated:', updatedUser);
                     alert('Post removed from saved posts!');
                 })
                 .catch(error => {
+                    console.error('Error removing post:', error);
                     alert('Error removing post.');
                 });
         }
     };
-
+    
 
     const timeAgo = utilService.getTimeAgo(post.timestamp);
 
@@ -143,7 +145,7 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
             <section className="post-header flex align-center">
                 <img className="user-avatar" src={post.by.imgUrl} />
                 <Link className="clean-link fw600">{post.by.username}</Link>
-                <div className="post-time">• {timeAgo}</div>  
+                <div className="post-time">• {timeAgo}</div>
                 <i onClick={togglePostMenu} className="fa-solid fa-ellipsis "></i>
             </section>
 

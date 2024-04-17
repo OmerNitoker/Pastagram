@@ -18,20 +18,19 @@ export function Signup() {
     };
 
     return (
-        <div className="container">
-            <h1>Inscription</h1>
+        <div className="signup-container">
+            <h1 className='logo'>Vistagram</h1>
             <form id="signupForm" onSubmit={handleSubmit}>
-                <div className="input-group">
-                    <label htmlFor="username">User name :</label>
-                    <input type="text" id="username" name="username" required />
+                <div className="signup-input-group">
+                    <input type="text" id="signup-username" name="username" placeholder='User name :' required />
                 </div>
                 <div className="input-group">
-                    <label htmlFor="password">Password :</label>
-                    <input type="password" id="password" name="password" required />
+                    <input type="password" id="signup-password" name="password" placeholder='Password :' required />
                 </div>
-                <button type="submit">S'inscrire</button>
+                <button type="submit" className='signup-submit-btn'>Submit</button>
             </form>
             <p>You have an acount ? <a href="/login">Log in</a></p>
         </div>
     );
 }
+

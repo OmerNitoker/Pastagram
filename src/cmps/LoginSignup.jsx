@@ -68,6 +68,8 @@ export function LoginSignup({ loginUser, signupUser }) {
                     <option value="">Select User</option>
                     {users.map(user => <option key={user._id} value={user.username}>{user.fullname}</option>)}
                 </select> */}
+
+                <h1 className="logo">Vistagram</h1>
                 <input
                     type="text"
                     name="username"
@@ -85,11 +87,12 @@ export function LoginSignup({ loginUser, signupUser }) {
                     onChange={handleChange}
                     required
                 />
-                <button>Login!</button>
+                <button className='login-submit-btn'>Login!</button>
                 <p>Don't have an account? <span className='login-signup-btn' onClick={toggleSignup}>Sign up</span></p>
             </form>}
             <div className="signup-section">
                 {isSignup && <form className="signup-form" onSubmit={onSignup}>
+                    <h1 className="logo">Vistagram</h1>
                     <input
                         type="text"
                         name="fullname"
@@ -115,7 +118,7 @@ export function LoginSignup({ loginUser, signupUser }) {
                         required
                     />
                     {/* <ImgUploader onUploaded={onUploaded} /> */}
-                    <button >Signup!</button>
+                    <button className='signup-submit-btn'>Signup!</button>
                     <p>Have an account? <span className='login-signup-btn' onClick={toggleSignup}>Log in</span></p>
                 </form>}
             </div>
