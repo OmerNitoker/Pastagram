@@ -10,7 +10,7 @@ import { TableIcon } from '../cmps/icons-cmps/TableIcon';
 import { SaveIcon } from '../cmps/icons-cmps/SaveIcon';
 
 export function UserDetails() {
-    // const currentUser = useSelector((storeState) => storeState.userModule.loggedinUser)
+    const posts = useSelector((storeState) => storeState.postModule.posts)
     const currentUser = userService.getLoggedinUser()
     const [activeComponent, setActiveComponent] = useState(<UserPosts user={currentUser} />);
     const [activeTab, setActiveTab] = useState('UserPosts');
@@ -28,7 +28,7 @@ export function UserDetails() {
             case 'UserPosts':
                 return <UserPosts user={user} />;
             case 'UserPostsSaved':
-                return <UserPostsSaved currentUser={user} />;
+                return <UserPostsSaved currentUser={user} posts={posts} />;
             case 'UserTagged':
                 return <UserTagged />;
             default:

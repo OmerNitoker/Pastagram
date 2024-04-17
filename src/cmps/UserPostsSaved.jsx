@@ -1,29 +1,55 @@
 import { useState, useEffect } from 'react';
-import { gPosts } from "../services/post.service";
+// import { gPosts } from "../services/post.service";
 
-export function UserPostsSaved({ currentUser }) {
+export function UserPostsSaved({ currentUser, posts }) {
     const [savedPosts, setSavedPosts] = useState([]);
 
-    useEffect(() => {
-        if (currentUser && currentUser.savedPostsIds) {
-          const posts = currentUser.savedPostsIds.map(postId => {
-            const post = gPosts.find(p => p._id === postId);
-            if (!post) {
-              console.warn(`Post with ID ${postId} not found`);
-              return null; // Ignore IDs of posts not found
-            }
-            return post;
-          }).filter(Boolean);
+    // useEffect(() => {
+    //     if (currentUser && currentUser.savedPostsIds) {
+    //       const postsToSave = currentUser.savedPostsIds.map(postId => {
+    //         const post = posts.find(p => p._id === postId);
+    //         if (!post) {
+    //           console.log(`Post with ID ${postId} not found`);
+    //           return null; // Ignore IDs of posts not found
+    //         }
+    //         console.log('post: ', post)
+    //         return post;
+    //       }).filter(Boolean);
       
-          setSavedPosts(posts);
+    //       setSavedPosts(postsToSave);
       
-          // Calculer le nombre de lignes nécessaires pour la grille
-          const rowCount = Math.ceil(posts.length / 3);
+    //       // Calculer le nombre de lignes nécessaires pour la grille
+    //       const rowCount = Math.ceil(postsToSave.length / 3);
           
-          // Mettre à jour la variable CSS
-          document.documentElement.style.setProperty('--saved-grid-rows', rowCount);
-        }
-      }, [currentUser]);
+    //       // Mettre à jour la variable CSS
+    //       document.documentElement.style.setProperty('--saved-grid-rows', rowCount);
+    //     }
+    //   }, [currentUser]);
+
+    useEffect(() => {
+      console.log('posts: ', posts)
+
+      if (currentUser && currentUser.savedPostIds) {
+        const postsToSave = currentUser.savedPostIds.map(postId => {
+          console.log('postId', postId)
+          const post = posts.find(p => p._id === postId);
+          if (!post) {
+            console.log(`Post with ID ${postId} not found`);
+            return null; // Ignore IDs of posts not found
+          }
+          console.log('post: ', post)
+          return post;
+        }).filter(Boolean);
+    
+        setSavedPosts(postsToSave);
+    
+        // Calculer le nombre de lignes nécessaires pour la grille
+        const rowCount = Math.ceil(postsToSave.length / 3);
+        
+        // Mettre à jour la variable CSS
+        document.documentElement.style.setProperty('--saved-grid-rows', rowCount);
+      }
+    }, [currentUser]);
       
 
     if (!savedPosts.length) {

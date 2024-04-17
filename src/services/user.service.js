@@ -430,7 +430,7 @@ function getDemoUser() {
                 imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646606/insta-project/users/Michael_Williams_p5umiy.jpg"
             }
         ],
-        savedPostsIds: [],
+        savedPostIds: [],
         posts: ["s101", "s102", "s105"]
     }
 }

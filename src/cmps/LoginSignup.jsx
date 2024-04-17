@@ -34,7 +34,6 @@ export function LoginSignup({ loginUser, signupUser }) {
         if (ev) ev.preventDefault()
         if (!credentials.username) return
         const existingUser = users.find(user => user.username === credentials.username && user.password === credentials.password);
-        console.log('nuuuu', existingUser)
         if (!existingUser) return
         loginUser(existingUser)
         clearState()

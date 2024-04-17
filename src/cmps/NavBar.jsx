@@ -107,7 +107,8 @@ export function NavBar() {
                 <li className="nav-item userDetails">
                     <Link to="/user" className="nav-link">
                          {/* <i className="fa-regular fa-circle"></i>  */}
-                       <img src={loggedinUser.imgUrl} className="user-avatar nav-img" />
+                       {loggedinUser ? <img src={loggedinUser.imgUrl} className="user-avatar nav-img" /> : 
+                        <img src= 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png' className="user-avatar nav-img" />}
                         <span className='nav-name'>Profile</span>
                     </Link>
                 </li>
