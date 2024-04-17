@@ -431,6 +431,6 @@ function getDemoUser() {
             }
         ],
         savedPostIds: [],
-        posts: ["s101", "s102"]
+        posts: ["s101", "s102", "s105"]
     }
 }

@@ -5,6 +5,7 @@ export const REMOVE_POST = 'REMOVE_POST'
 export const ADD_POST = 'ADD_POST'
 export const UPDATE_POST = 'UPDATE_POST'
 export const SET_CURR_POST = 'SET_CURR_POST'
+export const LOAD_DEMO_DATA = 'LOAD_DEMO_DATA'
 
 
 const initialState = {
@@ -37,6 +38,10 @@ export function postReducer(state = initialState, action = {}) {
             return { ...state, currPost: action.currPost }
             // currPost = { ...state.currPost, action.currPost }
             // return { ...state, currPost }
+
+        case LOAD_DEMO_DATA:
+            posts = [...state.posts, ...demoData]
+            return {...state, posts}
 
         default:
             return state;

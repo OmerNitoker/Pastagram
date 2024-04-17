@@ -45,6 +45,7 @@ export async function addPost(post) {
     }
 }
 
+
 export async function updatePost(post) {
     try {
         const savedPost = await postService.save(post)

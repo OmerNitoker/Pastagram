@@ -102,8 +102,9 @@ export function NavBar() {
                 </li>
                 <li className="nav-item userDetails">
                     <Link to="/user" className="nav-link">
-                        {loggedinUser ? <img src={loggedinUser.imgUrl} className="user-avatar nav-img" /> :
-                            <img src='https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png' className="user-avatar nav-img" />}
+                         {/* <i className="fa-regular fa-circle"></i>  */}
+                       {loggedinUser ? <img src={loggedinUser.imgUrl} className="user-avatar nav-img" /> : 
+                        <img src= 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png' className="user-avatar nav-img" />}
                         <span className='nav-name'>Profile</span>
                     </Link>
                 </li>
