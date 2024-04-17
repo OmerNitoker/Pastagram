@@ -47,7 +47,7 @@ export function UserDetails() {
     return (
         <section className="user-profile">
             <div className="profile-info">
-                <img className="user-profile-avatar" src={currentUser.imgUrl} alt={`${currentUser.fullname}'s avatar`} />
+                <img className="user-profile-avatar user-avatar" src={currentUser.imgUrl} alt={`${currentUser.fullname}'s avatar`} />
                 <div className="user-details">
 
                     <div className="user-profile-btns">
