@@ -5,11 +5,11 @@ export function UserPostsSaved({ currentUser }) {
     const [savedPosts, setSavedPosts] = useState([]);
 
     useEffect(() => {
-        if (currentUser && currentUser.savedPostsIds) {
+        if (currentUser && Array.isArray(currentUser.savedPostsIds)) {
           const posts = currentUser.savedPostsIds.map(postId => {
             const post = gPosts.find(p => p._id === postId);
             if (!post) {
-              console.warn(`Post with ID ${postId} not found`);
+              console.log(`Post with ID ${postId} not found`);
               return null; // Ignore IDs of posts not found
             }
             return post;
@@ -22,6 +22,8 @@ export function UserPostsSaved({ currentUser }) {
           
           // Mettre à jour la variable CSS
           document.documentElement.style.setProperty('--saved-grid-rows', rowCount);
+        } else {
+          setSavedPosts([]);
         }
       }, [currentUser]);
       

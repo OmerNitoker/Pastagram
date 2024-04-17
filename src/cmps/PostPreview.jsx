@@ -13,7 +13,10 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
     // const [isModalOpen, setIsModalOpen] = useState(false)
     const [isPostMenuOpen, setIsPostMenuOpen] = useState(false)
     const [isLikePost, setIsLikePost] = useState(false)
-    const [isSaved, setIsSaved] = useState(currentUser.savedPostsIds ? currentUser.savedPostsIds.includes(post._id) : false);
+    //const [isSaved, setIsSaved] = useState(currentUser.savedPostsIds ? currentUser.savedPostsIds.includes(post._id) : false);
+    //const [isSaved, setIsSaved] = useState( currentUser.savedPostsIds.includes(post._id) );
+    const [isSaved, setIsSaved] = useState( currentUser.savedPostsIds ? currentUser.savedPostsIds.includes(post._id) : false );
+
     const [isEmptyComment, setIsEmptyComment] = useState(true)
     const [newCommentText, setNewCommentText] = useState("")
     const [commentTimestamp, setCommentTimestamp] = useState(Date.now())
@@ -33,8 +36,8 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
         setIsPostMenuOpen(!isPostMenuOpen);
     }
 
-     const  handleLikeClick = async () => {
-        
+    const handleLikeClick = async () => {
+
 
         const updatedPost = { ...post };
 
@@ -105,32 +108,44 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
     // setIsLiked(!isLiked);
 
     const handleSaveClick = () => {
+        if (!currentUser) {
+            console.error("currentUser is not defined");
+            return;
+        }
+    
         const updatedUser = { ...currentUser };
-        const postIndex = updatedUser.savedPostsIds.indexOf(post._id);
-
+        const savedPostsIds = updatedUser.savedPostsIds || []; // Assurez-vous que savedPostsIds est un tableau
+        const postIndex = savedPostsIds.indexOf(post._id);
+    
         if (postIndex === -1) {
-            updatedUser.savedPostsIds.push(post._id);
-            setIsSaved(true); // Met à jour l'état pour indiquer que le post est sauvegardé
+            savedPostsIds.push(post._id);
+            setIsSaved(true);
+            updatedUser.savedPostsIds = savedPostsIds;
             userService.update(updatedUser)
                 .then(updatedUser => {
+                    console.log('User updated:', updatedUser);
                     alert('Post saved successfully!');
                 })
                 .catch(error => {
+                    console.error('Error saving post:', error);
                     alert('Error saving post.');
                 });
         } else {
-            updatedUser.savedPostsIds.splice(postIndex, 1);
-            setIsSaved(false); // Met à jour l'état pour indiquer que le post n'est plus sauvegardé
+            savedPostsIds.splice(postIndex, 1);
+            setIsSaved(false);
+            updatedUser.savedPostsIds = savedPostsIds;
             userService.update(updatedUser)
                 .then(updatedUser => {
+                    console.log('User updated:', updatedUser);
                     alert('Post removed from saved posts!');
                 })
                 .catch(error => {
+                    console.error('Error removing post:', error);
                     alert('Error removing post.');
                 });
         }
     };
-
+    
 
     const timeAgo = utilService.getTimeAgo(post.timestamp);
 
@@ -143,7 +158,7 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
             <section className="post-header flex align-center">
                 <img className="user-avatar" src={post.by.imgUrl} />
                 <Link className="clean-link fw600">{post.by.username}</Link>
-                <div className="post-time">• {timeAgo}</div>  
+                <div className="post-time">• {timeAgo}</div>
                 <i onClick={togglePostMenu} className="fa-solid fa-ellipsis "></i>
             </section>
 

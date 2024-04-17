@@ -28,6 +28,7 @@ export function UserDetails() {
             case 'UserPosts':
                 return <UserPosts user={user} />;
             case 'UserPostsSaved':
+                console.log("user", user)
                 return <UserPostsSaved currentUser={user} />;
             case 'UserTagged':
                 return <UserTagged />;

@@ -17,21 +17,30 @@ export function Login() {
         }
     };
 
+    const handleDemoLogin = async () => {
+        try {
+            const demoUser = await userService.getDemoUser();
+            sessionStorage.setItem('loggedinUser', JSON.stringify(demoUser));
+            window.location.href = '/';  // Redirige vers la page d'accueil après connexion
+        } catch (error) {
+            console.error('Demo login failed:', error);
+        }
+    };
+
     return (
-        <div className="container">
-            <h1>Login</h1>
+        <div className="login-container">
+            <h1 className='logo'>Vistagram</h1>
             <form id="loginForm" onSubmit={handleSubmit}>
                 <div className="input-group">
-                    <label htmlFor="username">User name :</label>
-                    <input type="text" id="username" name="username" required />
+                    <input type="password" id="login-password" name="password" placeholder='User name :' required />
                 </div>
                 <div className="input-group">
-                    <label htmlFor="password">Password :</label>
-                    <input type="password" id="password" name="password" required />
+                <input type="password" id="login-password" name="password" placeholder='Password :' required />
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit" className='login-submit-btn'>Submit</button>
             </form>
-            <p>VYou dont have an acount ? <a href="/signup">Sign Up</a></p>
+            <p>You dont have an acount ? <a href="/signup">Sign Up</a></p>
+            <a href="#" className="loged-in-demoUser" onClick={handleDemoLogin}>Demo?</a>
         </div>
     );
 }

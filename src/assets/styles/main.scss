@@ -12,6 +12,8 @@
 //Pages
 @import "views/HomePage";
 @import "views/UserDetails";
+@import "views/Signup";
+@import "views/Login";
 
 //Cmps
 @import "cmps/PostList";
@@ -25,4 +27,4 @@
 @import "cmps/MainLoader";
 @import "cmps/PostDetails";
 @import "cmps/UserSavedPost";
-@import "cmps/Search"
+@import "cmps/Search";
