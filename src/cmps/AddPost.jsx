@@ -9,48 +9,50 @@ import { useNavigate } from 'react-router';
 
 
 export function AddPost({ setIsModalOpen, onCloseModal }) {
-    const loggedinUser = userService.getLoggedinUser()
-    const [newPost, setNewPost] = useState(postService.getEmptyPost())
-    const [image, setImage] = useState('')
+    const [loggedinUser, setLoggedinUser] = useState(userService.getLoggedinUser());
+    console.log("loggedinUser", loggedinUser);
+    const [newPost, setNewPost] = useState(postService.getEmptyPost());
+    const [image, setImage] = useState('');
 
     useEffect(() => {
-        const { _id, fullname, username, imgUrl } = loggedinUser
-        setNewPost(prevState => ({ ...prevState, by: { ...prevState.by, _id, fullname, username, imgUrl } }))
-    }, [])
+        const { _id, fullname, username, imgUrl } = loggedinUser;
+        setNewPost(prevState => ({ ...prevState, by: { ...prevState.by, _id, fullname, username, imgUrl } }));
+    }, [loggedinUser]);
 
     function handleChange(ev) {
-        const { target } = ev
-        // const { _id, fullname, username, imgUrl } = loggedinUser
+        const { target } = ev;
         if (target.type === 'textarea') {
-            setNewPost(prevState => ({ ...prevState, txt: target.value }))
-        }
-        else if (target.type === 'file') {
+            setNewPost(prevState => ({ ...prevState, txt: target.value }));
+        } else if (target.type === 'file') {
             cloudinaryService.uploadImg(ev)
                 .then(url => {
-                    setImage(url)
-                    setNewPost(prevState => ({ ...prevState, imgUrl: url }))
+                    setImage(url);
+                    setNewPost(prevState => ({ ...prevState, imgUrl: url }));
                 })
-                .catch(console.log('cannot upload image'))
+                .catch(console.log('cannot upload image'));
         }
     }
 
     async function handleSubmit(ev) {
-        ev.preventDefault()
-        if (!newPost.txt || !newPost.imgUrl) return
-        const postToAdd = { ...newPost }
-        const userToUpdate = { ...loggedinUser }
+        ev.preventDefault();
+        if (!newPost.txt || !newPost.imgUrl) return;
+        const postToAdd = { ...newPost };
         try {
-            const addedPost = await addPost(postToAdd)
-            console.log('addedPost: ', addedPost)
-            userToUpdate.posts.push(addedPost._id)
-            await userService.update(userToUpdate)
-            onCloseModal()
-        }
-        catch(err) {
-            console.log('cannot add post: ', err)
-            throw err
+            const addedPost = await addPost(postToAdd);
+            console.log('addedPost: ', addedPost);
+            const updatedUser = { ...loggedinUser, posts: [...loggedinUser.posts, addedPost._id] };
+            await userService.update(updatedUser);
+            setLoggedinUser(updatedUser); // Mettez à jour l'état de l'utilisateur ici
+            onCloseModal();
+        } catch (err) {
+            console.log('cannot add post: ', err);
+            throw err;
         }
     }
+
+
+
+
 
     // function handleSubmit(ev) {
     //     ev.preventDefault()
