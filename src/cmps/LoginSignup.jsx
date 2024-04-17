@@ -7,6 +7,9 @@ export function LoginSignup({ loginUser, signupUser }) {
     const [isSignup, setIsSignup] = useState(false)
     const [users, setUsers] = useState([])
 
+    
+
+
     useEffect(() => {
         loadUsers()
     }, [])
@@ -57,6 +60,11 @@ export function LoginSignup({ loginUser, signupUser }) {
 
     return (
         <div className="login-page">
+
+            <div className="login-image">
+                <img className="loginsignup-image" src="src/assets/img/mockup.png" alt="mockup" />
+            </div>
+
             {/* <p>
                 <button className="btn-link" onClick={toggleSignup}>{!isSignup ? 'Signup' : 'Login'}</button>
             </p> */}
@@ -72,7 +80,7 @@ export function LoginSignup({ loginUser, signupUser }) {
 
                 <h1 className="logo">Vistagram</h1>
                 <input
-                    type="text"
+                    type="mail"
                     name="username"
                     value={credentials.username}
                     placeholder="Username"
@@ -90,6 +98,9 @@ export function LoginSignup({ loginUser, signupUser }) {
                 />
                 <button className='login-submit-btn'>Login!</button>
                 <p>Don't have an account? <span className='login-signup-btn' onClick={toggleSignup}>Sign up</span></p>
+                <p>or</p>
+                <button className="log-with-facebook"><i className="fa-brands fa-facebook"></i> Continue with Facebook</button>
+
             </form>}
             <div className="signup-section">
                 {isSignup && <form className="signup-form" onSubmit={onSignup}>
@@ -121,6 +132,7 @@ export function LoginSignup({ loginUser, signupUser }) {
                     {/* <ImgUploader onUploaded={onUploaded} /> */}
                     <button className='signup-submit-btn'>Signup!</button>
                     <p>Have an account? <span className='login-signup-btn' onClick={toggleSignup}>Log in</span></p>
+                    <button className="log-with-facebook"><i className="fa-brands fa-facebook"></i> Continue with Facebook</button>
                 </form>}
             </div>
         </div>

@@ -104,13 +104,18 @@
 
 .details-footer-container {
     padding-top: 1em;
-    padding-inline-start: 1em;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 10px;
     border-top: 0.1px $clr-sep-line solid;
 }
 
 .likes-time {
     display: flex;
     flex-direction: column;
+    gap: 5px;
 }
 
 .delete-comment-modal {

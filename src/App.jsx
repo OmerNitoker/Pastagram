@@ -27,6 +27,8 @@ export function App() {
     const navigate = useNavigate()
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isLoading, setIsLoading] = useState(true)
+    const [isOnLoginPage, setIsOnLoginPage] = useState(false);
+
 
     useEffect(() => {
         // Cacher le loader une fois que tout le contenu est chargé
@@ -74,14 +76,14 @@ export function App() {
             <i className="loader-icon fa-brands fa-instagram"></i>
         </div>
     )
-
+   
 
     return (
         <Provider store={store}>
 
 
             <section className="main-layout app">
-                < NavBar />
+            <NavBar  />
                 <main>
                     <Routes location={previousLocation || location}>
                         <Route element={<HomePage />} path="/" />

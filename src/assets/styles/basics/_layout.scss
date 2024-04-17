@@ -22,7 +22,8 @@ main {
     .nav-bar {
         display: flex;
         flex-direction: row !important;
-        justify-content: space-around;
+
+
         position: fixed !important;
         bottom: 0;
         left: 0;
@@ -35,8 +36,14 @@ main {
         border-top: 0.1px solid $clr-sep-line;
     }
 
-    
-     .chat {
+    .nav-list {
+        display: flex;
+        gap: 18%;
+        
+    }
+
+
+    .chat {
         position: fixed !important;
         bottom: auto;
         right: 0;
@@ -57,7 +64,7 @@ main {
         flex-direction: row !important;
         flex-grow: 0 !important;
     }
-    
+
     .vista-logo {
         display: inline !important;
         position: fixed;
@@ -138,5 +145,5 @@ main {
         align-items: center;
     }
 
-   
+
 }

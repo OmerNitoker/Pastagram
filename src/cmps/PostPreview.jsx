@@ -165,7 +165,7 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
                     <i className={`fa-${isSaved ? 'solid' : 'regular'} fa-bookmark`} onClick={handleSaveClick}></i> {/* Utilisation de l'état isSaved pour conditionner l'affichage de l'icône "Save" ou "Saved" */}
                 </div>
 
-                {post.likedBy.length ? <span>{post.likedBy.length} {post.likedBy.length === 1 ? 'Like' : 'Likes'}</span> : <span></span>}
+                {post.likedBy.length ? <span className="num-of-likes">{post.likedBy.length} {post.likedBy.length === 1 ? 'Like' : 'Likes'}</span> : <span></span>}
                 <div>
                     <Link className="clean-link fw600">{post.by.username}</Link>
                     <span className="story-txt">{post.txt}</span>
