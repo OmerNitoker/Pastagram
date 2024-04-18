@@ -12,6 +12,7 @@ import { MoreIcon } from './icons-cmps/MoreIcon';
 import { HomeIcon } from './icons-cmps/HomeIcon';
 import { InstagramLogo } from './icons-cmps/InstagramLogo';
 import { userService } from '../services/user.service';
+import { PastagramLogo } from './icons-cmps/PatagramLogo';
 
 export function NavBar() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -43,11 +44,12 @@ export function NavBar() {
 
         <section className="nav-bar" >
             <div className="narrow-top-bar"></div>
-            <div className="insta-icon">
+            <div className="insta-icon"> 
                 <InstagramLogo margin="1.5em" marginTop="40px" />
             </div>
-            <div className="vista-logo">
-                <InstagramLogo margin="1.5em" marginTop="40px" />
+            <div className="pasta-logo">
+                <PastagramLogo />
+                {/* <InstagramLogo margin="1.5em" marginTop="40px" /> */}
             </div>
 
 

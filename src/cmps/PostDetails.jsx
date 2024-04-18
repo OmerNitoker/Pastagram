@@ -5,6 +5,8 @@ import { utilService } from "../services/util.service"
 import { postService } from "../services/post.service"
 // import { setCurrPost } from "../store/actions/post.actions"
 import { userService } from "../services/user.service"
+import { removePost } from "../store/actions/post.actions"
+import { PostMenu } from "./PostMenu"
 
 export function PostDetails({ lastPath }) {
     const navigate = useNavigate()
@@ -14,6 +16,7 @@ export function PostDetails({ lastPath }) {
 
     // const [likesCount, setLikesCount] = useState(post ? post.likedBy.length : null);
     const [post, setPost] = useState(null)
+    const [isPostMenuOpen, setIsPostMenuOpen] = useState(false)
     const likedByIndex = post ? post.likedBy.findIndex(user => user._id === currentUser._id) : null;
     const [hoveredComment, setHoveredComment] = useState(null)
     const [commentToDelete, setCommentToDelete] = useState(null)
@@ -50,6 +53,17 @@ export function PostDetails({ lastPath }) {
         }
     }, [])
 
+    async function onRemovePost(postId) {
+        try {
+            await removePost(postId)
+            setIsPostMenuOpen(false)
+        }
+        catch (err) {
+            console.log('Cannot delete post: ', err)
+            throw err
+        }
+    }
+
     const handleLikeClick = async () => {
 
         const updatedPost = { ...post }
@@ -77,6 +91,10 @@ export function PostDetails({ lastPath }) {
             console.log('could not save updated post')
             throw err
         }
+    }
+
+    function togglePostMenu() {
+        setIsPostMenuOpen(!isPostMenuOpen);
     }
 
     function generateId() {
@@ -186,7 +204,7 @@ export function PostDetails({ lastPath }) {
                         <section className="post-modal-header flex align-center">
                             <img className="modal-user-avatar" src={post.by.imgUrl} />
                             <Link className="clean-link fw600 fg1">{post.by.username}</Link>
-                            <i className="fa-solid fa-ellipsis "></i>
+                            <i onClick={togglePostMenu} className="fa-solid fa-ellipsis "></i>
                         </section>
                         <ul className="comments-list">
                             <li key={generateId} className="comment-item first-comment">
@@ -281,6 +299,12 @@ export function PostDetails({ lastPath }) {
                     </div>
                 </div>
             </div>
+            {(isPostMenuOpen && post.by._id === currentUser._id) &&
+                <PostMenu
+                    post={post}
+                    setIsPostMenuOpen={setIsPostMenuOpen}
+                    onRemovePost={onRemovePost}
+                />}
         </div>
     )
 }

@@ -8,25 +8,40 @@ import { TaggedIcon } from "../cmps/icons-cmps/TaggedIcon";
 import { userService } from '../services/user.service';
 import { TableIcon } from '../cmps/icons-cmps/TableIcon';
 import { SaveIcon } from '../cmps/icons-cmps/SaveIcon';
+import { loadPosts } from '../store/actions/post.actions';
 
 export function UserDetails() {
     const posts = useSelector((storeState) => storeState.postModule.posts)
+    console.log('postsssss:', posts)
     const currentUser = userService.getLoggedinUser()
-    const [activeComponent, setActiveComponent] = useState(<UserPosts user={currentUser} />);
+    const [activeComponent, setActiveComponent] = useState(<UserPosts user={currentUser} posts={posts} />);
     const [activeTab, setActiveTab] = useState('UserPosts');
 
     useEffect(() => {
-        setActiveComponent(getActiveComponent(activeTab, currentUser));
+        if (!posts.length) {
+            const fetchData = async () => {
+                try {
+                    await loadPosts()
+                } catch (err) {
+                    console.log('err:', err)
+                }
+            }
+            fetchData()
+        }
+    }, [])
+
+    useEffect(() => {
+        setActiveComponent(getActiveComponent(activeTab, currentUser, posts));
     }, [activeTab]);
 
     const handleComponentChange = (componentName) => {
         setActiveTab(componentName);
     };
 
-    const getActiveComponent = (componentName, user = { currentUser }) => {
+    const getActiveComponent = (componentName, user = { currentUser }, posts = {posts}) => {
         switch (componentName) {
             case 'UserPosts':
-                return <UserPosts user={user} />;
+                return <UserPosts user={user} posts={posts} />;
             case 'UserPostsSaved':
                 return <UserPostsSaved currentUser={user} posts={posts} />;
             case 'UserTagged':
@@ -42,7 +57,7 @@ export function UserDetails() {
     //     )
     // }
 
-
+    if(!posts.length) return <div></div>
 
     return (
         <section className="user-profile">
