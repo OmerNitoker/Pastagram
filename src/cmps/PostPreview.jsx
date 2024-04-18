@@ -195,12 +195,11 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
                     handleLikeClick={handleLikeClick}
                     isLiked={isLiked}
                 />} */}
-            {isPostMenuOpen &&
+            {(isPostMenuOpen && post.by._id === currentUser._id) &&
                 <PostMenu
                     post={post}
                     setIsPostMenuOpen={setIsPostMenuOpen}
                     onRemovePost={onRemovePost}
-                    onUpdatePost={onUpdatePost}
                 />}
         </article>
     )

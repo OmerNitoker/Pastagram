@@ -15,6 +15,7 @@ export function HomePage() {
     const location = useLocation()
 
     useEffect(() => {
+        console.log('useEffect home')
         const fetchData = async () => {
             try {
                 await loadPosts()

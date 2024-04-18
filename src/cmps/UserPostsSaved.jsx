@@ -1,13 +1,10 @@
 import { useState, useEffect } from 'react';
 // import { gPosts } from "../services/post.service";
 
-export function UserPostsSaved({ currentUser }) {
+export function UserPostsSaved({ currentUser, posts }) {
   const [savedPosts, setSavedPosts] = useState([]);
-  console.log("currentUser", currentUser)
-  console.log("currentUser.savedPostIds:", currentUser.savedPostIds  );
-
+  
     useEffect(() => {
-      console.log('posts: ', posts)
 
       if (currentUser && currentUser.savedPostIds) {
         const postsToSave = currentUser.savedPostIds.map(postId => {
