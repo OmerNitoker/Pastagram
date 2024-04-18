@@ -19,12 +19,14 @@
 
 
 
-.login-form, .signup-form {
+.login-form,
+.signup-form {
     max-width: 360px;
     border: 2px solid rgb(177, 174, 174);
     height: 55vh;
     padding: 10px;
-   margin-right: 100px;
+    margin-right: 100px;
+    border-radius: 3px;
 }
 
 .input-group {
@@ -47,17 +49,18 @@ button[type="submit"] {
     border: 2px solid rgb(177, 174, 174);
 }
 
-.login-submit-btn, .signup-submit-btn {
+.login-submit-btn,
+.signup-submit-btn {
     background-color: #0095f6;
     color: white;
     border: none;
     cursor: pointer;
     margin-bottom: 40px;
     margin-top: 10px;
-    width:95%;
+    width: 95%;
     height: 45px;
     border-radius: 15px;
-    
+
 }
 
 p {
@@ -74,12 +77,15 @@ p {
 .login-page {
     display: flex;
 
-    grid-template-columns: 1fr 1fr; /* Deux colonnes de largeur égale */
-    gap: 20px; /* Espacement entre les colonnes */
+    grid-template-columns: 1fr 1fr;
+    /* Deux colonnes de largeur égale */
+    gap: 20px;
+    /* Espacement entre les colonnes */
     align-items: center;
     justify-content: center;
     height: 100vh;
-    margin: 0 auto; /* Centrer horizontalement */
+    margin: 0 auto;
+    /* Centrer horizontalement */
     flex-direction: row;
     padding: 20px;
 }
@@ -90,13 +96,14 @@ p {
     height: 100vh;
     width: 10vw;
     grid-column: 1;
-    margin-left:16vw;
+    margin-left: 16vw;
 }
 
 .loginsignup-image {
     height: 100%;
     width: 100vw;
 }
+
 .login-content {
     display: flex;
     flex-direction: column;
@@ -113,12 +120,14 @@ p {
 
 .login-page {
     display: grid;
-    grid-template-columns: 55vw 65vw; /* Définir les colonnes avec les pourcentages souhaités */
-    
+    grid-template-columns: 55vw 65vw;
+    /* Définir les colonnes avec les pourcentages souhaités */
+
     align-items: center;
     justify-content: center;
     height: 100vh;
-    margin: 0 auto; /* Centrer horizontalement */
+    margin: 0 auto;
+    /* Centrer horizontalement */
     padding: 20px;
 }
 
@@ -148,9 +157,9 @@ p {
     height: 40px;
     border-radius: 10px;
     border: none;
-    
 
-    i{
+
+    i {
         color: blue;
         margin-right: 15px;
     }
