@@ -1,0 +1,27 @@
+
+.menu-modal-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+}
+
+.menu-modal-content {
+    position: fixed;
+    bottom: 70px;
+    border: 1px solid $clr-sep-line;
+    width: 250px;
+    margin-inline-start: 1em;
+    border-radius: 10px;
+    background-color: #fff;
+    overflow: auto;
+    z-index: 1001;
+}
+
+.logout-btn {
+    font-size: 14px;
+    padding: 1rem;
+    cursor: pointer;
+}

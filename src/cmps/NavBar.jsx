@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AddPost } from './AddPost';
 import { SearchIcon } from './icons-cmps/SearchIcon';
 import { ExploreIcon } from './icons-cmps/ExploreIcon';
@@ -13,9 +13,13 @@ import { HomeIcon } from './icons-cmps/HomeIcon';
 import { InstagramLogo } from './icons-cmps/InstagramLogo';
 import { userService } from '../services/user.service';
 import { PastagramLogo } from './icons-cmps/PatagramLogo';
+import { MoreMenu } from './MoreMenu';
+
 
 export function NavBar() {
+    const navigate = useNavigate()
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isMoreOpen, setIsMoreOpen] = useState(false)
     const loggedinUser = userService.getLoggedinUser();
     const location = useLocation();
 
@@ -36,6 +40,14 @@ export function NavBar() {
         setIsModalOpen(false);
     }
 
+    function toggleMoreMenu() {
+        setIsMoreOpen(!isMoreOpen)
+    }
+
+    function onLogoutClicked() {
+        userService.logout()
+        navigate('/login')
+    }
     // ... (le reste de votre code)
 
 
@@ -110,15 +122,15 @@ export function NavBar() {
                         <span className='nav-name'>Profile</span>
                     </Link>
                 </li>
-                <li className="nav-item hamburger-menu">
-                    <Link to="/" className="nav-link">
+                <li className="nav-item hamburger-menu" onClick={toggleMoreMenu}>
+                    <Link className="nav-link">
                         <MoreIcon marginRight="1em" />
                         <span className='nav-name'>More</span>
-
                     </Link>
                 </li>
             </ul>
             {isModalOpen && <AddPost setIsModalOpen={setIsModalOpen} onCloseModal={onCloseModal} />}
+            {isMoreOpen && <MoreMenu toggleMoreMenu={toggleMoreMenu} onLogoutClicked={onLogoutClicked} />}
         </section>
     );
 }

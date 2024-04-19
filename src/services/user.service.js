@@ -267,6 +267,54 @@ const gUsers = [
         savedPostIds: [],
         posts: ["s1001","s1002","s1003","s1004","s1005","s1006","s1007","s1008","s1009","s1010","s1011","s1012","s1013","s1014","s1015","s1016","s1017","s1018","s1019","s1020"],
         description: "Flavor Fiesta Café: A vibrant haven for coffee enthusiasts. Experience a global journey of flavors in every cup. Sip, savor, celebrate!"
+    },
+    {
+        _id: "u102",
+        fullname: "Gusto Italiano",
+        username: "Gusto Italiano",
+        password: "Gusto",
+        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1713467634/insta-project/pasagram%20posts/Gusto%20italiano/logo-png_roxwv0.png",
+        following: [],
+        followers: [],
+        savedPostIds: [],
+        posts: ["s1021","s1022","s1023","s1024","s1025","s1026","s1027","s1028","s1029","s1030","s1031","s1032","s1033","s1034","s1035","s1036","s1037","s1038","s1039","s1040","s1041","s1042","s1043"],
+        description: "Gusto Italiano invites you on a culinary journey to Italy. Indulge in our authentic dishes bursting with flavor, crafted with passion and tradition. Experience the true taste of Italy at Gusto Italiano."
+    },
+    {
+        _id: "u103",
+        fullname: "Secret Garden Winery",
+        username: "Secret Garden Winery",
+        password: "sgw123",
+        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1713501732/insta-project/pasagram%20posts/Secret%20Garden%20Winery/logo-png_bs1pa2.png",
+        following: [],
+        followers: [],
+        savedPostIds: [],
+        posts: ["s1044", "s1045", "s1046", "s1047", "s1048", "s1049", "s1050", "s1051", "s1052", "s1053", "s1054", "s1055", "s1056", "s1057", "s1058", "s1059", "s1060"],
+        description: "Discover the hidden treasures of Secret Garden Winery, where each sip tells a story of craftsmanship and elegance. Nestled amidst lush vineyards, our wines are a reflection of nature's bounty and timeless passion."
+    },
+    {
+        _id: "u104",
+        fullname: "Blue Fin Sushi Bar",
+        username: "Blue Fin Sushi Bar",
+        password: "bluefinsushi",
+        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1713508775/insta-project/pasagram%20posts/Blue%20Fin%20Sush%20Bar/logo-png_lknkwl.png",
+        following: [],
+        followers: [],
+        savedPostIds: [],
+        posts: ["s1061", "s1062", "s1063", "s1064", "s1065", "s1066", "s1067", "s1068", "s1069", "s1070", "s1071", "s1072", "s1073", "s1074", "s1075", "s1076", "s1077", "s1078", "s1079", "s1080", "s1081"],
+        description: ''
+    },
+    {
+        _id: "u105",
+        fullname: "Rise and Shine Bakery",
+        username: "Rise and Shine Bakery",
+        password: "rns123",
+        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1713510852/insta-project/pasagram%20posts/Rise%20n%20Shine%20Bakery/logo-png_yjj79j.png",
+        following: [],
+        followers: [],
+        savedPostIds: [],
+        posts: ["s1082", "s1083", "s1085", "s1086", "s1087", "s1088", "s1089", "s1090", "s1091", "s1092", "s1093", "s1094", "s1095", "s1096", "s1097", "s1098", "s1099", "s1100", "s1101", "s1102", "s1103"],
+        description: ''
     }
 ]
 
