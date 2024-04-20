@@ -26,9 +26,11 @@ export function PostDetails({ lastPath }) {
     const [commentTimestamp, setCommentTimestamp] = useState(Date.now())
     const [isEmptyComment, setIsEmptyComment] = useState(true)
     const [isLiked, setIsLiked] = useState(false)
+    const [isTimerSet, setIsTimerSet] = useState(false)
 
     const emojis = ['😀', '😍', '👍', '❤️', '😂', '🎉', '🔥', '😊', '🙌', '😎']
     const { postId } = useParams()
+
 
     useEffect(() => {
         if (likedByIndex !== -1 && likedByIndex !== null) {
@@ -52,6 +54,34 @@ export function PostDetails({ lastPath }) {
             setPost(currPost)
         }
     }, [])
+
+    useEffect(() => {
+        if (post && !isTimerSet) {
+
+            const timeoutId = setTimeout(() => {
+                setPost(prevPost => ({
+                    ...prevPost,
+                    comments: [...prevPost.comments,
+                    {
+                        _id: utilService.makeId(),
+                        by: {
+                            _id: "u111",
+                            fullname: "Orly Ben-Ari",
+                            username: "orly_ben_ari",
+                            imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1713581707/insta-project/pastagram%20users/christina-wocintechchat-com-SJvDxw0azqw-unsplash_mdbgsf.jpg"
+                        },
+                        txt: "איפה בית הקפה נמצא?",
+                        timestamp: Date.now()
+                    }
+                    ]
+                }))
+              
+            }, 5000)
+
+            setIsTimerSet(true)
+            return () => clearTimeout(timeoutId);
+        }
+    }, [post])
 
     async function onRemovePost(postId) {
         try {
@@ -187,6 +217,12 @@ export function PostDetails({ lastPath }) {
         navigate(`${lastPath}`)
     }
 
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            handleCommentSubmit(event);
+        }
+    }
+
     if (!post) return (
         <span></span>
     )
@@ -291,6 +327,7 @@ export function PostDetails({ lastPath }) {
                                 type="text"
                                 placeholder="Add a comment..."
                                 className="comment-input"
+                                onKeyPress={handleKeyPress}
                                 value={newCommentText}
                                 onChange={handleCommentChange}
                             />

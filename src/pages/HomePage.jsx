@@ -9,13 +9,14 @@ import { userService } from '../services/user.service.js'
 
 
 export function HomePage() {
-    const posts = useSelector(storeState => storeState.postModule.posts)
+    const posts = useSelector(storeState => storeState.postModule.posts).sort((post1, post2) => {
+        return post2.timestamp - post1.timestamp})
+        console.log('posts: ', posts)
     // const loggedinUser = useSelector(storeState => storeState.userModule.loggedinUser)
     const loggedinUser = userService.getLoggedinUser()
     const location = useLocation()
 
     useEffect(() => {
-        console.log('useEffect home')
         const fetchData = async () => {
             try {
                 await loadPosts()

@@ -92,7 +92,7 @@ export function PostPreview({ post, currentUser, onRemovePost, onUpdatePost }) {
             },
             txt: newCommentText,
             timestamp: Date.now()
-        };
+        }
 
         post.comments.push(newComment)
         setNewCommentText("");

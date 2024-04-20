@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, redirect, useLocation, useNavigate } from 'react-router-dom';
 import { AddPost } from './AddPost';
 import { SearchIcon } from './icons-cmps/SearchIcon';
 import { ExploreIcon } from './icons-cmps/ExploreIcon';
@@ -24,12 +24,16 @@ export function NavBar() {
     const location = useLocation();
 
     useEffect(() => {
+        if (!loggedinUser) navigate('/login')
+    },[])
+
+    useEffect(() => {
         const navBar = document.querySelector(".nav-bar");
-        navBar.style.opacity = location.pathname.includes('/signup') ? '0' : '1';
+        navBar.style.opacity = location.pathname.includes('/login') ? '0' : '1';
     }, [location.pathname]);
 
     function isLinkActive(path) {
-        return location.pathname === path;
+        return location.pathname === path
     }
 
     function onAddPost() {

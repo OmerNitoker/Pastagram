@@ -28,6 +28,7 @@ export function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isLoading, setIsLoading] = useState(true)
     const [isOnLoginPage, setIsOnLoginPage] = useState(false);
+    const loggedinUser = userService.getLoggedinUser();
 
 
     useEffect(() => {
@@ -76,7 +77,6 @@ export function App() {
             <i className="loader-icon fa-brands fa-instagram"></i>
         </div>
     )
-   
 
     return (
         <Provider store={store}>

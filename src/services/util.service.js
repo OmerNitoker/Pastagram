@@ -7,8 +7,21 @@ export const utilService = {
     saveToStorage,
     loadFromStorage,
     getAssetSrc,
-    getTimeAgo
+    getTimeAgo,
+    generateRandomTimestamp
 }
+
+function generateRandomTimestamp(start, end) {
+    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()))
+}
+
+function generateRandomTimestamps(count) {
+    const timestamps = [];
+    for (let i = 0; i < count; i++) {
+      timestamps.push(generateRandomTimestamp(Date.now() - 172800000, Date.now()));
+    }
+    return timestamps;
+  }
 
 function getTimeAgo(timestamp) {
     const now = new Date();
