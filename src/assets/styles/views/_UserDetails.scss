@@ -111,6 +111,34 @@ img.user-profile-avatar {
 .user-posts-detail>div.active {
     border-top: .145em solid black;
     cursor: pointer;
-
-
 }
+
+.gallery-item {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .gallery-item img {
+    width: 100%;
+    // height: auto;
+  }
+  
+  .img-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay color */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease;
+  }
+  
+  .gallery-item:hover .img-overlay {
+    opacity: 1; /* Show overlay on hover */
+  }
