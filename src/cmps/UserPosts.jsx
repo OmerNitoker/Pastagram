@@ -24,9 +24,9 @@ export function UserPosts({ user, posts }) {
 
             setUserPosts(postsToShow)
 
-            // Calculer le nombre de lignes nécessaires
+            
             const rowCount = Math.ceil(user.posts.length / 3);
-            setGridRows(rowCount);
+            setGridRows(rowCount)
 
             // Mettre à jour la variable CSS
             document.documentElement.style.setProperty('--grid-rows', rowCount);

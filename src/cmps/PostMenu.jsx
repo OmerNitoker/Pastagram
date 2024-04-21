@@ -11,8 +11,7 @@ export function PostMenu({ post, setIsPostMenuOpen, onRemovePost }) {
     function onHandleUpdate() {
         setIsUpdateModalOpen(true)
     }
-
-
+    
     return (
         <section>
             <div className="modal-overlay" onClick={() => setIsPostMenuOpen(false)}>
