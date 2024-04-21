@@ -10,10 +10,6 @@ import { userService } from '../services/user.service.js'
 
 export function HomePage() {
     const posts = useSelector(storeState => storeState.postModule.posts)
-    // .sort((post1, post2) => {
-    //     return post2.timestamp - post1.timestamp})
-    //     console.log('posts: ', posts)
-    // const loggedinUser = useSelector(storeState => storeState.userModule.loggedinUser)
     const loggedinUser = userService.getLoggedinUser()
     const location = useLocation()
 
@@ -28,7 +24,6 @@ export function HomePage() {
         fetchData()
     }, [location])
     
-
     async function onRemovePost(postId) {
         try {
             await removePost(postId)
@@ -38,8 +33,6 @@ export function HomePage() {
             throw err
         }
     }
-
-    // if (!posts.length) return <div>loading...</div>
 
     return (
         <section className="home-container">

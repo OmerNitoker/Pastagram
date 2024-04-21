@@ -8,7 +8,14 @@ export default defineConfig({
     react(),
     svgr(),
   ],
+  base: "/Pastagram/",
+
+  build: {
+    outDir: 'dist'
+  }
 })
+
+
 
 
 

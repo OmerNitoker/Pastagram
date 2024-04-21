@@ -14,10 +14,9 @@ export function PostDetails({ lastPath }) {
     const currentUser = userService.getLoggedinUser()
     const posts = useSelector((storeState) => storeState.postModule.posts)
 
-    // const [likesCount, setLikesCount] = useState(post ? post.likedBy.length : null);
     const [post, setPost] = useState(null)
     const [isPostMenuOpen, setIsPostMenuOpen] = useState(false)
-    const likedByIndex = post ? post.likedBy.findIndex(user => user._id === currentUser._id) : null;
+    const likedByIndex = post ? post.likedBy.findIndex(user => user._id === currentUser._id) : null
     const [hoveredComment, setHoveredComment] = useState(null)
     const [commentToDelete, setCommentToDelete] = useState(null)
     const [showDeleteModal, setShowDeleteModal] = useState(false)
@@ -34,19 +33,13 @@ export function PostDetails({ lastPath }) {
 
     useEffect(() => {
         if (likedByIndex !== -1 && likedByIndex !== null) {
-            setIsLiked(true);
+            setIsLiked(true)
         }
-    }, [likedByIndex]);
+    }, [likedByIndex])
 
     useEffect(() => {
         let currPost
         currPost = posts.find(post => post._id === postId)
-        // if (lastPath === '/') {
-        // }
-        // else if (lastPath === '/user') {
-        //      currPost = currentUser.posts.find(post => post._id === postId)
-        //      currPost = postService.getById(postId)
-        // }
         if (!currPost) {
             console.log('could not find post')
         }
@@ -57,7 +50,6 @@ export function PostDetails({ lastPath }) {
 
     useEffect(() => {
         if (post && !isTimerSet) {
-
             const timeoutId = setTimeout(() => {
                 setPost(prevPost => ({
                     ...prevPost,
