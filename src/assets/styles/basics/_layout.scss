@@ -15,6 +15,10 @@ main {
         display: block;
     }
 
+    .home-container {
+        margin-block-start: 1.5em;
+    }
+
     .post-list {
         margin-top: 3.75rem !important;
     }
@@ -22,8 +26,8 @@ main {
     .nav-bar {
         display: flex;
         flex-direction: row !important;
-
-
+        justify-content: center;
+        align-items: center;
         position: fixed !important;
         bottom: 0;
         left: 0;
@@ -31,15 +35,14 @@ main {
         width: 100vw;
         z-index: 1111;
         background-color: #fff;
-        height: auto !important;
+        height: 48px !important;
         border-right: none !important;
         border-top: 0.1px solid $clr-sep-line;
     }
 
     .nav-list {
         display: flex;
-        gap: 18%;
-        
+        justify-content: center;
     }
 
 
@@ -74,6 +77,14 @@ main {
         z-index: 1001;
     }
 
+    .pasta-logo {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1111;
+        width: 50%;
+    }
+
     .logo {
         font-size: 1.4rem !important;
         margin-left: 0 !important;
@@ -91,6 +102,8 @@ main {
 
     .post-img {
         height: auto !important;
+        width: 100vw !important;
+        align-self: center;
     }
 
     .hamburger-menu {

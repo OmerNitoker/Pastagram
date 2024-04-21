@@ -20,6 +20,7 @@ export function NavBar() {
     const navigate = useNavigate()
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isMoreOpen, setIsMoreOpen] = useState(false)
+    const [isLoginPath, setIsLoginPath] = useState(false)
     const loggedinUser = userService.getLoggedinUser();
     const location = useLocation();
 
@@ -27,9 +28,14 @@ export function NavBar() {
         if (!loggedinUser) navigate('/login')
     },[])
 
+    // useEffect(() => {
+    //     const navBar = document.querySelector(".nav-bar");
+    //     navBar.style.opacity = location.pathname.includes('/login') ? '0' : '1';
+    // }, [location.pathname]);
+
     useEffect(() => {
-        const navBar = document.querySelector(".nav-bar");
-        navBar.style.opacity = location.pathname.includes('/login') ? '0' : '1';
+       if (location.pathname.includes('/login')) setIsLoginPath(true)
+       else setIsLoginPath(false)
     }, [location.pathname]);
 
     function isLinkActive(path) {
@@ -58,14 +64,13 @@ export function NavBar() {
 
     return (
 
-        <section className="nav-bar" >
+        <section className= {isLoginPath ? 'nav-bar hidden' : 'nav-bar'}>
             <div className="narrow-top-bar"></div>
             <div className="insta-icon"> 
                 <InstagramLogo margin="1.5em" marginTop="40px" />
             </div>
             <div className="pasta-logo">
-                <PastagramLogo />
-                {/* <InstagramLogo margin="1.5em" marginTop="40px" /> */}
+                <img src="../src/assets/img/logo-png.png" alt=""/>
             </div>
 
 
@@ -119,7 +124,7 @@ export function NavBar() {
                     </Link>
                 </li>
                 <li className="nav-item userDetails">
-                    <Link to="/user" className="nav-link">
+                    <Link to="/user" className="nav-link" style={{ fontWeight: isLinkActive('/user') ? 600 : 'normal' }}>
                          {/* <i className="fa-regular fa-circle"></i>  */}
                        {loggedinUser ? <img src={loggedinUser.imgUrl} className="user-avatar nav-img" /> : 
                         <img src= 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png' className="user-avatar nav-img" />}

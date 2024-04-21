@@ -31,10 +31,16 @@ export function App() {
     const loggedinUser = userService.getLoggedinUser();
 
 
+
     useEffect(() => {
         // Cacher le loader une fois que tout le contenu est chargé
         setIsLoading(false);
     }, []);
+
+    useEffect(() => {
+        if (location.pathname.includes('/login')) setIsOnLoginPage(true)
+        else setIsOnLoginPage(false)
+     }, [location.pathname]);
 
     // useEffect(() => {
     //     const setLoginDemo = async () => {
@@ -82,7 +88,7 @@ export function App() {
         <Provider store={store}>
 
 
-            <section className="main-layout app">
+            <section className={isOnLoginPage ? "login-layout app" : "main-layout app"}>
             <NavBar  />
                 <main>
                     <Routes location={previousLocation || location}>

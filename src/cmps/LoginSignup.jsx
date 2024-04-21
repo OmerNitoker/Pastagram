@@ -7,7 +7,7 @@ export function LoginSignup({ loginUser, signupUser }) {
     const [isSignup, setIsSignup] = useState(false)
     const [users, setUsers] = useState([])
 
-    
+
 
 
     useEffect(() => {
@@ -53,6 +53,18 @@ export function LoginSignup({ loginUser, signupUser }) {
         setIsSignup(!isSignup)
     }
 
+    function loginGuest() {
+        const guestUsername = 'guy_yaakov'
+        const guestPassword = 'guy123'
+        const guestUser = users.find(user => user.username === guestUsername && user.password === guestPassword)
+        if (!guestUser) {
+            alert('Sorry! there was a problem connecting as guest. Please login or signup')
+            return
+        }
+        loginUser(guestUser)
+        clearState()
+    }
+
     // function onUploaded(imgUrl) {
     //     setCredentials({ ...credentials, imgUrl })
     // }
@@ -60,9 +72,9 @@ export function LoginSignup({ loginUser, signupUser }) {
     return (
         <div className="login-page">
 
-            <div className="login-image">
-                <img className="loginsignup-image" src="src/assets/img/mockup.png" alt="mockup" />
-            </div>
+            {/* <div className="login-image"> */}
+            <img className="loginsignup-image" src="src/assets/img/login-image.png" alt="mockup" />
+            {/* </div> */}
 
             {/* <p>
                 <button className="btn-link" onClick={toggleSignup}>{!isSignup ? 'Signup' : 'Login'}</button>
@@ -77,7 +89,10 @@ export function LoginSignup({ loginUser, signupUser }) {
                     {users.map(user => <option key={user._id} value={user.username}>{user.fullname}</option>)}
                 </select> */}
 
-                <h1 className="logo">Vistagram</h1>
+                {/* <h1 className="logo">Vistagram</h1> */}
+                <div className="pasta-logo">
+                    <img src="../src/assets/img/logo-png.png" alt="" />
+                </div>
                 <input
                     type="mail"
                     name="username"
@@ -98,7 +113,7 @@ export function LoginSignup({ loginUser, signupUser }) {
                 <button className='login-submit-btn'>Login!</button>
                 <p>Don't have an account? <span className='login-signup-btn' onClick={toggleSignup}>Sign up</span></p>
                 <p>or</p>
-                <button className="log-with-facebook"><i className="fa-brands fa-facebook"></i> Continue with Facebook</button>
+                <button className="login-demo-btn" onClick={loginGuest}> Continue as guest</button>
 
             </form>}
             <div className="signup-section">
@@ -131,7 +146,7 @@ export function LoginSignup({ loginUser, signupUser }) {
                     {/* <ImgUploader onUploaded={onUploaded} /> */}
                     <button className='signup-submit-btn'>Signup!</button>
                     <p>Have an account? <span className='login-signup-btn' onClick={toggleSignup}>Log in</span></p>
-                    <button className="log-with-facebook"><i className="fa-brands fa-facebook"></i> Continue with Facebook</button>
+                    <button className="login-demo-btn" onClick={loginGuest}> Continue as guest</button>
                 </form>}
             </div>
         </div>

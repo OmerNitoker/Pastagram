@@ -257,15 +257,27 @@ window.userService = userService
 
 const gUsers = [
     {
+        _id: "u100",
+        fullname: "Guy Yaakov",
+        username: "guy_yaakov",
+        password: "guy123",
+        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1712646609/insta-project/pastagram%20users/James_Smith_fq1zpt.jpg",
+        following: [],
+        followers: [],
+        savedPostIds: [],
+        posts: [],
+        description: ""
+    },
+    {
         _id: "u101",
         fullname: "Mug Life Cafe",
         username: "Mug Life Cafe",
         password: "mug123",
-        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1713612736/insta-project/pasagram%20posts/flavor%20fiesta%20cafe/MugLife_logo_uyde6w.png",
+        imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1713652832/insta-project/pasagram%20posts/flavor%20fiesta%20cafe/logo-png_w3ditr.png",
         following: new Array(72).fill({ _id: utilService.makeId() }),
         followers: new Array(9413).fill({ _id: utilService.makeId() }),
         savedPostIds: [],
-        posts: ["s1001","s1002","s1003","s1004","s1005","s1006","s1007","s1008","s1009","s1010","s1011","s1012","s1013","s1014","s1015","s1016","s1017","s1018","s1019","s1020", "s1117", "s1118", "s1119", "s1120", "s1121", "s1122", "s1123", "s1124", "s1125", "s1126", "s1127", "s1128", "s1129", "s1130", "s1131", "s1132", "s1133", "s1134", "s1135", "s1136"],
+        posts: ["s1001","s1002","s1003","s1004","s1005","s1006","s1007","s1008","s1009","s1010","s1011","s1012","s1013","s1014","s1015","s1016","s1017","s1018","s1019","s1020", "s1117", "s1118", "s1119", "s1120", "s1121", "s1122", "s1123", "s1124", "s1125", "s1126", "s1127", "s1128", "s1129", "s1130", "s1131", "s1132", "s1133", "s1134", "s1135", "s1136", "s1233", "s1234", "s1235", "s1236", "s1237", "s1238", "s1239", "s1240", "s1241", "s1242", "s1243", "s1244", "s1245", "s1246", "s1247", "s1248", "s1249", "s1250", "s1251", "s1252", "s1253", "s1254",],
         description: "בית הקפה 'מאג לייף' מציע חוויה קולינרית ייחודית ואיכותית. אנחנו מציעים תפריט מגוון של קפה איכותי, מאפים טריים, ארוחות בוקר וסנדוויצ'ים מפנקים."
     },
     {
@@ -279,7 +291,7 @@ const gUsers = [
         savedPostIds: [],
         posts: ["s1021","s1022","s1023","s1024","s1025","s1026","s1027","s1028","s1029","s1030","s1031","s1032","s1033","s1034","s1035","s1036","s1037","s1038","s1039","s1040","s1041","s1042","s1043"],
         description: "Gusto Italiano invites you on a culinary journey to Italy. Indulge in our authentic dishes bursting with flavor, crafted with passion and tradition. Experience the true taste of Italy at Gusto Italiano."
-    },
+    }, 
     {
         _id: "u103",
         fullname: "Secret Garden Winery",
@@ -476,8 +488,8 @@ const gUsers = [
         _id: "u119",
         fullname: "Shani Ben-Shalom",
         username: "shani_ben_shalom",
-        password: "shani123",
         imgUrl: "https://res.cloudinary.com/dmhaze3tc/image/upload/v1713197654/insta-project/pastagram%20users/Heather_Li_czmmgp.jpg",
+        password: "shani123",
         following: [],
         followers: [],
         savedPostIds: [],
