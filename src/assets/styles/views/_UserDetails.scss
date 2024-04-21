@@ -81,13 +81,6 @@ img.user-profile-avatar {
 
 }
 
-
-
-.user-profile-description {
-   
-}
-
-
 .user-posts-detail {
     display: flex;
     gap: 80px;
@@ -132,7 +125,7 @@ img.user-profile-avatar {
     background-color: rgba(0, 0, 0, 0.5); /* Dark overlay color */
     color: white;
     display: flex;
-    flex-direction: column;
+    gap: 30px;
     justify-content: center;
     align-items: center;
     opacity: 0; /* Initially hidden */
@@ -141,4 +134,14 @@ img.user-profile-avatar {
   
   .gallery-item:hover .img-overlay {
     opacity: 1; /* Show overlay on hover */
+  }
+
+  .likes-on-hover {
+    display: flex;
+    gap: 5px;
+  }
+
+  .comments-on-hover {
+    display: flex;
+    gap: 5px;
   }

@@ -12,7 +12,6 @@ export function UserPosts({ user, posts }) {
     const location = useLocation();
 
     useEffect(() => {
-        console.log('posts in userPosts: ', posts)
         if (user && user.posts) {
             const postsToShow = user.posts.map(postId => {
                 const post = posts.find(p => p._id === postId);
@@ -37,36 +36,6 @@ export function UserPosts({ user, posts }) {
         setIsLoading(false)
     }, [user]);
 
-    // useEffect(() => {
-    //     if (user && user.posts) {
-    //         const postsToShow = user.posts.map(postId => {
-    //             return postService.getById(postId)
-    //             // .then (post => console.log('post: ', post))
-    //         })
-    //         Promise.all(postsToShow)
-    //             .then((res) => {
-    //                 setUserPosts(res)
-    //                 setIsLoading(false);
-    //             })
-    //             .catch(err => console.log('had a problem fetching the posts: ', err))
-
-
-    //         // Calculer le nombre de lignes nécessaires
-    //         const rowCount = Math.ceil(user.posts.length / 3);
-    //         setGridRows(rowCount);
-
-    //         // Mettre à jour la variable CSS
-    //         document.documentElement.style.setProperty('--grid-rows', rowCount);
-
-
-    //     } else {
-    //         setUserPosts([]); // Réinitialiser les posts si aucun post n'est disponible
-    //         setIsLoading(false);
-    //     }
-    // }, [user]);
-
-
-
     if (!user) {
         return <div>Loading...</div>;
     }
@@ -89,8 +58,14 @@ export function UserPosts({ user, posts }) {
                             <img src={post.imgUrl} alt="post" className="gallery-image" />
                             {isHovered && (
                                 <div className="img-overlay">
-                                    <span>Likes: {post.likedBy.length}</span>
-                                    <span>Comments: {post.comments.length}</span>
+                                    <div className="likes-on-hover">
+                                        <span><i className="fa-solid fa-heart" aria-hidden="true"></i></span>
+                                        <span>{post.likedBy.length}</span>
+                                    </div>
+                                    <div className="comments-on-hover">
+                                        <span><i className="fa-solid fa-comment" aria-hidden="true"></i></span>
+                                        <span>{post.comments.length}</span>
+                                    </div>
                                 </div>
                             )}
                         </div>

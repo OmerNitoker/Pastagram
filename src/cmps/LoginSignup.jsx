@@ -16,7 +16,6 @@ export function LoginSignup({ loginUser, signupUser }) {
 
     async function loadUsers() {
         const users = await userService.getUsers()
-        console.log('users: ', users)
         setUsers(users)
     }
 
@@ -32,8 +31,6 @@ export function LoginSignup({ loginUser, signupUser }) {
     }
 
     function onLogin(ev = null) {
-        // console.log(credentials)
-        // console.log('users:', users)
         if (ev) ev.preventDefault()
         if (!credentials.username) return
         const existingUser = users.find(user => user.username === credentials.username && user.password === credentials.password);

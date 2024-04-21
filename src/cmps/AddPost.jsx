@@ -10,7 +10,6 @@ import { useNavigate } from 'react-router';
 
 export function AddPost({ setIsModalOpen, onCloseModal }) {
     const [loggedinUser, setLoggedinUser] = useState(userService.getLoggedinUser());
-    console.log("loggedinUser", loggedinUser);
     const [newPost, setNewPost] = useState(postService.getEmptyPost());
     const [image, setImage] = useState('');
 
@@ -34,44 +33,20 @@ export function AddPost({ setIsModalOpen, onCloseModal }) {
     }
 
     async function handleSubmit(ev) {
-        ev.preventDefault();
-        if (!newPost.txt || !newPost.imgUrl) return;
-        const postToAdd = { ...newPost };
+        ev.preventDefault()
+        if (!newPost.txt || !newPost.imgUrl) return
+        const postToAdd = { ...newPost }
         try {
-            const addedPost = await addPost(postToAdd);
-            console.log('addedPost: ', addedPost);
-            const updatedUser = { ...loggedinUser, posts: [...loggedinUser.posts, addedPost._id] };
+            const addedPost = await addPost(postToAdd)
+            const updatedUser = { ...loggedinUser, posts: [...loggedinUser.posts, addedPost._id] }
             await userService.update(updatedUser);
-            setLoggedinUser(updatedUser); // Mettez à jour l'état de l'utilisateur ici
-            onCloseModal();
+            setLoggedinUser(updatedUser)
+            onCloseModal()
         } catch (err) {
-            console.log('cannot add post: ', err);
-            throw err;
+            console.log('cannot add post: ', err)
+            throw err
         }
     }
-
-
-
-
-
-    // function handleSubmit(ev) {
-    //     ev.preventDefault()
-    //     if (!newPost.txt || !newPost.imgUrl) return
-    //     const postToAdd = {...newPost}
-    //     const updatedUser = {...loggedinUser}
-    //     addPost(postToAdd)
-    //     .then (addedPost => {
-    //         updatedUser.posts.push(addedPost._id)
-    //         userService.update(updatedUser)
-    //         .then(() => onCloseModal())
-    //         .catch (err => console.log('could not update user: ', err))
-    //     })
-    //     .catch(err => console.log('could not add post: ', err))
-    //     // const addedPost = await addPost(postToAdd)
-    //     // updatedUser.posts.push(addedPost._id)
-    //     // await userService.update(updatedUser)
-    //     // onCloseModal()
-    // }
 
 
     return (
